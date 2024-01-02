@@ -19,3 +19,9 @@ Figma: </br>
 In development ...
 ## Docker
 ## Demo
+**Home screen that users see when entering the site.**
+<img src="https://github.com/IsraelBanez/ChitProject/assets/59572812/f96cbd0f-7038-4aba-9c5a-112080770a8a"/>
+</br>
+**Sign-in screen for users to authenticate their credentials.**
+<img src="https://github.com/IsraelBanez/ChitProject/assets/59572812/e27c7715-68b4-4acd-8039-4572954b0fb3"/>
+
