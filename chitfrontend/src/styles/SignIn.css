@@ -1,0 +1,203 @@
+.sign-in-container{
+    min-width: 800px;
+    min-height: 600px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FAF6F6;
+}
+
+.sign-in-section{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding: 30px 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.sign-in-section img{
+    caret-color: transparent;
+}
+
+.user-data{
+    display: flex;
+    padding: 10px;
+    /* align-items: center; */
+    flex-direction: column;
+    gap: 30px;
+}
+.password-region span{
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    color: #FB5656;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.user-data input{
+    display: flex;
+    width: 400px;
+    padding: 15px 10px;
+    align-items: center;
+    gap: 15px;
+    border-radius: 10px;
+    border: 0.5px solid #010E14;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.user-data input:focus{
+    outline: none;
+}
+.user-data input::placeholder{
+    color: #737C80;
+    caret-color: transparent;
+}
+
+.password-region{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+}
+.si-password{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+.si-password img{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+.forgot-region{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+.forgot-region a{
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+.forgot-left{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+#remember-user{
+    width: auto;
+    height: auto;
+    padding: 0px;
+}
+
+.si-sign-in-btn{
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    border-radius: 25px;
+    background: #CDC1FF;
+    box-shadow: 0px 2px 5px 2px rgba(205, 193, 255, 0.41);
+    cursor: pointer;
+    caret-color: transparent;
+
+    color: #FFF;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; 
+    border: none;
+}
+.si-sign-in-btn:hover{
+    background: rgb(187, 171, 247)
+}
+
+.si-dividor{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    caret-color: transparent;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.si-dividor div{
+    width: 170px;
+    height: 1px;
+    background-color: #010E14;
+}
+
+.si-alternative{
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.si-sign-up-link{
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.bad-credits{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid #FB5656;
+    background: rgba(251, 86, 86, 0.20);
+    backdrop-filter: blur(2px);
+    box-shadow: 0px 2px 4px 0px rgba(251, 86, 86, 0.25);
+}
+
+.bad-credits span{
+    display: flex;
+    color: #FB5656;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
