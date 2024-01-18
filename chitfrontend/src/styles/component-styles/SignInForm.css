@@ -1,15 +1,4 @@
-.sign-in-container{
-    min-width: 800px;
-    min-height: 600px;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #FAF6F6;
-}
-
-.sign-in-section{
+.sign-in-form{
     width: auto;
     height: auto;
     display: flex;
@@ -21,29 +10,18 @@
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-.sign-in-section img{
+.sign-in-form img{
     caret-color: transparent;
 }
 
-.user-data{
+.si-user-data{
     display: flex;
     padding: 10px;
     /* align-items: center; */
     flex-direction: column;
     gap: 30px;
 }
-.password-region span{
-    display: flex;
-    flex-direction: row;
-    text-align: start;
-    color: #FB5656;
-    font-family: 'Poppins';
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-.user-data input{
+.si-user-data input{
     display: flex;
     width: 400px;
     padding: 15px 10px;
@@ -59,20 +37,46 @@
     font-weight: 300;
     line-height: normal;
 }
-.user-data input:focus{
+.si-user-data input:focus{
     outline: none;
 }
-.user-data input::placeholder{
+.si-user-data input::placeholder{
     color: #737C80;
     caret-color: transparent;
 }
+.si-input-slot{
+    display: flex;
+    flex-direction: column;
+}
+.si-input-slot span{
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    color: #FB5656;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
 
-.password-region{
+.si-password-region{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
+}
+.si-password-region span{
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    color: #FB5656;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
 }
 .si-password{
     display: flex;
@@ -85,13 +89,13 @@
     right: 10px;
     cursor: pointer;
 }
-.forgot-region{
+.si-forgot-region{
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
 }
-.forgot-region a{
+.si-forgot-region a{
     color: #CDC1FF;
     font-family: 'Poppins';
     font-size: 14px;
@@ -100,7 +104,7 @@
     line-height: normal;
     text-decoration: none;
 }
-.forgot-left{
+.si-forgot-left{
     display: flex;
     align-items: center;
     gap: 2px;
@@ -177,27 +181,4 @@
     font-weight: 500;
     line-height: normal;
     text-decoration: none;
-}
-
-.bad-credits{
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    border: 1px solid #FB5656;
-    background: rgba(251, 86, 86, 0.20);
-    backdrop-filter: blur(2px);
-    box-shadow: 0px 2px 4px 0px rgba(251, 86, 86, 0.25);
-}
-
-.bad-credits span{
-    display: flex;
-    color: #FB5656;
-    font-family: 'Poppins';
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
 }

@@ -1,0 +1,77 @@
+.sign-up-form{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding: 30px 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.sign-up-form img{
+    caret-color: transparent;
+}
+
+.su-user-data{
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+.su-user-data input{
+    display: flex;
+    width: 400px;
+    padding: 15px 10px;
+    align-items: center;
+    gap: 15px;
+    border-radius: 10px;
+    border: 0.5px solid #010E14;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.su-user-data input:focus {
+    outline: none;
+}
+.su-user-data input::placeholder {
+    color: #737C80;
+    caret-color: transparent;
+}
+.su-input-slot{
+    display: flex;
+    flex-direction: column;
+}
+.su-input-slot span{
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    color: #FB5656;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.su-password-region{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.su-password{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.su-password img{
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
