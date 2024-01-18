@@ -21,6 +21,6 @@ public class CustomUserDetailsConfiguration {
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> repository.findByEmail(username)
-            .orElseThrow(() -> new UsernameNotFoundException("[ApplicationConfig] - User not found"));
+            .orElseThrow(() -> new UsernameNotFoundException("[ApplicationConfig] - Username not found"));
     }
 }

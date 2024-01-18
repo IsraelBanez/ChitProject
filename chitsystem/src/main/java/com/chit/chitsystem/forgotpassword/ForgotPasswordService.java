@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.chit.chitsystem.entity.User;
 import com.chit.chitsystem.entity.enums.TokenType;
 import com.chit.chitsystem.exception.newexceptions.ChangePasswordException;
+import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
 import com.chit.chitsystem.exception.newexceptions.UserNotFoundException;
 import com.chit.chitsystem.repository.UserRepository;
 import com.chit.chitsystem.service.EmailService;
@@ -32,7 +33,7 @@ public class ForgotPasswordService {
         try{
             // Validate the email
             var user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new IllegalArgumentException("User with provided email is not found."));
+                .orElseThrow(() -> new UserNotFoundException("User with provided email is not found."));
             
             // Genereate the reset token
             var jwt = jwtService.generatePasswordResetToken(user);
@@ -101,6 +102,8 @@ public class ForgotPasswordService {
 
                     // Revoke the reset token immediately after all is done
                     revokeAllUserResetTokens(user);
+                } else{
+                    throw new InvalidTokenException("Invalid or revoked token.");
                 }
             }
         } catch (Exception e) {

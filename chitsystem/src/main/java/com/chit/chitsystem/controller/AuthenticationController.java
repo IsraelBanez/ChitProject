@@ -58,12 +58,6 @@ public class AuthenticationController {
                 ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Invalid or expired refresh token.");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDetail);
             }
-        } catch (InvalidTokenException e) {
-            ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, e.getMessage());
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDetail);  
-        } catch (IllegalArgumentException e) {
-            ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetail); 
         } catch (Exception e) {
             // Handle other exceptions
             ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());

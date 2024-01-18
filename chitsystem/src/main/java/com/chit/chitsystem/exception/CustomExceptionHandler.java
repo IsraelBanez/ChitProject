@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.chit.chitsystem.exception.newexceptions.DuplicateUserException;
+import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
+import com.chit.chitsystem.exception.newexceptions.TokenNotFoundException;
+import com.chit.chitsystem.exception.newexceptions.UserNotFoundException;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
@@ -24,6 +27,7 @@ import jakarta.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
+    // Global Exception Handling for generic exceptions
 
     // Handle Validation exceptions as map for requests
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -39,7 +43,10 @@ public class CustomExceptionHandler {
     }
 
     // Handle exceptions relating to bad credentials provided by the user when signing in or signing up
-    @ExceptionHandler({ConstraintViolationException.class, BadCredentialsException.class})
+    @ExceptionHandler({
+        ConstraintViolationException.class, 
+        BadCredentialsException.class
+    })
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ProblemDetail handleCredentialException(Exception exception) {
         ProblemDetail errorDetail = null;
@@ -80,8 +87,28 @@ public class CustomExceptionHandler {
         return errorDetail;
     }
 
-    // JW Token related exceptions
-    @ExceptionHandler({AccessDeniedException.class, SignatureException.class, ExpiredJwtException.class, MalformedJwtException.class})
+    // Handle exceptions when a JW toke trying to be used but it is expired or revoked in the database
+    @ExceptionHandler(InvalidTokenException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public ProblemDetail handleInvalidTokenException(Exception exception) {
+        ProblemDetail errorDetail = null;
+
+        if (exception instanceof InvalidTokenException) {
+            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, exception.getMessage());
+        
+        }
+
+        return errorDetail;
+    }
+
+    // JW Token related exceptions when filtering
+    @ExceptionHandler({
+        AccessDeniedException.class, 
+        SignatureException.class, 
+        ExpiredJwtException.class, 
+        MalformedJwtException.class,
+        InvalidTokenException.class, 
+    })
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ProblemDetail handleAuthorityException(Exception exception) {
         ProblemDetail errorDetail = null;
@@ -106,9 +133,29 @@ public class CustomExceptionHandler {
             errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.FORBIDDEN, exception.getMessage());
         }
 
-
         return errorDetail;
     }
+
+    // Handle exceptions when credentials are missing from the database
+    @ExceptionHandler({
+        UserNotFoundException.class, 
+        TokenNotFoundException.class
+    })
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ProblemDetail handleMissingCredentialsException(Exception exception) {
+        ProblemDetail errorDetail = null;
+
+        if (exception instanceof UserNotFoundException) {
+            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
+        }
+
+        if (exception instanceof TokenNotFoundException) {
+            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, exception.getMessage());
+        }
+        
+        return errorDetail;
+    }
+    
 
 }
 

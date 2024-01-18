@@ -30,13 +30,8 @@ public class ForgotPasswordController {
     // Send email with reset token to valid user email for forgot password 
     @PostMapping
     public ResponseEntity<?> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request){
-        try {
-            forgotPasswordService.verifyForgotPasswordEmail(request);
-            return ResponseEntity.ok("Password reset email sent successfully.");
-        } catch (IllegalArgumentException e) {
-            ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetail);
-        }
+        forgotPasswordService.verifyForgotPasswordEmail(request);
+        return ResponseEntity.ok("Password reset email sent successfully.");
     }
 
     // Reset password of user
@@ -45,9 +40,6 @@ public class ForgotPasswordController {
         try {
             forgotPasswordService.resetPassword(resetToken, request);
             return ResponseEntity.ok("Password reset successfully.");
-        } catch (UserNotFoundException e) {
-            ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetail);
         } catch (ChangePasswordException e) {
             ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
             return ResponseEntity.badRequest().body(errorDetail);

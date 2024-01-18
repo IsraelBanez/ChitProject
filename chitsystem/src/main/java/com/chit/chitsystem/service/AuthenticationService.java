@@ -17,6 +17,7 @@ import com.chit.chitsystem.entity.enums.Role;
 import com.chit.chitsystem.entity.enums.TokenType;
 import com.chit.chitsystem.exception.newexceptions.DuplicateUserException;
 import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
+import com.chit.chitsystem.exception.newexceptions.UserNotFoundException;
 import com.chit.chitsystem.repository.TokenRepository;
 import com.chit.chitsystem.repository.UserRepository;
 
@@ -85,7 +86,7 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())); // Authenticate user
 
             var user = userRepository.findByEmail(request.getEmail())
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid email or password."));
+                    .orElseThrow(() -> new UserNotFoundException("Invalid email."));
                     
             var jwt = jwtService.generateToken(user);
             var refreshToken = jwtService.generateRefreshToken(user);
@@ -126,7 +127,7 @@ public class AuthenticationService {
             if (userEmail != null){
                 // Verify the email accociated with the refresh token is in the db
                 var user = userRepository.findByEmail(userEmail)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid email for refresh token."));
+                    .orElseThrow(() -> new UserNotFoundException("Invalid email for refresh token."));
 
                 // Verify that the refresh token is not expired or revoked
                 var isRefreshTokenValidInDB = tokenRepository.findByRefreshToken(refreshToken) 
@@ -151,7 +152,7 @@ public class AuthenticationService {
                     
                     return authResponse; 
                 } else {
-                    throw new InvalidTokenException("Invalid or expired refresh token.");
+                    throw new InvalidTokenException("Invalid or revoked token.");
                 }
             }
             return null;
