@@ -107,7 +107,6 @@ public class CustomExceptionHandler {
         SignatureException.class, 
         ExpiredJwtException.class, 
         MalformedJwtException.class,
-        InvalidTokenException.class, 
     })
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public ProblemDetail handleAuthorityException(Exception exception) {

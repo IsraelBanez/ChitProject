@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chit.chitsystem.exception.newexceptions.ChangePasswordException;
-import com.chit.chitsystem.exception.newexceptions.UserNotFoundException;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

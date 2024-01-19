@@ -15,7 +15,6 @@ import com.chit.chitsystem.dto.requests.RefreshTokenRequest;
 import com.chit.chitsystem.dto.requests.SignInRequest;
 import com.chit.chitsystem.dto.requests.SignUpRequest;
 import com.chit.chitsystem.dto.responses.JWTAuthenticationResponse;
-import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
 import com.chit.chitsystem.service.AuthenticationService;
 
 import jakarta.validation.Valid;
