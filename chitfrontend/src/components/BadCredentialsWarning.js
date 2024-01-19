@@ -1,7 +1,9 @@
+import '../styles/component-styles/BadCredentialsWarning.css';
+
 import X from '../icons/x.svg';
 
 // Display bad credentials warning
-export default function BadCredentialsWarning({error}){
+export default function BadCredentialsWarning(){
     return (
         <div className='bad-credits'>
             <span>

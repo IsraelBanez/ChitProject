@@ -7,7 +7,7 @@ import Eye from '../icons/eye.svg';
 import EyeClosed from '../icons/eye-closed.svg';
 import X from '../icons/x.svg';
 
-import {authInstance} from '../helpers/AxiosConfig.js';
+import {signUp} from '../helpers/authService.js';
 
 import PasswordCriteria from './PasswordCriteria.js';
 
@@ -21,8 +21,8 @@ export default function SignUpForm({signUpSuccess}){
     });
     const [showPassword, setShowPassword] = useState(false);
     const [isPasswordFocused, setIsPasswordFocused] = useState(false);
-    const [errorMessages, setErrorMessages] = useState({});
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [validationErrorMessages, setValidationErrorMessages] = useState({});
+    const [duplicateErrorMessages, setDuplicateErrorMessages] = useState(null);
 
     // Diplay or hide password when user clicks the visiblity (eye) icon
     const onClickPasswordVisiblity = () => {
@@ -43,36 +43,34 @@ export default function SignUpForm({signUpSuccess}){
     };
 
     // Submit the sign up form
-    const onSubmitSignUp = (e) => {
+    const onSubmitSignUp = async (e) => {
         e.preventDefault();
         
-        authInstance
-        .post('/sign-up', signUpData)
-        .then((response) => {
-            // On success, navigate back to home screen and return status 
-            if (response.status === 200 ){
-                console.log('[Successful sign up]', response.data);
-                signUpStatus = 'success';
-                navigate('/');
+        try {
+            const isSignedUp = await signUp(signUpData);
+            // On success, navigate back to home screen and return status
+            if (isSignedUp && isSignedUp.status == 200) {
+                console.log('[Successful sign in]', isSignedUp.data);
+                signUpSuccess = true;
+                navigate('/'); 
             }
-        })
-        .catch((error) => {
+        } catch (error) {
+            signUpSuccess = false;
             if (error.response) {
-                // The request was made, but the server responded with a status code
-                // that falls out of the range of 2xx
-                console.error('[Failed to sign up]', error.response.data);
+                // The request was made, but the server responded with a status code outside of 2xx
+                console.error('[Failed to sign in]', error.response.data);
                 console.error('[Status]', error.response.status);
 
-                // Handle Duplicated error
+                // Handle Duplicate error
                 if (error.response.data.detail){
-                    console.error('[Error]', error.response.data.detail);
-                    setErrorMessage(error.response.data.detail);
+                    console.error('[Failed to sign in]', error.response.data.detail);
+                    setDuplicateErrorMessages(error.response.data.detail);
                 } else{
-                    setErrorMessage(null);
+                    setDuplicateErrorMessages(null);
                 }
-
+                
                 // Handle Validation Error
-                setErrorMessages(error.response.data);
+                setValidationErrorMessages(error.response.data);
             } else if (error.request) {
                 // The request was made, but no response was received
                 console.error('[Failed to sign up]', 'No response received');
@@ -80,7 +78,7 @@ export default function SignUpForm({signUpSuccess}){
                 // Something happened in setting up the request that triggered an Error
                 console.error('[Failed to sign up]', error.message);
             }
-        });
+        };
     };
 
     return(
@@ -94,42 +92,42 @@ export default function SignUpForm({signUpSuccess}){
                 <div className='su-input-slot'>
                     <input 
                         type='text' 
-                        id='signup-fullname' 
+                        id='sign-up-fullname' 
                         name='fullName' 
                         placeholder='full name' 
                         onChange={onChangeHandler} 
-                        style={{ borderColor: errorMessages.fullName ? '#FB5656' : '' }}
+                        style={{ borderColor: validationErrorMessages.fullName ? '#FB5656' : '' }}
                     /> 
-                    {errorMessages.fullName ? <span><img src={X} alt='x error'/>Full name cannot be emtpy.</span> : ""}
+                    {validationErrorMessages.fullName ? <span><img src={X} alt='x error'/>Full name cannot be emtpy.</span> : ""}
                 </div>
 
                 {/* Handle user username */}
                 <div className='su-input-slot'>
                     <input 
                         type='text' 
-                        id='signup-username' 
+                        id='sign-up-username' 
                         name='userName' 
                         placeholder='create username' 
                         onChange={onChangeHandler}
-                        style={{ borderColor: errorMessages.userName || (errorMessage && errorMessage == "userName: Username already exists.") ? '#FB5656' : '' }}
+                        style={{ borderColor: validationErrorMessages.userName || (duplicateErrorMessages && duplicateErrorMessages == "Username already exists.") ? '#FB5656' : '' }}
                     />
-                    {errorMessages.userName && errorMessages.userName == "Username cannot be empty." ? <span><img src={X} alt='x error'/>Username cannot be empty.</span> : ""}
-                    {errorMessage && errorMessage == "userName: Username already exists."? <span><img src={X} alt='x error'/>Username already exists.</span> : ""}
+                    {validationErrorMessages.userName && validationErrorMessages.userName == "Username cannot be empty." ? <span><img src={X} alt='x error'/>Username cannot be empty.</span> : ""}
+                    {duplicateErrorMessages && duplicateErrorMessages == "Username already exists."? <span><img src={X} alt='x error'/>Username already exists.</span> : ""}
                 </div>
 
                 {/* Handle user email */}
                 <div className='su-input-slot'>
                     <input 
                         type='text' 
-                        id='signup-email' 
+                        id='sign-up-email' 
                         name='email' 
                         placeholder='email address' 
                         onChange={onChangeHandler}
-                        style={{ borderColor: errorMessages.email || (errorMessage && errorMessage == "email: Email already exists.") ? '#FB5656' : '' }}
+                        style={{ borderColor: validationErrorMessages.email || (duplicateErrorMessages && duplicateErrorMessages == "Email already exists.") ? '#FB5656' : '' }}
                     />
-                    {errorMessages.email && errorMessages.email == "Email cannot be empty." ? <span><img src={X} alt='x error'/>Email cannot be empty.</span> : ""}
-                    {errorMessages.email && errorMessages.email == "Email must be a valid email address." ? <span><img src={X} alt='x error'/>Please enter a valid email.</span> : ""}
-                    {errorMessage && errorMessage == "email: Email already exists." ? <span><img src={X} alt='x error'/>Email already exists</span> : ""}
+                    {validationErrorMessages.email && validationErrorMessages.email == "Email cannot be empty." ? <span><img src={X} alt='x error'/>Email cannot be empty.</span> : ""}
+                    {validationErrorMessages.email && validationErrorMessages.email == "Email must be a valid email address." ? <span><img src={X} alt='x error'/>Please enter a valid email.</span> : ""}
+                    {duplicateErrorMessages && duplicateErrorMessages == "Email already exists." ? <span><img src={X} alt='x error'/>Email already exists</span> : ""}
                 </div>
 
                 {/* Handle user password */}
@@ -137,17 +135,17 @@ export default function SignUpForm({signUpSuccess}){
                     <div className='su-password'>
                         <input 
                             type={showPassword ? 'text' : 'password'}
-                            id='signup-password' 
+                            id='sign-up-password' 
                             name='password' 
                             placeholder='create password'
                             onChange={onChangeHandler}
                             onFocus={onPasswordFocus}
                             onBlur={onPasswordBlur} 
-                            style={{ borderColor: errorMessages.password ? '#FB5656' : '' }}
+                            style={{ borderColor: validationErrorMessages.password ? '#FB5656' : '' }}
                         />   
                         <img src={showPassword ? Eye : EyeClosed} alt='password visibility' onClick={onClickPasswordVisiblity}/>
                     </div>
-                    {isPasswordFocused && <PasswordCriteria isError={errorMessages.password}/> || errorMessages.password && <PasswordCriteria isError={errorMessages.password}/>}
+                    {isPasswordFocused && <PasswordCriteria isError={validationErrorMessages.password}/> || validationErrorMessages.password && <PasswordCriteria isError={validationErrorMessages.password}/>}
                 </div>
 
             </div>
@@ -172,8 +170,7 @@ export default function SignUpForm({signUpSuccess}){
 
             {/* Alternative Section */}
             <div className='si-alternative'>
-                Already have an account? 
-                <Link to="/sign-in" className='si-sign-up-link'>Sign in</Link>
+                Already have an account? <Link to="/sign-in" className='si-sign-up-link'>Sign in</Link>
             </div>
         </div>
     );

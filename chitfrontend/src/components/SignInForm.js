@@ -5,8 +5,9 @@ import { useNavigate, Link } from "react-router-dom";
 import Logo from '../icons/logo-big.png';
 import Eye from '../icons/eye.svg';
 import EyeClosed from '../icons/eye-closed.svg';
+import X from '../icons/x.svg';
 
-import {authInstance} from '../helpers/AxiosConfig.js';
+import {signIn} from '../helpers/authService.js';
 
 import BadCredentialsWarning from './BadCredentialsWarning.js';
 
@@ -17,8 +18,8 @@ export default function SignInForm({signInSuccess}){
         password: ''
     });
     const [showPassword, setShowPassword] = useState(false);
-    const [errorMessages, setErrorMessages] = useState({});
-    const [errorMessage, setErrorMessage] = useState(null);
+    const [validationErrorMessages, setValidationErrorMessages] = useState({});
+    const [badCreditErrorMessage, setBadCreditErrorMessage] = useState(null);
 
     // Diplay or hide password when user clicks the visiblity (eye) icon
     const onClickPasswordVisiblity = () => {
@@ -31,20 +32,18 @@ export default function SignInForm({signInSuccess}){
     };
 
     // Submit the sign in form
-    const onSubmitSignIn= (e) => {onSubmitSignIn
+    const onSubmitSignIn = async (e) => {
         e.preventDefault();
-        
-        authInstance
-        .post('/sign-in', signInData)
-        .then((response) => {
-            // On success, navigate back to home screen and return status 
-            if (response.status === 200 ){
-                console.log('[Successful sign in]', response.data);
+
+        try {
+            const isSignedIn = await signIn(signInData);
+            // On success, navigate back to home screen and return status
+            if (isSignedIn && isSignedIn.status == 200) {
+                console.log('[Successful sign in]', isSignedIn.data);
                 signInSuccess = true;
-                navigate('/');
+                navigate('/'); 
             }
-        })
-        .catch((error) => {
+        } catch (error) {
             signInSuccess = false;
             if (error.response) {
                 // The request was made, but the server responded with a status code outside of 2xx
@@ -54,13 +53,13 @@ export default function SignInForm({signInSuccess}){
                 // Handle Bad credential error
                 if (error.response.data.detail){
                     console.error('[Error]', error.response.data.detail);
-                    setErrorMessage(error.response.data.detail);
+                    setBadCreditErrorMessage(error.response.data.detail);
                 } else{
-                    setErrorMessage(null);
+                    setBadCreditErrorMessage(null);
                 }
                 
                 // Handle Validation Error
-                setErrorMessages(error.response.data);
+                setValidationErrorMessages(error.response.data);
             } else if (error.request) {
                 // The request was made, but no response was received
                 console.error('[Failed to sign up]', 'No response received');
@@ -68,7 +67,7 @@ export default function SignInForm({signInSuccess}){
                 // Something happened in setting up the request that triggered an Error
                 console.error('[Failed to sign up]', error.message);
             }
-        });
+        };
     };
 
     return (
@@ -79,19 +78,19 @@ export default function SignInForm({signInSuccess}){
             {/* User Data Collection Section */}
             <div className='si-user-data'>
                 {/* Handle bad credentials */}
-                {errorMessage && errorMessage == "Bad credentials" && <BadCredentialsWarning/>}
+                {badCreditErrorMessage && badCreditErrorMessage == "Bad credentials" && <BadCredentialsWarning/>}
 
                 {/* Handle user email */}
                 <div className='si-input-slot'>
                     <input 
                         type='text' 
-                        id='signin-email' 
+                        id='sign-in-email' 
                         name='email' 
                         placeholder='email'
                         onChange={onChangeHandler}
-                        style={{ borderColor: errorMessages.email ? '#FB5656' : '' }}
+                        style={{ borderColor: validationErrorMessages.email ? '#FB5656' : '' }}
                     />
-                    {errorMessages.email && errorMessages.email == "Email cannot be empty." ? <span><img src={X} alt='x error'/>Email cannot be empty.</span> : ""}
+                    {validationErrorMessages.email && validationErrorMessages.email == "Email cannot be empty." ? <span><img src={X} alt='x error'/>Email cannot be empty.</span> : ""}
                 </div>
 
                 {/* Handle user password */}
@@ -99,16 +98,16 @@ export default function SignInForm({signInSuccess}){
                     <div className='si-password'>
                         <input 
                             type={showPassword ? 'text' : 'password'}
-                            id='signin-password' 
+                            id='sign-in-password' 
                             name='password' 
                             placeholder='password'
                             onChange={onChangeHandler}
-                            style={{ borderColor: errorMessages.password ? '#FB5656' : '' }}
+                            style={{ borderColor: validationErrorMessages.password ? '#FB5656' : '' }}
                         />   
                         <img src={showPassword ? Eye : EyeClosed} alt='password visibility' onClick={onClickPasswordVisiblity}/>
                     </div>
 
-                    {errorMessages.password && errorMessages.password == "Passsword cannot be empty." ? <span><img src={X} alt='x error'/>Passsword cannot be empty.</span> : ""}
+                    {validationErrorMessages.password && validationErrorMessages.password == "Passsword cannot be empty." ? <span><img src={X} alt='x error'/>Passsword cannot be empty.</span> : ""}
                     
                     {/* Handle forgot password and remeber me */}
                     <div className='si-forgot-region'>
@@ -117,7 +116,7 @@ export default function SignInForm({signInSuccess}){
                             Remember me
                         </div>
                         
-                        <a href=''>Forgot password?</a>
+                        <Link to='/forgot-password' className='si-forgot-pswd-link'>Forgot password?</Link>
                     </div>
                 </div>
             </div>
@@ -140,8 +139,7 @@ export default function SignInForm({signInSuccess}){
 
             {/* Alternative Section */}
             <div className='si-alternative'>
-                Don't have an account? 
-                <Link to="/sign-up" className='si-sign-up-link'>Sign up</Link>
+                Don't have an account? <Link to="/sign-up" className='si-sign-up-link'>Sign up</Link>
             </div>
         </div>
     );
