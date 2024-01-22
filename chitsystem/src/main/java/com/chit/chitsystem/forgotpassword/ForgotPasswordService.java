@@ -68,6 +68,12 @@ public class ForgotPasswordService {
             if (resetToken == null || resetToken.isEmpty()) {
                 throw new IllegalArgumentException("Reset token cannot be null or empty.");
             }
+
+            // Verify that the new passwords match each other
+            if (!request.getNewPassword().equals(request.getConfirmNewPassword())) {
+                throw new ChangePasswordException("New passwords do not match.");
+            }
+
             // Verify email exists for given token in db
             userEmail = jwtService.extractUsername(resetToken);
             
@@ -83,11 +89,6 @@ public class ForgotPasswordService {
                 
                 // Verify token isn't expired
                 if (jwtService.isTokenValid(resetToken, user) && isResetTokenValidInDB) {
-
-                    // Verify that the new passwords match each other
-                    if (!request.getNewPassword().equals(request.getConfirmNewPassword())) {
-                        throw new ChangePasswordException("New passwords do not match.");
-                    }
 
                     // Verify that this new passwords isn't the same as the old passwords
                     if (passwordEncoder.matches(request.getNewPassword(), user.getPassword())){
