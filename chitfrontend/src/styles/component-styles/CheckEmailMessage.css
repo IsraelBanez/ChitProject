@@ -1,0 +1,79 @@
+.check-email-msg{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding: 30px 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.check-email-msg img{
+    caret-color: transparent;
+}
+
+.cy-title{
+    display: flex;
+    padding: 0px 10px;
+    justify-content: center;
+    align-items: center;
+}
+.cy-title h1{
+    margin: 0;
+
+    color: #010E14;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cy-message{
+    display: flex;
+    padding: 0px 10px;
+    justify-content: center;
+    align-items: center;
+}
+.cy-message p{
+    margin: 0;
+
+    color: #010E14;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.cy-alternative{
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.cy-resend{
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+    cursor: pointer;
+}
+.cy-sign-in-link, .cy-forgot-pswd-link{
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}

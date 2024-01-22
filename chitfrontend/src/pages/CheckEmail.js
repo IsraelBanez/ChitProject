@@ -1,3 +1,4 @@
+import '../styles/page-styles/CheckEmail.css';
 
 import CheckEmailMessage from "../components/CheckEmailMessage.js";
 

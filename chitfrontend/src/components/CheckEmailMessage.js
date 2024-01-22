@@ -1,21 +1,18 @@
-import '../styles/component-styles/ForgotPasswordForm.css';
+import '../styles/component-styles/CheckEmailMessage.css';
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 
 import Logo from '../icons/logo-big.png';
-import X from '../icons/x.svg';
 
 import {forgotPassword} from '../helpers/authService.js';
+
+// TODO: Eventually take this path away and merge it with the forgot-password; just switch pages
 
 export default function CheckEmailMessage({userEmail}){
     const navigate = useNavigate();
 
-    const onClickResend = () => {
-
-    };
-
     // Submit the forgot password form
-    const onSubmitEmail = async (e) => {
+    const onClickResend = async (e) => {
         e.preventDefault();
 
         try {
@@ -23,23 +20,23 @@ export default function CheckEmailMessage({userEmail}){
             console.log(isValidEmail);
             // On success, navigate back to Check Email and return status
             if (isValidEmail && isValidEmail.status == 200) {
-                console.log('[Successfully sent email request]', isValidEmail.data);
+                console.log('[Successfully resent email request]', isValidEmail.data);
                 navigate('/'); 
             }
         } catch (error) {
             if (error.response) {
                 // The request was made, but the server responded with a status code outside of 2xx
-                console.error('[Failed to send email request]', error.response.data);
+                console.error('[Failed to resend email request]', error.response.data);
                 console.error('[Status]', error.response.status);
                 
                 // Handle Validation Error
                 setValidationErrorMessages(error.response.data);
             } else if (error.request) {
                 // The request was made, but no response was received
-                console.error('[Failed to send email request]', 'No response received');
+                console.error('[Failed to resend email request]', 'No response received');
             } else {
                 // Something happened in setting up the request that triggered an Error
-                console.error('[Failed to send email request]', error.message);
+                console.error('[Failed to resend email request]', error.message);
             }
         };
     };
@@ -66,7 +63,7 @@ export default function CheckEmailMessage({userEmail}){
             <div className='cy-message'>
                 <p>
                     Haven’t received an email? <br/> 
-                    <span onClick={onClickResend}>Resend</span> or <Link to="/forgot-password" className='cy-forgot-pswd-link'>Try different email</Link>
+                    <span onClick={onClickResend} className='cy-resend'>Resend</span> or <Link to="/forgot-password" className='cy-forgot-pswd-link'>Try different email</Link>
                 </p>
             </div>
 

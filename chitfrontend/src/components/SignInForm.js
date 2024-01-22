@@ -78,7 +78,7 @@ export default function SignInForm({signInSuccess}){
             {/* User Data Collection Section */}
             <div className='si-user-data'>
                 {/* Handle bad credentials */}
-                {badCreditErrorMessage && badCreditErrorMessage == "Bad credentials" && <BadCredentialsWarning/>}
+                {badCreditErrorMessage && badCreditErrorMessage == "Bad credentials" && <BadCredentialsWarning message={"The email or password provided is invalid. Please try again."}/>}
 
                 {/* Handle user email */}
                 <div className='si-input-slot'>

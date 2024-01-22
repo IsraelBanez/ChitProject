@@ -29,7 +29,7 @@ export default function ForgotPasswordForm(){
             // On success, navigate back to Check Email and return status
             if (isValidEmail && isValidEmail.status == 200) {
                 console.log('[Successfully sent email request]', isValidEmail.data);
-                navigate('/'); 
+                navigate('/forgot-password/check-email'); 
             }
         } catch (error) {
             if (error.response) {

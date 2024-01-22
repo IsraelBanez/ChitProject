@@ -18,8 +18,8 @@ function App() {
       <Route path="sign-in" element={<SignIn />} />
       <Route path="sign-up" element={<SignUp />} />
       <Route path="forgot-password" element={<ForgotPassword />} />
-      <Route path="check-email" element={<CheckEmail />} />
-      <Route path="reset-password" element={<ResetPassword />} />
+      <Route path="forgot-password/check-email" element={<CheckEmail />} />
+      <Route path="forgot-password/reset-password" element={<ResetPassword />} />
       <Route path="*" element={<NoPage/>}/>
     </Routes>
   </>
