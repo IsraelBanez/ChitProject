@@ -1,36 +1,43 @@
 import '../styles/component-styles/CheckEmailMessage.css';
-import React, { useState } from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link, useLocation } from "react-router-dom";
 
 import Logo from '../icons/logo-big.png';
 
-import {forgotPassword} from '../helpers/authService.js';
+import {useAuth} from '../helpers/AuthContext.js';
 
 // TODO: Eventually take this path away and merge it with the forgot-password; just switch pages
 
-export default function CheckEmailMessage({userEmail}){
+export default function CheckEmailMessage(){
+    const { forgotPasswordHandler } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const [userEmail, setUserEmail] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    // Retrieve email from location state when the component mounts
+    useEffect(() => {
+        if (location.state && location.state.email) {
+            setUserEmail(location.state.email);
+        }
+    }, [location.state]);
 
     // Submit the forgot password form
     const onClickResend = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
-            const isValidEmail = await forgotPassword(userEmail);
-            console.log(isValidEmail);
+            console.log(userEmail);
+            await forgotPasswordHandler(userEmail);
             // On success, navigate back to Check Email and return status
-            if (isValidEmail && isValidEmail.status == 200) {
-                console.log('[Successfully resent email request]', isValidEmail.data);
-                navigate('/'); 
-            }
+            console.log('[Successfully resent email request]');
         } catch (error) {
             if (error.response) {
                 // The request was made, but the server responded with a status code outside of 2xx
                 console.error('[Failed to resend email request]', error.response.data);
                 console.error('[Status]', error.response.status);
                 
-                // Handle Validation Error
-                setValidationErrorMessages(error.response.data);
             } else if (error.request) {
                 // The request was made, but no response was received
                 console.error('[Failed to resend email request]', 'No response received');
@@ -38,6 +45,8 @@ export default function CheckEmailMessage({userEmail}){
                 // Something happened in setting up the request that triggered an Error
                 console.error('[Failed to resend email request]', error.message);
             }
+        } finally {
+            setLoading(false);
         };
     };
 

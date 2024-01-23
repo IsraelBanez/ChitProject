@@ -7,12 +7,13 @@ import Eye from '../icons/eye.svg';
 import EyeClosed from '../icons/eye-closed.svg';
 import X from '../icons/x.svg';
 
-import {resetPassword} from '../helpers/authService.js';
+import {useAuth} from '../helpers/AuthContext.js';
 
 import PasswordCriteria from './PasswordCriteria';
 import BadCredentialsWarning from './BadCredentialsWarning.js';
 
 export default function ResetPasswordForm(){
+    const { resetPasswordHandler } = useAuth();
     const navigate = useNavigate();
     const [resetPasswordData, setResetPasswordData] = useState({
         newPassword: '',
@@ -24,6 +25,7 @@ export default function ResetPasswordForm(){
     const [matchPasswordErrorMessage, setMatchPasswordErrorMessage] = useState(null);
     const [oldPasswordErrorMessage, setOldPasswordErrorMessage] = useState(null);
     const [invalidJWTokenErrorMessage, setInvalidJWTokenErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     // Diplay or hide password when user clicks the visiblity (eye) icon
     const onClickPasswordVisiblityOne = () => {
@@ -41,14 +43,13 @@ export default function ResetPasswordForm(){
     // Submit the reset password form
     const onSubmitResetPassword = async (e) => {
         e.preventDefault();
+        setLoading(true);
         
         try {
-            const isPasswordReset = await resetPassword(resetPasswordData);
+            await resetPasswordHandler(resetPasswordData);
             // On success, navigate back to home screen and return status
-            if (isPasswordReset && isPasswordReset.status == 200) {
-                console.log('[Successful password reset]', isPasswordReset.data);
-                navigate('/sign-in'); 
-            }
+            console.log('[Successful password reset]');
+            navigate('/sign-in'); 
         } catch (error) {
             if (error.response) {
                 // The request was made, but the server responded with a status code outside of 2xx
@@ -86,6 +87,8 @@ export default function ResetPasswordForm(){
                 // Something happened in setting up the request that triggered an Error
                 console.error('[Failed to reset password]', error.message);
             }
+        } finally {
+            setLoading(false);
         };
     };
 
@@ -151,8 +154,10 @@ export default function ResetPasswordForm(){
                 type='submit' 
                 id='reset-button' 
                 onClick={onSubmitResetPassword} 
-                className='rp-reset-pswd-btn'>
-                Reset Password
+                className='rp-reset-pswd-btn'
+                disabled={loading} 
+            >
+                {loading ? 'Reset Password...' : 'Reset Password'}
             </button>
     
             {/* Alternative Section */}

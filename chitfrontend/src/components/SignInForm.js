@@ -7,11 +7,12 @@ import Eye from '../icons/eye.svg';
 import EyeClosed from '../icons/eye-closed.svg';
 import X from '../icons/x.svg';
 
-import {signIn} from '../helpers/authService.js';
+import {useAuth} from '../helpers/AuthContext.js';
 
 import BadCredentialsWarning from './BadCredentialsWarning.js';
 
 export default function SignInForm({signInSuccess}){
+    const { signInUser } = useAuth();
     const navigate = useNavigate();
     const [signInData, setSignInData] = useState({
         email: '',
@@ -20,6 +21,7 @@ export default function SignInForm({signInSuccess}){
     const [showPassword, setShowPassword] = useState(false);
     const [validationErrorMessages, setValidationErrorMessages] = useState({});
     const [badCreditErrorMessage, setBadCreditErrorMessage] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     // Diplay or hide password when user clicks the visiblity (eye) icon
     const onClickPasswordVisiblity = () => {
@@ -34,15 +36,13 @@ export default function SignInForm({signInSuccess}){
     // Submit the sign in form
     const onSubmitSignIn = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
-            const isSignedIn = await signIn(signInData);
+            await signInUser(signInData);
             // On success, navigate back to home screen and return status
-            if (isSignedIn && isSignedIn.status == 200) {
-                console.log('[Successful sign in]', isSignedIn.data);
-                signInSuccess = true;
-                navigate('/'); 
-            }
+            console.log('[Successful sign in]');
+            navigate('/'); 
         } catch (error) {
             signInSuccess = false;
             if (error.response) {
@@ -67,7 +67,9 @@ export default function SignInForm({signInSuccess}){
                 // Something happened in setting up the request that triggered an Error
                 console.error('[Failed to sign up]', error.message);
             }
-        };
+        } finally {
+            setLoading(false); // This will be executed whether there was an error or not
+        }
     };
 
     return (
@@ -126,8 +128,10 @@ export default function SignInForm({signInSuccess}){
                 type='submit'
                 id='sign-in-button'  
                 onClick={onSubmitSignIn} 
-                className='si-sign-in-btn'>
-                Sign in
+                className='si-sign-in-btn'
+                disabled={loading}
+            >
+                {loading ? 'Signing in...' : 'Sign in'}
             </button>
 
             {/* Dividor */}

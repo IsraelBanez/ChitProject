@@ -1,5 +1,8 @@
 import '../styles/component-styles/NavBar.css';
 import { useNavigate } from "react-router-dom";
+
+import NavLinks from './NavLinks.js'
+
 import Logo from '../icons/logo.png';
 
 
@@ -15,23 +18,7 @@ export default function NavBar(){
                 <div className='n-left-region'>
                     <img src={Logo} alt='chit logo'/>
                 </div>
-                <div className='n-mid-region'>
-                    <div>
-                        services
-                    </div>
-                    <div>
-                        business
-                    </div>
-                    <div>
-                        blog
-                    </div>
-                    <div>
-                        help & support
-                    </div>
-                    <div>
-                        about
-                    </div>
-                </div>
+                <NavLinks />
                 <div className='n-right-region'>
                     <div className='n-sign-in-btn' onClick={() => signInPage()}>
                         Sign in

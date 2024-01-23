@@ -7,11 +7,12 @@ import Eye from '../icons/eye.svg';
 import EyeClosed from '../icons/eye-closed.svg';
 import X from '../icons/x.svg';
 
-import {signUp} from '../helpers/authService.js';
+import {useAuth} from '../helpers/AuthContext.js';
 
 import PasswordCriteria from './PasswordCriteria.js';
 
 export default function SignUpForm({signUpSuccess}){
+    const {signUpUser} = useAuth();
     const navigate = useNavigate();
     const [signUpData, setSignUpData] = useState({
         fullName: '',
@@ -23,6 +24,7 @@ export default function SignUpForm({signUpSuccess}){
     const [isPasswordFocused, setIsPasswordFocused] = useState(false);
     const [validationErrorMessages, setValidationErrorMessages] = useState({});
     const [duplicateErrorMessages, setDuplicateErrorMessages] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     // Diplay or hide password when user clicks the visiblity (eye) icon
     const onClickPasswordVisiblity = () => {
@@ -45,15 +47,13 @@ export default function SignUpForm({signUpSuccess}){
     // Submit the sign up form
     const onSubmitSignUp = async (e) => {
         e.preventDefault();
-        
+        setLoading(true);
+
         try {
-            const isSignedUp = await signUp(signUpData);
+            await signUpUser(signUpData);
             // On success, navigate back to home screen and return status
-            if (isSignedUp && isSignedUp.status == 200) {
-                console.log('[Successful sign in]', isSignedUp.data);
-                signUpSuccess = true;
-                navigate('/'); 
-            }
+            console.log('[Successful sign in]');
+            navigate('/'); 
         } catch (error) {
             signUpSuccess = false;
             if (error.response) {
@@ -78,6 +78,8 @@ export default function SignUpForm({signUpSuccess}){
                 // Something happened in setting up the request that triggered an Error
                 console.error('[Failed to sign up]', error.message);
             }
+        } finally {
+            setLoading(false);
         };
     };
 
@@ -157,8 +159,10 @@ export default function SignUpForm({signUpSuccess}){
                 onClick={onSubmitSignUp} 
                 className='si-sign-in-btn'
                 onMouseDown={(e) => e.preventDefault()} // To overcome the focus of the password criteria
-                onTouchStart={(e) => e.preventDefault()} >
-                Sign up
+                onTouchStart={(e) => e.preventDefault()} 
+                disabled={loading}
+            >
+                {loading ? 'Sign up...' : 'Sign up'}
             </button>
     
             {/* Dividor */}

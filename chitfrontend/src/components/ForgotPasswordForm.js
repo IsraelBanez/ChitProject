@@ -5,14 +5,16 @@ import { useNavigate, Link } from "react-router-dom";
 import Logo from '../icons/logo-big.png';
 import X from '../icons/x.svg';
 
-import {forgotPassword} from '../helpers/authService.js';
+import {useAuth} from '../helpers/AuthContext.js';
 
 export default function ForgotPasswordForm(){
+    const { forgotPasswordHandler} = useAuth();
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState({
         email: ''
     });
     const [validationErrorMessages, setValidationErrorMessages] = useState({});
+    const [loading, setLoading] = useState(false);
 
     // Handle changes to the forgot password data
     const onChangeHandler = (e) => {
@@ -22,15 +24,13 @@ export default function ForgotPasswordForm(){
     // Submit the forgot password form
     const onSubmitEmail = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
-            const isValidEmail = await forgotPassword(userEmail);
-            console.log(isValidEmail);
+            await forgotPasswordHandler(userEmail);
             // On success, navigate back to Check Email and return status
-            if (isValidEmail && isValidEmail.status == 200) {
-                console.log('[Successfully sent email request]', isValidEmail.data);
-                navigate('/forgot-password/check-email'); 
-            }
+            console.log('[Successfully sent email request]');
+            navigate('/forgot-password/check-email', { state: { email: userEmail.email } }); 
         } catch (error) {
             if (error.response) {
                 // The request was made, but the server responded with a status code outside of 2xx
@@ -46,6 +46,8 @@ export default function ForgotPasswordForm(){
                 // Something happened in setting up the request that triggered an Error
                 console.error('[Failed to send email request]', error.message);
             }
+        } finally {
+            setLoading(false);
         };
     };
 
@@ -91,8 +93,10 @@ export default function ForgotPasswordForm(){
                 type='submit'
                 id='forgot-button'  
                 onClick={onSubmitEmail} 
-                className='fp-send-email-btn'>
-                Send Email
+                className='fp-send-email-btn'
+                disabled={loading}
+            >
+                {loading ? 'Send Email...' : 'Send Email'}
             </button>
 
 
