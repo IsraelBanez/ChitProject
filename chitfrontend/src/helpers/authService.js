@@ -6,6 +6,7 @@ const authInstance = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true
 });
 
 const forgotPasswordInstance = axios.create({
@@ -38,6 +39,15 @@ const signUp = async (credentials) => {
     }
 };
 
+const checkUser = async () => {
+    try {
+        const response  = await authInstance.get('./whoami');
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const forgotPassword = async (credentials) => {
     try{
         console.log(credentials);
@@ -62,4 +72,5 @@ const resetPassword = async (credentials) => {
         throw error;
     }
 };
-export { authInstance, userInstance, signIn, signUp, forgotPassword, resetPassword};
+
+export { authInstance, userInstance, signIn, signUp, checkUser, forgotPassword, resetPassword};
