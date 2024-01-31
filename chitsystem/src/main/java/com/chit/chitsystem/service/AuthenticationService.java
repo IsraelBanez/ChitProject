@@ -1,12 +1,9 @@
 package com.chit.chitsystem.service;
 
 
-import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -93,15 +90,6 @@ public class AuthenticationService {
             var refreshToken = jwtService.generateRefreshToken(user);
             revokeAllUserTokens(user, request, response); // Revoke all user tokens
             storeUserToken(user, jwt, refreshToken, request, response); // Store Token
-            // Check if the authentication object is present
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            if (authentication != null && authentication.isAuthenticated()) {
-                // Perform actions based on the authenticated user
-                log.info("User '{}' successfully signed in.", authentication.getPrincipal());
-            } else {
-                // Authentication failed or user not authenticated
-                log.warn("Sign-in authentication failed.");
-            }
             return JWTAuthenticationResponse.builder().accessToken(jwt).refreshToken(refreshToken).build();
         } catch (Exception e) {
             log.error("[AuthenticationService] - Error during sign in.", e);
@@ -112,7 +100,6 @@ public class AuthenticationService {
     // Check if a user is still logged in
     public Boolean whoAmI(HttpServletRequest request){
         final String accessToken = extractAccessTokenFromCookies(request);
-        log.info(accessToken + "here1");
         final String userEmail;
 
         // If no access token, no user is logged in
@@ -120,7 +107,6 @@ public class AuthenticationService {
             return false;
         }
 
-        log.info(accessToken + "here2");
         // There is an access token, therefore some is logged in
         userEmail = jwtService.extractUsername(accessToken);
 
@@ -133,8 +119,6 @@ public class AuthenticationService {
             var isAccessTokenValidInDB = tokenRepository.findByAccessToken(accessToken) 
                 .map(t -> !t.isExpired() && !t.isRevoked())
                 .orElse(false);
-            log.info("ff" + isAccessTokenValidInDB);
-            log.info(""+ jwtService.isTokenValid(accessToken, user));
             // Verify that the refresh token is not expired and is associated with the email
             if (jwtService.isTokenValid(accessToken, user) && isAccessTokenValidInDB) {
                 return true;
@@ -152,7 +136,6 @@ public class AuthenticationService {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("accessToken")) {
-                    log.info(cookie.getValue() + "here3");
                     return cookie.getValue();
                 }
             }
@@ -215,22 +198,17 @@ public class AuthenticationService {
         // Get expiration of access or refresh token in miliseconds and convert to seconds
         if (deleteToken){
             expiration = 0;
+            Cookie deletedCookie = new Cookie(name, "");
+            deletedCookie.setMaxAge(0);
+            deletedCookie.setPath("/");
+            deletedCookie.setSecure(true);
+            response.addCookie(deletedCookie);
         } else{
             expiration = (int) (jwtService.getExpirationToken(token) / 1000);
+            String cookieValue = String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure; SameSite=None",
+            name, token, deleteToken ? 0 : expiration);
+            response.addHeader("Set-Cookie", cookieValue);
         }
-
-        Cookie cookie = new Cookie(name, token);
-        // Set HttpOnly to true, making the cookie inaccessible to JavaScript
-        cookie.setHttpOnly(true);
-        // Set the cookie age 
-        cookie.setMaxAge(deleteToken ? 0 : expiration);
-        // Set to true if using HTTPS
-        cookie.setSecure(request.isSecure()); 
-        // Set path valid for entire application
-        cookie.setPath("/");
-        cookie.setDomain("localhost");
-        // Add the cookie to  response, making it available to client
-        response.addCookie(cookie);
     }
 
     // Helper method to build and store the Token entity

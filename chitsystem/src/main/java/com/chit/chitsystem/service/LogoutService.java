@@ -9,6 +9,7 @@ import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
 import com.chit.chitsystem.exception.newexceptions.TokenNotFoundException;
 import com.chit.chitsystem.repository.TokenRepository;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -55,10 +56,23 @@ public class LogoutService implements LogoutHandler {
 
             // Update the db
             tokenRepository.save(storedToken);
+
+            // Delete cookies
+            deletedCookie("accessToken", response);
+            deletedCookie("refreshToken", response);
         } else {
             throw new InvalidTokenException("Invalid or revoked token.");
         }
     
     }
+
+    private void deletedCookie(String name, HttpServletResponse response ){
+        Cookie deletedCookie = new Cookie(name, "");
+        deletedCookie.setMaxAge(0);
+        deletedCookie.setPath("/");
+        deletedCookie.setSecure(true);
+        response.addCookie(deletedCookie);
+    }
+
     
 }

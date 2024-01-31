@@ -110,6 +110,13 @@ public class JWTService {
 
     // Extract the expiration time of the token
     public Long getExpirationToken(String token) {
-        return extractExpiration(token).getTime();
+        long expirationTime = extractExpiration(token).getTime();
+        long currentTime = System.currentTimeMillis();
+
+        // Calculate remaining time in milliseconds
+        long remainingTime = expirationTime - currentTime;
+
+        // Ensure non-negative remaining time
+        return Math.max(remainingTime, 0);
     }
 }
