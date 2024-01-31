@@ -2,7 +2,6 @@ package com.chit.chitsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +19,8 @@ public class LogoutService implements LogoutHandler {
 
     @Autowired
     private final TokenRepository tokenRepository;
-    private final JWTService jwtService;
 
-    // fix this
+    // At this point, the user is alreay logged out so just hanlde expiring and revoking the token in the database
     @Override
     public void logout(
         HttpServletRequest request, 
@@ -33,11 +31,9 @@ public class LogoutService implements LogoutHandler {
         final String jwt;
 
         if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
-            return;
+            throw new TokenNotFoundException("Access token not found in the auth header.");
         }
-        // Get current authenticated user
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
+      
         // Grab access token
         jwt = authHeader.substring(7);
 
@@ -52,8 +48,7 @@ public class LogoutService implements LogoutHandler {
             .map(t -> !t.isExpired() && !t.isRevoked())
             .orElse(false);
 
-        // Verify access token is not revoked or expired, and is valid token
-        if (isAccessTokenValidInDB  && jwtService.isTokenValid(jwt, userDetails)) {
+        if (isAccessTokenValidInDB ) {
             // Expire and revoke current access and refresh token
             storedToken.setExpired(true);
             storedToken.setRevoked(true);

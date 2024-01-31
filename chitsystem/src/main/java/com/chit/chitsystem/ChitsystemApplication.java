@@ -11,12 +11,7 @@ public class ChitsystemApplication {
 	}
 
 	// *Summary*
-	// 1:10:2024 || break notes 
-	// Resolve : I have decided to use both a global exception handler (CustomExceptionHandler) and 
-	//           allowed for local exceptions.
-	// Exception Format: - log errors and throw exceptions in services and other files
-	//       		     - catch exceptions in controllers or custom handler exceptions
-	// To Be Continued: Logout catch errors | trigger a refresh token | tidy up exceptions 
-	//                  | know when a user is still active | tidy up folder namings and arrangment
+	// 1:24:2024 || break notes 
+	// To Be Continued: know when a user is still active |  // TODO: Need to work on who ami
 
 }

@@ -66,6 +66,7 @@ public class SecurityConfiguration {
             .authorizeHttpRequests(request -> request // Authorization rules per path/request
                 .requestMatchers(HttpMethod.POST, "/api/v1/auth/**", "/api/v1/forgot-password/**").permitAll()
                 .requestMatchers(HttpMethod.PATCH, "/api/v1/forgot-password/reset-password/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/auth/whoami**").permitAll()
                 .requestMatchers("/api/v1/admin/**").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/api/v1/user/**").hasAnyAuthority(Role.USER.name())
                 .anyRequest().authenticated()

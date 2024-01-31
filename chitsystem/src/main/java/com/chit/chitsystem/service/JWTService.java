@@ -107,4 +107,9 @@ public class JWTService {
     private Date extractExpiration(String token) {
         return extractClaim(token, Claims::getExpiration);
     }
+
+    // Extract the expiration time of the token
+    public Long getExpirationToken(String token) {
+        return extractExpiration(token).getTime();
+    }
 }

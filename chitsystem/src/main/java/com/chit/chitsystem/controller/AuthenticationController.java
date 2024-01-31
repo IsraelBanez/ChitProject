@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,8 @@ import com.chit.chitsystem.dto.requests.SignUpRequest;
 import com.chit.chitsystem.dto.responses.JWTAuthenticationResponse;
 import com.chit.chitsystem.service.AuthenticationService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -31,14 +34,22 @@ public class AuthenticationController {
 
     // Sign up new years with valid credentials into the system along with appropriate tokens
     @PostMapping("/sign-up")
-    public ResponseEntity<?> signUpUser(@Valid @RequestBody SignUpRequest signUpRequest) {
-        return ResponseEntity.ok(authenticationService.signUpUser(signUpRequest));
+    public ResponseEntity<?> signUpUser(
+        @Valid @RequestBody SignUpRequest signUpRequest, 
+        HttpServletRequest request, 
+        HttpServletResponse response
+    ) {
+        return ResponseEntity.ok(authenticationService.signUpUser(signUpRequest, request, response));
     }
 
     // Sign in users with valid credentials
     @PostMapping("/sign-in")
-    public ResponseEntity<JWTAuthenticationResponse> signInUser(@Valid @RequestBody SignInRequest signInRequest) {
-        return ResponseEntity.ok(authenticationService.signInUser(signInRequest));
+    public ResponseEntity<JWTAuthenticationResponse> signInUser(
+        @Valid @RequestBody SignInRequest signInRequest,
+        HttpServletRequest request, 
+        HttpServletResponse response
+        ) {
+        return ResponseEntity.ok(authenticationService.signInUser(signInRequest, request, response));
     }
 
     
@@ -48,9 +59,13 @@ public class AuthenticationController {
 
     // Genereate new access and refresh tokens
     @PostMapping("/refresh-token")
-    public ResponseEntity<?> refreshToken(@Valid @RequestBody RefreshTokenRequest refreshTokenRequest) {
+    public ResponseEntity<?> refreshToken(
+        @Valid @RequestBody RefreshTokenRequest refreshTokenRequest,
+        HttpServletRequest request, 
+        HttpServletResponse response
+    ) {
         try {
-            JWTAuthenticationResponse newTokens = authenticationService.createRefreshToken(refreshTokenRequest);
+            JWTAuthenticationResponse newTokens = authenticationService.createRefreshToken(refreshTokenRequest, request, response);
             if (newTokens != null) {
                 return ResponseEntity.ok(newTokens);
             } else {
@@ -61,6 +76,22 @@ public class AuthenticationController {
             // Handle other exceptions
             ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetail);
+        }
+    }
+
+    // To check if a user is logged in 
+    // Senarios: 1.) Someone is logged in
+    //           2.) They are not logged in
+    //           3.) Someone is logged in but the acces token is expired
+    //           4.) Someone is logged in but the acces token is invalid or the user accosciated do not match
+    @GetMapping("/whoami")
+    public ResponseEntity<?> whoAmI(HttpServletRequest request){
+        boolean isValidToken = authenticationService.whoAmI(request); 
+
+        if (isValidToken) {
+            return ResponseEntity.ok(true);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No access token is present.");
         }
     }
 }
