@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 import {signIn, signUp, checkUser, forgotPassword, resetPassword} from './authService.js';
+import {connectSocket, disconnectSocket, subscribeToHalfwayPoint} from './socketService.js';
 
 const AuthContext = createContext();
 
@@ -11,6 +12,9 @@ export const AuthProvider = ({children}) => {
         try {
             const data = await signIn(credentials);
             setAuthenticated(true);
+
+            connectSocket();
+    
         } catch (error) {
             throw error;
         };
@@ -20,6 +24,7 @@ export const AuthProvider = ({children}) => {
         try {
             const data = await signUp(credentials);
             setAuthenticated(true);
+          
         } catch (error) {
             throw error;
         };
@@ -43,6 +48,7 @@ export const AuthProvider = ({children}) => {
   
     const logOutUser = () => {
         setAuthenticated(false);
+
     };
 
     const checkLoggedInStatus = async () => {
@@ -61,6 +67,7 @@ export const AuthProvider = ({children}) => {
             setAuthenticated(false);
         }
     };
+
     useEffect(() => {
         // Check initially when the component mounts if a user is logged in
         checkLoggedInStatus();
@@ -81,7 +88,9 @@ export const AuthProvider = ({children}) => {
         return () => {
             clearInterval(intervalId);
             window.removeEventListener('beforeunload', handlePageRefresh);
+            console.log("cleaned");
         };
+
     }, []);
 
     const contextValue = {
