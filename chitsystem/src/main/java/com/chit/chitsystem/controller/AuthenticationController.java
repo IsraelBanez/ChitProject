@@ -56,6 +56,11 @@ public class AuthenticationController {
     // TODO: automatic refresh token after 12 hours if the user is still logged in
     // a neww set of access and refresh token is made while recoking/ expuring the current access and refresh token
     // when a user logs out revoke both refresh and access tokens
+    @GetMapping("/check-token")
+    public ResponseEntity<?> checkToken(HttpServletRequest request){
+        
+        return ResponseEntity.ok("Token is till vaid.");
+    }
 
     // Genereate new access and refresh tokens
     @PostMapping("/refresh-token")
@@ -80,10 +85,6 @@ public class AuthenticationController {
     }
 
     // To check if a user is logged in 
-    // Senarios: 1.) Someone is logged in
-    //           2.) They are not logged in
-    //           3.) Someone is logged in but the acces token is expired
-    //           4.) Someone is logged in but the acces token is invalid or the user accosciated do not match
     @GetMapping("/whoami")
     public ResponseEntity<?> whoAmI(HttpServletRequest request){
         boolean isValidToken = authenticationService.whoAmI(request); 

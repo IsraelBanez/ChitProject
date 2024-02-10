@@ -69,6 +69,7 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.GET, "/api/v1/auth/whoami**").permitAll()
                 .requestMatchers("/api/v1/admin/**").hasAnyAuthority(Role.ADMIN.name())
                 .requestMatchers("/api/v1/user/**").hasAnyAuthority(Role.USER.name())
+                .requestMatchers("/ws/**").permitAll()
                 .anyRequest().authenticated()
             )
             // Treat each request independently; the server will not create an HTTPSession or store any security info

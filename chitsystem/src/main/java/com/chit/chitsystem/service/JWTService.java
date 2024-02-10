@@ -8,17 +8,29 @@ import java.util.function.Function;
 
 import javax.crypto.SecretKey;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
+import com.chit.chitsystem.exception.newexceptions.UserNotFoundException;
+import com.chit.chitsystem.repository.TokenRepository;
+import com.chit.chitsystem.repository.UserRepository;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 
 // For generating and validating tokens
 @Service
+@RequiredArgsConstructor
 public class JWTService {
+
+    @Autowired
+    private final UserRepository userRepository;
+    private final TokenRepository tokenRepository;
    
     // Generated via [node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"] 
     @Value("${token.secret-key}")
@@ -98,6 +110,46 @@ public class JWTService {
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
+    // Extensive validation of token credentials
+    public Boolean isTokenAuthorized(String token, String tokenType){
+        final String userEmail;
+
+        // If no token blank or null, not authorized
+        if (token == null || token.isEmpty()) {
+            return false;
+        }
+
+        // There is a token formatted correctly, but is there a user email inside it
+        userEmail = extractUsername(token);
+
+        if (userEmail != null){
+            // Verify the email accociated with the token is in the db
+            var user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new UserNotFoundException("Invalid Token: email for access or refresh token doesn't exist."));
+
+            // Verify that the token is not expired or revoked in the database
+            var isTokenValidInDB = false;
+            if (tokenType == "accessToken"){
+                isTokenValidInDB = tokenRepository.findByAccessToken(token) 
+                    .map(t -> !t.isExpired() && !t.isRevoked())
+                    .orElse(false);
+            } else if (tokenType == "refreshToken"){
+                isTokenValidInDB = tokenRepository.findByRefreshToken(token) 
+                    .map(t -> !t.isExpired() && !t.isRevoked())
+                    .orElse(false);
+            }
+        
+
+            // Verify that the token, itself, is not actually expired and meets the previous condition
+            if (isTokenValid(token, user) && isTokenValidInDB) {
+                return true;
+            } else{
+                throw new InvalidTokenException("Invalid Token: token is revoked/expired in database or token has reached its expiration.");
+            }
+        }
+        throw new InvalidTokenException("Invalid token: no user extracted from token.");
+    }
+
     // Compares the expiration date of the toke and the current date to see if it is before the current date
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date()); 
@@ -110,11 +162,11 @@ public class JWTService {
 
     // Extract the expiration time of the token
     public Long getExpirationToken(String token) {
-        long expirationTime = extractExpiration(token).getTime();
-        long currentTime = System.currentTimeMillis();
+        Long expirationTime = extractExpiration(token).getTime();
+        Long currentTime = System.currentTimeMillis();
 
         // Calculate remaining time in milliseconds
-        long remainingTime = expirationTime - currentTime;
+        Long remainingTime = expirationTime - currentTime;
 
         // Ensure non-negative remaining time
         return Math.max(remainingTime, 0);
