@@ -3,8 +3,15 @@ A web app that exercises the tech stack and tools below:
 - React <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1150px-React-icon.svg.png" width="25" height="20" >
 - Node <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/2560px-Node.js_logo.svg.png" width="35" height="20" >
 - Spring Boot <img src="https://vscjava.gallerycdn.vsassets.io/extensions/vscjava/vscode-spring-boot-dashboard/0.13.2023072200/1689984300042/Microsoft.VisualStudio.Services.Icons.Default" width="25" height="25" >
+    - JsonWebToken
+    - Websocket
+    - HTTP  
+    - JPA
+    - Lombok
+    - Validation
 - MySQL <img src="https://cdn-icons-png.flaticon.com/512/5968/5968313.png" width="25" height="25" >
 - PostMan <img src="https://www.svgrepo.com/show/354202/postman-icon.svg" width="25" height="25" >
+
 
 ## Creator
 - Israel Banez
