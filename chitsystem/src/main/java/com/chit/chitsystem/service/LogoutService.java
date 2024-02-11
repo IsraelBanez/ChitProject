@@ -5,9 +5,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
+import com.chit.chitsystem.entity.enums.Status;
 import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
 import com.chit.chitsystem.exception.newexceptions.TokenNotFoundException;
+import com.chit.chitsystem.exception.newexceptions.UserNotFoundException;
 import com.chit.chitsystem.repository.TokenRepository;
+import com.chit.chitsystem.repository.UserRepository;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,6 +23,8 @@ public class LogoutService implements LogoutHandler {
 
     @Autowired
     private final TokenRepository tokenRepository;
+    private final JWTService jwtService;
+    private final UserRepository userRepository;
 
     // At this point, the user is alreay logged out so just hanlde expiring and revoking the token in the database
     @Override
@@ -30,6 +35,7 @@ public class LogoutService implements LogoutHandler {
     ) {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
+        final String userEmail;
 
         if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
             throw new TokenNotFoundException("Access token not found in the auth header.");
@@ -50,6 +56,13 @@ public class LogoutService implements LogoutHandler {
             .orElse(false);
 
         if (isAccessTokenValidInDB ) {
+            // Set the user status to OFFLINE
+            userEmail = jwtService.extractUsername(jwt);
+            var user = userRepository.findByEmail(userEmail)
+                            .orElseThrow(() -> new UserNotFoundException("Invalid email."));
+            user.setStatus(Status.OFFLINE);
+            userRepository.save(user);
+
             // Expire and revoke current access and refresh token
             storedToken.setExpired(true);
             storedToken.setRevoked(true);

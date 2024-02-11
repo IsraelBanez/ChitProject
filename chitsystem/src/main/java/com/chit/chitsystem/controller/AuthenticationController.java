@@ -87,12 +87,23 @@ public class AuthenticationController {
     // To check if a user is logged in 
     @GetMapping("/whoami")
     public ResponseEntity<?> whoAmI(HttpServletRequest request){
-        boolean isValidToken = authenticationService.whoAmI(request); 
+        try {
+            boolean isValidToken = authenticationService.whoAmITokenCheck(request); 
+            boolean isOnline = authenticationService.whoAmIStatusCheck(request);
 
-        if (isValidToken) {
-            return ResponseEntity.ok(true);
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No access token is present.");
+            if (isValidToken && isOnline) {
+                return ResponseEntity.ok(true);
+            } else if (!isValidToken && isOnline) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("No valid access token found.");
+            } else if (isValidToken && !isOnline){
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("User is currently offline.");
+            } else{
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error determining user.");
+            }
+        }
+        catch (Exception e) {
+            ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetail);
         }
     }
 }

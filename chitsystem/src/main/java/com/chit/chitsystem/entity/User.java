@@ -21,6 +21,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.chit.chitsystem.entity.enums.Role;
+import com.chit.chitsystem.entity.enums.Status;
 
 @Data
 @Builder
@@ -44,6 +45,9 @@ public class User implements UserDetails{
 
     @Enumerated(EnumType.STRING)
     private Role role;
+    
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;

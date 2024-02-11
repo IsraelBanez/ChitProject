@@ -19,6 +19,7 @@ import com.chit.chitsystem.dto.responses.JWTAuthenticationResponse;
 import com.chit.chitsystem.entity.Token;
 import com.chit.chitsystem.entity.User;
 import com.chit.chitsystem.entity.enums.Role;
+import com.chit.chitsystem.entity.enums.Status;
 import com.chit.chitsystem.entity.enums.TokenType;
 import com.chit.chitsystem.exception.newexceptions.DuplicateUserException;
 import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
@@ -67,14 +68,16 @@ public class AuthenticationService {
                     .email(signUpRequest.getEmail())
                     .password(passwordEncoder.encode(signUpRequest.getPassword()))
                     .role(Role.USER)
+                    .status(Status.OFFLINE)
                     .build(); // Build user from request body
 
             var storedUser = userRepository.save(user);
             var jwt = jwtService.generateToken(user); // Generate token
+
             var refreshToken = jwtService.generateRefreshToken(user); // Generate refreshtoken
             storeUserToken(storedUser, jwt, refreshToken, request, response); // Store token
-            return JWTAuthenticationResponse.builder().accessToken(jwt).refreshToken(refreshToken).build(); // Return
-                                                                                                            // response
+
+            return JWTAuthenticationResponse.builder().accessToken(jwt).refreshToken(refreshToken).build();                                                                                       
         } catch (Exception e) {
             log.error("[AuthenticationService] - Error during sign up.", e);
             throw e;
@@ -87,17 +90,23 @@ public class AuthenticationService {
             HttpServletRequest request,
             HttpServletResponse response) {
         try {
+            // Authenticate user
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword())); // Authenticate
-                                                                                                                     // user
-
+                    new UsernamePasswordAuthenticationToken(signInRequest.getEmail(), signInRequest.getPassword())); 
+                                                                                                                     
             var user = userRepository.findByEmail(signInRequest.getEmail())
                     .orElseThrow(() -> new UserNotFoundException("Invalid email."));
 
+            // Set user's status to ONLINE when logging in
+            user.setStatus(Status.ONLINE); 
+            userRepository.save(user);
+
             var jwt = jwtService.generateToken(user);
             var refreshToken = jwtService.generateRefreshToken(user);
+
             revokeAllUserTokens(user, request, response); // Revoke all user tokens
             storeUserToken(user, jwt, refreshToken, request, response); // Store Token
+
             return JWTAuthenticationResponse.builder().accessToken(jwt).refreshToken(refreshToken).build();
         } catch (Exception e) {
             log.error("[AuthenticationService] - Error during sign in.", e);
@@ -105,10 +114,23 @@ public class AuthenticationService {
         }
     }
 
-    // Check if a user is still logged in
-    public Boolean whoAmI(HttpServletRequest request) {
+    // Check if the user has a valid token
+    public Boolean whoAmITokenCheck(HttpServletRequest request) {
         final String accessToken = extractAccessTokenFromCookies(request);
+    
         return jwtService.isTokenAuthorized(accessToken, "accessToken");
+    }
+    // Check if the user has logged out
+    public Boolean whoAmIStatusCheck(HttpServletRequest request){
+        final String accessToken = extractAccessTokenFromCookies(request);
+        final String userEmail = jwtService.extractUsername(accessToken);
+        var user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new UserNotFoundException("Invalid email for refresh token."));
+
+        if (user.getStatus() == Status.OFFLINE){
+            return false;
+        }
+        return true;
     }
 
     // Helper to extract the access token from the http-only cookies
