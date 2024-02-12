@@ -85,6 +85,11 @@ public class AuthenticationController {
     }
 
     // To check if a user is logged in 
+    // 1.) Implment a time out: If the server doesn't receive any requests from the client within the specified time period, 
+    // consider the user as inactive
+    // 2a.) Implment heartbeat mechanism: client sends periodic requests to the server to indicate that the user is still active,
+    //  else server can update a timestamp in the database to reflect the user's last activity.
+    // 2b.) Implment websocket: a connection is established or a message is received, update the user's last activity timestamp
     @GetMapping("/whoami")
     public ResponseEntity<?> whoAmI(HttpServletRequest request){
         try {

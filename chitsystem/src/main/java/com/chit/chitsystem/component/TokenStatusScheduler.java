@@ -14,15 +14,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TokenStatusScheduler {
 
-    @Autowired
-    private final AuthenticationService authenticationService;
+    // @Autowired
+    // private final AuthenticationService authenticationService;
 
-    //Globally check the status of all the access tokens every 12 hours to manage expiration
-    @Scheduled(fixedRate = 12 * 60 * 60 * 1000) 
-    public void checkTokenStatus(){
-        log.info("Token Status Scheduler Started...");
-        authenticationService.checkTokenStatus();
-        log.info("...Token Status Scheduler Finished.");
-    }
+    // //Globally check the status of all the access tokens every 12 hours to manage expiration
+    // @Scheduled(fixedRate = 12 * 60 * 60 * 1000) 
+    // public void checkTokenStatus(){
+    //     log.info("Token Status Scheduler Started...");
+    //     authenticationService.checkTokenStatus();
+    //     log.info("...Token Status Scheduler Finished.");
+    // }
 
 }

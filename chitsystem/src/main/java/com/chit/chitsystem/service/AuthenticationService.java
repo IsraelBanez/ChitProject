@@ -148,57 +148,57 @@ public class AuthenticationService {
         return null;
     }
 
-    // Check the status of ever access token
-    public void checkTokenStatus() {
-        List<Token> activeTokens = tokenRepository.findAllValidTokens();
+    // // Check the status of ever access token
+    // public void checkTokenStatus() {
+    //     List<Token> activeTokens = tokenRepository.findAllValidTokens();
 
-        for (Token token : activeTokens) {
-            if (isTokenApproachingHalfwayPoint(token)) {
-                notifyClient(token.getUser());
-            } else {
-                String payload = "Token is still valid.";
-                Message<String> message = MessageBuilder
-                    .withPayload(payload)
-                    .setHeader("tokenRefresh", false)
-                    .build();
-                messagingTemplate.convertAndSendToUser(
-                    token.getUser().getUsername(),
-                    "/specific/token-halfway-check",
-                    message);
-            }
-        }
-    }
+    //     for (Token token : activeTokens) {
+    //         if (isTokenApproachingHalfwayPoint(token)) {
+    //             notifyClient(token.getUser());
+    //         } else {
+    //             String payload = "Token is still valid.";
+    //             Message<String> message = MessageBuilder
+    //                 .withPayload(payload)
+    //                 .setHeader("tokenRefresh", false)
+    //                 .build();
+    //             messagingTemplate.convertAndSendToUser(
+    //                 token.getUser().getUsername(),
+    //                 "/specific/token-halfway-check",
+    //                 message);
+    //         }
+    //     }
+    // }
 
-    // Helper to calculate if the user's token has hit the halfway point
-    private boolean isTokenApproachingHalfwayPoint(Token token) {
-        // Get remaining time before expiration date in miliseconds
-        final Long remainingTimeBeforeExpiration = jwtService.getExpirationToken(token.getAccessToken());
-        // Set halfway time to 13 hours in milliseconds
-        final Long halfWayTime = 46800000L;
+    // // Helper to calculate if the user's token has hit the halfway point
+    // private boolean isTokenApproachingHalfwayPoint(Token token) {
+    //     // Get remaining time before expiration date in miliseconds
+    //     final Long remainingTimeBeforeExpiration = jwtService.getExpirationToken(token.getAccessToken());
+    //     // Set halfway time to 13 hours in milliseconds
+    //     final Long halfWayTime = 46800000L;
 
-        // Check to see if the remaining time is 13 hours or less
-        // Note: Added the extra hour instead of 12 to allow for an hour of buffer time
-        // for checks and searches
-        // AKA: After 12 hours, if the token has lived for 11 hours or longer, we should
-        // refresh it
-        if (remainingTimeBeforeExpiration <= halfWayTime) {
-            return true;
-        }
-        return false;
-    }
+    //     // Check to see if the remaining time is 13 hours or less
+    //     // Note: Added the extra hour instead of 12 to allow for an hour of buffer time
+    //     // for checks and searches
+    //     // AKA: After 12 hours, if the token has lived for 11 hours or longer, we should
+    //     // refresh it
+    //     if (remainingTimeBeforeExpiration <= halfWayTime) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    // Helper to notify client that the user has hit halfway point
-    private void notifyClient(User user) {
-        String payload = "Token is ready for refresh.";
-        Message<String> message = MessageBuilder
-            .withPayload(payload)
-            .setHeader("tokenRefresh", true)
-            .build();
-        messagingTemplate.convertAndSendToUser(
-            user.getUsername(),
-            "/specific/token-halfway-check",
-            message);
-    }
+    // // Helper to notify client that the user has hit halfway point
+    // private void notifyClient(User user) {
+    //     String payload = "Token is ready for refresh.";
+    //     Message<String> message = MessageBuilder
+    //         .withPayload(payload)
+    //         .setHeader("tokenRefresh", true)
+    //         .build();
+    //     messagingTemplate.convertAndSendToUser(
+    //         user.getUsername(),
+    //         "/specific/token-halfway-check",
+    //         message);
+    // }
 
     // Create a new access token and refresh token based on the refresh token
     public JWTAuthenticationResponse createRefreshToken(
