@@ -18,7 +18,7 @@ public class WebSocketSchedulers {
     private final WebSocketService webSocketService;
 
     //Globally check the status of all the access tokens every 12 hours to manage expiration
-    @Scheduled(fixedRate = 12 * 60 * 60 * 1000)
+    @Scheduled(fixedRate = 12 * 60 * 60 * 1000)//12 * 60 * 60 * 1000
     public void tokenStatusScheduler(){
         log.info("Token Status Scheduler Started...");
         webSocketService.checkTokenStatus();

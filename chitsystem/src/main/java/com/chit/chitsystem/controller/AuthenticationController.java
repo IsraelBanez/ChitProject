@@ -65,18 +65,12 @@ public class AuthenticationController {
     // Genereate new access and refresh tokens
     @PostMapping("/refresh-token")
     public ResponseEntity<?> refreshToken(
-        @Valid @RequestBody RefreshTokenRequest refreshTokenRequest,
         HttpServletRequest request, 
         HttpServletResponse response
     ) {
         try {
-            JWTAuthenticationResponse newTokens = authenticationService.createRefreshToken(refreshTokenRequest, request, response);
-            if (newTokens != null) {
-                return ResponseEntity.ok(newTokens);
-            } else {
-                ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.UNAUTHORIZED, "Invalid or expired refresh token.");
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorDetail);
-            }
+            JWTAuthenticationResponse newTokens = authenticationService.createRefreshToken(request, response);
+            return ResponseEntity.ok(newTokens);
         } catch (Exception e) {
             // Handle other exceptions
             ProblemDetail errorDetail = ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());

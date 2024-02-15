@@ -23,6 +23,7 @@ import com.chit.chitsystem.entity.enums.Status;
 import com.chit.chitsystem.entity.enums.TokenType;
 import com.chit.chitsystem.exception.newexceptions.DuplicateUserException;
 import com.chit.chitsystem.exception.newexceptions.InvalidTokenException;
+import com.chit.chitsystem.exception.newexceptions.TokenNotFoundException;
 import com.chit.chitsystem.exception.newexceptions.UserNotFoundException;
 import com.chit.chitsystem.repository.TokenRepository;
 import com.chit.chitsystem.repository.UserRepository;
@@ -148,99 +149,54 @@ public class AuthenticationService {
         return null;
     }
 
-    // // Check the status of ever access token
-    // public void checkTokenStatus() {
-    //     List<Token> activeTokens = tokenRepository.findAllValidTokens();
+    // Helper to extract the refresh token from the http-only cookies
+    public String extractRefreshTokenFromCookies(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("refreshToken")) {
+                    return cookie.getValue();
+                }
+            }
+        }
+        
+        return null;
+    }
 
-    //     for (Token token : activeTokens) {
-    //         if (isTokenApproachingHalfwayPoint(token)) {
-    //             notifyClient(token.getUser());
-    //         } else {
-    //             String payload = "Token is still valid.";
-    //             Message<String> message = MessageBuilder
-    //                 .withPayload(payload)
-    //                 .setHeader("tokenRefresh", false)
-    //                 .build();
-    //             messagingTemplate.convertAndSendToUser(
-    //                 token.getUser().getUsername(),
-    //                 "/specific/token-halfway-check",
-    //                 message);
-    //         }
-    //     }
-    // }
-
-    // // Helper to calculate if the user's token has hit the halfway point
-    // private boolean isTokenApproachingHalfwayPoint(Token token) {
-    //     // Get remaining time before expiration date in miliseconds
-    //     final Long remainingTimeBeforeExpiration = jwtService.getExpirationToken(token.getAccessToken());
-    //     // Set halfway time to 13 hours in milliseconds
-    //     final Long halfWayTime = 46800000L;
-
-    //     // Check to see if the remaining time is 13 hours or less
-    //     // Note: Added the extra hour instead of 12 to allow for an hour of buffer time
-    //     // for checks and searches
-    //     // AKA: After 12 hours, if the token has lived for 11 hours or longer, we should
-    //     // refresh it
-    //     if (remainingTimeBeforeExpiration <= halfWayTime) {
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // // Helper to notify client that the user has hit halfway point
-    // private void notifyClient(User user) {
-    //     String payload = "Token is ready for refresh.";
-    //     Message<String> message = MessageBuilder
-    //         .withPayload(payload)
-    //         .setHeader("tokenRefresh", true)
-    //         .build();
-    //     messagingTemplate.convertAndSendToUser(
-    //         user.getUsername(),
-    //         "/specific/token-halfway-check",
-    //         message);
-    // }
 
     // Create a new access token and refresh token based on the refresh token
     public JWTAuthenticationResponse createRefreshToken(
-            RefreshTokenRequest refreshTokenRequest,
             HttpServletRequest request,
             HttpServletResponse response) {
         try {
-            final String refreshToken = refreshTokenRequest.getRefreshToken();
-            final String userEmail = jwtService.extractUsername(refreshToken);
+            final String refreshToken = extractRefreshTokenFromCookies(request);
+            boolean isValidRefreshToken = jwtService.isTokenAuthorized(refreshToken, "refreshToken");
 
-            if (userEmail != null) {
-                // Verify the email accociated with the refresh token is in the db
+            if (isValidRefreshToken) {
+                // Extract user
+                final String userEmail = jwtService.extractUsername(refreshToken);
                 var user = userRepository.findByEmail(userEmail)
-                        .orElseThrow(() -> new UserNotFoundException("Invalid email for refresh token."));
+                    .orElseThrow(() -> new UserNotFoundException("Invalid Token: email for access or refresh token doesn't exist."));
+                
+                // Generate new access and refresh tokens
+                var newAccessToken = jwtService.generateToken(user);
+                var newRefreshToken = jwtService.generateRefreshToken(user);
 
-                // Verify that the refresh token is not expired or revoked
-                var isRefreshTokenValidInDB = tokenRepository.findByRefreshToken(refreshToken)
-                        .map(t -> !t.isExpired() && !t.isRevoked())
-                        .orElse(false);
+                // Revoke the current access and refresh tokens, and store the new ones, update cookies
+                revokeAllUserTokens(user, request, response);
+                storeUserToken(user, newAccessToken, newRefreshToken, request, response);
 
-                // Verify that the refresh token is not expired and is associated with the email
-                if (jwtService.isTokenValid(refreshToken, user) && isRefreshTokenValidInDB) {
-                    // Generate new access and refresh tokens
-                    var newAccessToken = jwtService.generateToken(user);
-                    var newRefreshToken = jwtService.generateRefreshToken(user);
+                // Generate an auth response containing the new tokens
+                var authResponse = JWTAuthenticationResponse.builder()
+                        .accessToken(newAccessToken)
+                        .refreshToken(newRefreshToken)
+                        .build();
 
-                    // Revoke the current access and refresh tokens, and store the new ones
-                    revokeAllUserTokens(user, request, response);
-                    storeUserToken(user, newAccessToken, newRefreshToken, request, response);
-
-                    // Generate an auth response containing the new tokens
-                    var authResponse = JWTAuthenticationResponse.builder()
-                            .accessToken(newAccessToken)
-                            .refreshToken(newRefreshToken)
-                            .build();
-
-                    return authResponse;
-                } else {
-                    throw new InvalidTokenException("Invalid or revoked token.");
-                }
+                return authResponse;
+            } else {
+                throw new TokenNotFoundException("Token missing: there is no refresh token available.");
             }
-            return null;
         } catch (Exception e) {
             log.error("[AuthenticationService] - Error during creating refresh token.", e);
             throw e;
