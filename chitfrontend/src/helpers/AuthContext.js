@@ -1,33 +1,36 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, useRef } from "react";
 
-import {signIn, signUp, checkUser, forgotPassword, resetPassword} from './authService.js';
-import {connectSocket, disconnectSocket, subscribeToHalfwayPoint} from './socketService.js';
+import {signIn, signUp, logOut, refreshToken, checkUser, forgotPassword, resetPassword} from './authService.js';
+import {connectSocket, disconnectSocket, isWebSocketConnected, tokenHalfWayCheck, heartBeatCheck} from './socketService.js';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
     const [authenticated, setAuthenticated] = useState(false);
+    const [isTokenExpired, setIsTokenExpired] = useState(false);
 
     const signInUser = async (credentials) => {
         try {
             const data = await signIn(credentials);
             setAuthenticated(true);
 
-            connectSocket();
-    
+            // Establishe websocket 
+            await connectSocket();
+
+            tokenHalfWayCheck(handleTokenRefresh);
+            heartBeatCheck();
         } catch (error) {
             throw error;
-        };
+        }
     };
 
     const signUpUser = async (credentials) => {
         try {
             const data = await signUp(credentials);
-            setAuthenticated(true);
           
         } catch (error) {
             throw error;
-        };
+        }
     };
 
     const forgotPasswordHandler = async (credentials) => {
@@ -35,7 +38,7 @@ export const AuthProvider = ({children}) => {
             const data = await forgotPassword(credentials);
         } catch (error) {
             throw error;
-        };
+        }
     };
 
     const resetPasswordHandler = async (credentials) => {
@@ -43,31 +46,72 @@ export const AuthProvider = ({children}) => {
             const data = await resetPassword(credentials);
         } catch (error) {
             throw error;
-        };
+        }
     };
   
-    const logOutUser = () => {
-        setAuthenticated(false);
-
+    const logOutUser = async () => {
+        try {
+            const data = await logOut();
+            
+            setAuthenticated(false);
+            setIsTokenExpired(false);
+            
+            disconnectSocket();
+        } catch (error) {
+            throw error;
+        }
     };
 
+    const refreshTokenHandler = async () => {
+        try {
+            console.log("We about to reset this token")
+            const data = await refreshToken();
+            
+            setIsTokenExpired(false);
+            
+        } catch (error) {
+            throw error;
+        }
+    };
+
+    // Updates the token status
+    const handleTokenRefresh = (status) => {
+        setIsTokenExpired(status);
+        console.log("handleTokenRefresh is called", isTokenExpired);
+    }
+
+    useEffect(() => {
+        console.log("Token change detected", isTokenExpired);
+        if (isTokenExpired) {
+            refreshTokenHandler();
+        }
+    }, [isTokenExpired]);
+
+    // Checks to see if a user is still logged in
     const checkLoggedInStatus = async () => {
         try {
             const result = await checkUser(); 
             console.log(result);
             if (result.status === 200){
                 setAuthenticated(true);
+                
+                // Check if WebSocket is already connected
+                if (!isWebSocketConnected()) {
+                    // Establish WebSocket connection if not already connected
+                    await connectSocket();
+                    tokenHalfWayCheck(handleTokenRefresh);
+                    heartBeatCheck();
+                }
             } else{
-                setAuthenticated(false);
+                console.error("Error checking user status:", result.status);
+                logOutUser();
             }
         } catch (error) {
-            // logout user for  InvalidTokenException, UserNotFoundException
-            // try refreh token for ExpiredToken else logout if fails
-            console.log(error);
-            setAuthenticated(false);
+            console.error("Error checking user status:", error);
+            logOutUser();
         }
     };
-
+    // Manages maintaining the user's identity on the client
     useEffect(() => {
         // Check initially when the component mounts if a user is logged in
         checkLoggedInStatus();
@@ -75,7 +119,7 @@ export const AuthProvider = ({children}) => {
         // Set up interval to check every 5 minutes
         const intervalId = setInterval(() => {
             checkLoggedInStatus();
-        }, 1 * 60 * 1000); // 5 minutes in milliseconds
+        }, 1 * 30 * 1000); // 5 minutes in milliseconds
 
         // Listen for page refresh events
         const handlePageRefresh = () => {

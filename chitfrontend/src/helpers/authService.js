@@ -39,9 +39,27 @@ const signUp = async (credentials) => {
     }
 };
 
+const logOut = async () => {
+    try {
+        const response = await authInstance.post('/logout');
+        return response;
+    } catch (error) {
+        throw error;
+    }
+};
+
+const refreshToken = async () => {
+    try {
+        const response = await authInstance.post('/refresh-token');
+        return response;
+    } catch (error) {
+        throw error;
+    }
+}
+
 const checkUser = async () => {
     try {
-        const response  = await authInstance.get('./whoami');
+        const response  = await authInstance.get('/whoami');
         return response;
     } catch (error) {
         throw error;
@@ -73,4 +91,4 @@ const resetPassword = async (credentials) => {
     }
 };
 
-export { authInstance, userInstance, signIn, signUp, checkUser, forgotPassword, resetPassword};
+export { authInstance, userInstance, signIn, signUp, logOut, refreshToken, checkUser, forgotPassword, resetPassword};
