@@ -11,6 +11,9 @@ const reconnectInterval = 1000;
 
 let stompClient =  null;
 
+let pingInterval;
+let pingTimeout;
+
 // -------------------Functions ---------------------
 
 // Establish connection to websocket
@@ -23,7 +26,7 @@ const connectSocket = () => {
 
             // Reset reconnect attempts on success
             reconnectAttempts = 0;
-
+            
             resolve(); // Resolve the promise when connected
         },
         (error) => {
@@ -41,12 +44,21 @@ const connectSocket = () => {
                 reject("Maximum reconnect attempts reached.");
             }
         });
+
+        // Handle unexpected disconnects
+        socket.onclose = (event) => {
+            console.error("WebSocket connection closed unexpectedly:", event);
+            // Attempt to reconnect
+            setTimeout(() => connectSocket().catch(console.error), reconnectInterval);
+        };
     });
 };
 
 // Disconnect the client connection
 const disconnectSocket = () => {
     if (stompClient && stompClient.connected) {
+        clearInterval(pingInterval);
+        clearTimeout(pingTimeout);
         stompClient.disconnect(() => {
             console.log("Disconnected from WebSocket.");
         },
@@ -69,11 +81,8 @@ const tokenHalfWayCheck = (tokenRefreshCallbackFunction) => {
         const destination = '/user/specific/token-halfway-check';
         stompClient.subscribe(destination, function(message) {
             const parsedMessage = JSON.parse(message.body);
-            const payload = parsedMessage.payload;
             const tokenRefreshStatus = parsedMessage.headers['tokenRefresh'];
 
-            console.log("Received token halfway check:", payload);
-            console.log("Token refresh status:", tokenRefreshStatus);
             if (tokenRefreshStatus === true) {
                 console.log("Token detected to be expiring.")
                 tokenRefreshCallbackFunction(true);
@@ -88,27 +97,38 @@ const tokenHalfWayCheck = (tokenRefreshCallbackFunction) => {
 };
 
 // Keep a heart beat pattern to indicate that the user is active
-const heartBeatCheck = () => {
+const pingPongMechanism = () => {
     if (stompClient && stompClient.connected){
-        const destination = '/user/specific/ping';
-        stompClient.subscribe(destination, function(message) {
-            const parsedMessage = message.body;
-            console.log("Received heart beat check:", parsedMessage);
+        const subDestination = '/user/specific/pong';
 
-            if (parsedMessage === "ping"){
-                console.log("Sending pong back.");
-                stompClient.send('/app/pong', {}, "pong");
-            }
+        // Establish server communication to receive pong messages 
+        stompClient.subscribe(subDestination, function(message) {
+            const parsedMessage = message.body;
+            console.log("Server replied:", parsedMessage);
+            
+            // Once pong is received, remove timeout to be reset in sendPing()
+            clearTimeout(pingTimeout);
         }, 
         (error) => {
-            console.error("Error subscribing to heat beat check:", error);
+            console.error("Error subscribing to ping pong mechanism:", error);
         });
+
+        // Intialize pings to be sent at 10 second intervals
+        pingInterval = setInterval(sendPing, 10000);
+        sendPing();
     } else {
-        console.error("Invalid client connection for heart beat check.");
+        console.error("Invalid client connection for ping pong mechanism.");
     }
+};
+// Send ping to server and start timer
+const sendPing = () => {
+    stompClient.send('/app/ping', {}, "ping");
 
-}
+    // After sending ping, set a timer to make sure a pong is received within a set time
+    // else we can assume that the server connection is unstable or severed
+    pingTimeout = setTimeout(() => {
+        console.log("Pong not received within timeout");
+    }, 30000);
+};
 
-// need to implment logic for unexpected isdisconnects
-
-export { connectSocket, disconnectSocket, isWebSocketConnected, tokenHalfWayCheck, heartBeatCheck };
+export { connectSocket, disconnectSocket, isWebSocketConnected, tokenHalfWayCheck, pingPongMechanism };

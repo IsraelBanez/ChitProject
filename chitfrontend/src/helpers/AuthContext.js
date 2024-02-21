@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState, useRef } from "react";
 
 import {signIn, signUp, logOut, refreshToken, checkUser, forgotPassword, resetPassword} from './authService.js';
-import {connectSocket, disconnectSocket, isWebSocketConnected, tokenHalfWayCheck, heartBeatCheck} from './socketService.js';
-
+import {connectSocket, disconnectSocket, isWebSocketConnected, tokenHalfWayCheck, pingPongMechanism} from './socketService.js';
+import {connectPlainSocket} from './plainSocketService.js';
 const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
@@ -14,11 +14,12 @@ export const AuthProvider = ({children}) => {
             const data = await signIn(credentials);
             setAuthenticated(true);
 
+            connectPlainSocket();
             // Establishe websocket 
             await connectSocket();
 
             tokenHalfWayCheck(handleTokenRefresh);
-            heartBeatCheck();
+            pingPongMechanism();
         } catch (error) {
             throw error;
         }
@@ -73,21 +74,20 @@ export const AuthProvider = ({children}) => {
             throw error;
         }
     };
-
     // Updates the token status
     const handleTokenRefresh = (status) => {
         setIsTokenExpired(status);
         console.log("handleTokenRefresh is called", isTokenExpired);
     }
-
+    // Manages when token is about to expire and initiates refresh
     useEffect(() => {
-        console.log("Token change detected", isTokenExpired);
         if (isTokenExpired) {
             refreshTokenHandler();
         }
     }, [isTokenExpired]);
 
     // Checks to see if a user is still logged in
+    // **Note**: Invokes the unexpected sign outs (aka Token Error) in terminal
     const checkLoggedInStatus = async () => {
         try {
             const result = await checkUser(); 
@@ -100,7 +100,7 @@ export const AuthProvider = ({children}) => {
                     // Establish WebSocket connection if not already connected
                     await connectSocket();
                     tokenHalfWayCheck(handleTokenRefresh);
-                    heartBeatCheck();
+                    pingPongMechanism();
                 }
             } else{
                 console.error("Error checking user status:", result.status);
