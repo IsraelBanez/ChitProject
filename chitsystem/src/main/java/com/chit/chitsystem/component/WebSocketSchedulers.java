@@ -24,11 +24,4 @@ public class WebSocketSchedulers {
         webSocketService.checkTokenStatus();
         log.info("...Token Status Scheduler Finished.");
     }
-
-    // Send ping every 30 seconds to the client
-    // Eventially override handleTextMessage to make the messages just be ping instead of all the headers
-    @Scheduled(fixedRate = 30000) 
-    public void pingPongScheduler() {
-        webSocketService.sendPingToUser();
-    }
 }

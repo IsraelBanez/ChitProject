@@ -13,7 +13,7 @@ public class ChitsystemApplication {
 	}
 
 	// *Summary*
-	// 1:24:2024 || break notes 
-	// To Be Continued: know when a user is still active |  // TODO: Need to work on who ami
+	// To Be Continued: Keep developing mutiple websockets for ping pong, one for messages, and others 
+	// TODO: eventually make everything https and wss
 
 }

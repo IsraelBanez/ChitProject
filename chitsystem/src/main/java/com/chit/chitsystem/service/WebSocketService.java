@@ -1,5 +1,6 @@
 package com.chit.chitsystem.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,20 +81,12 @@ public class WebSocketService {
             message);
     }
 
-
-    public void sendPingToUser(){
-        List<User> onlineUsers = userRepository.findAllByStatus(Status.ONLINE);
-
-        for (User user : onlineUsers) {
-            String payload = "ping";
-            Message<String> message = MessageBuilder
-                .withPayload(payload)
-                .build();
-            messagingTemplate.convertAndSendToUser(
-                user.getUsername(), 
-                "/specific/ping", 
-                "ping");
-        }
+    // Send pong to user client
+    public void sendPongToUser(Principal principal){
+        messagingTemplate.convertAndSendToUser(
+            principal.getName(), 
+            "/specific/pong", 
+            "pong");
 
     }
 }
