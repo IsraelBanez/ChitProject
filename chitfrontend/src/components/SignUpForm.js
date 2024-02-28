@@ -53,7 +53,7 @@ export default function SignUpForm({signUpSuccess}){
             await signUpUser(signUpData);
             // On success, navigate back to home screen and return status
             console.log('[Successful sign in]');
-            navigate('/'); 
+            navigate('/sign-in'); 
         } catch (error) {
             signUpSuccess = false;
             if (error.response) {

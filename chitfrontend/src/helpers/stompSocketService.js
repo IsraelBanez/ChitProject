@@ -96,39 +96,5 @@ const tokenHalfWayCheck = (tokenRefreshCallbackFunction) => {
     }
 };
 
-// Keep a heart beat pattern to indicate that the user is active
-const pingPongMechanism = () => {
-    if (stompClient && stompClient.connected){
-        const subDestination = '/user/specific/pong';
 
-        // Establish server communication to receive pong messages 
-        stompClient.subscribe(subDestination, function(message) {
-            const parsedMessage = message.body;
-            console.log("Server replied:", parsedMessage);
-            
-            // Once pong is received, remove timeout to be reset in sendPing()
-            clearTimeout(pingTimeout);
-        }, 
-        (error) => {
-            console.error("Error subscribing to ping pong mechanism:", error);
-        });
-
-        // Intialize pings to be sent at 10 second intervals
-        pingInterval = setInterval(sendPing, 10000);
-        sendPing();
-    } else {
-        console.error("Invalid client connection for ping pong mechanism.");
-    }
-};
-// Send ping to server and start timer
-const sendPing = () => {
-    stompClient.send('/app/ping', {}, "ping");
-
-    // After sending ping, set a timer to make sure a pong is received within a set time
-    // else we can assume that the server connection is unstable or severed
-    pingTimeout = setTimeout(() => {
-        console.log("Pong not received within timeout");
-    }, 30000);
-};
-
-export { connectSocket, disconnectSocket, isWebSocketConnected, tokenHalfWayCheck, pingPongMechanism };
+export { connectSocket, disconnectSocket, isWebSocketConnected, tokenHalfWayCheck };

@@ -15,7 +15,11 @@
 .n-left-region{
     width: auto;
     height: auto;
+    display: flex;
     caret-color: transparent;
+}
+.n-left-region img{
+    object-fit: contain;
 }
 
 .n-mid-region{
@@ -55,6 +59,28 @@
     padding: 5px 10px;
     justify-content: flex-end;
     align-items: center;
+}
+.n-logged-in-btn{
+    width: 35px;
+    height: 35px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    border-radius: 25px;
+    border-color: transparent;
+    background-color: #010E14;
+    caret-color: transparent;
+    cursor: pointer;
+}
+.n-logged-in-btn img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.n-logged-in-btn:hover{
+    background-color: #CDC1FF;
 }
 .n-sign-in-btn{
     width: 100px;
