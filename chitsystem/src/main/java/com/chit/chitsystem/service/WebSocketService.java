@@ -81,12 +81,4 @@ public class WebSocketService {
             message);
     }
 
-    // Send pong to user client
-    public void sendPongToUser(Principal principal){
-        messagingTemplate.convertAndSendToUser(
-            principal.getName(), 
-            "/specific/pong", 
-            "pong");
-
-    }
 }

@@ -20,10 +20,4 @@ public class WebSocketController {
     @Autowired
     private final WebSocketService webSocketService;
     
-    // To keep track of user activity using ping pong 
-    @MessageMapping("/ping")
-    public void handlePingMessage(Principal principal, @Payload String message) {
-        log.info("Received ping message: {}", message);
-        webSocketService.sendPongToUser(principal);
-    }
 }

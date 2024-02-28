@@ -5,7 +5,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 
-import com.chit.chitsystem.config.websocket.PlainWebSocketHandler;
+import com.chit.chitsystem.config.websocket.CustomeWebSocketHandler;
 
 @Configuration
 @EnableWebSocket
@@ -13,11 +13,11 @@ public class WebSocketConfiguration implements WebSocketConfigurer{
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(new PlainWebSocketHandler(), "/wbsk")
-            .setAllowedOriginPatterns("http://localhost:3000")
+        registry.addHandler(new CustomeWebSocketHandler(), "/ws-realtime")
+            .setAllowedOriginPatterns("*")
             .withSockJS();
-        registry.addHandler(new PlainWebSocketHandler(), "/wbsk")
-            .setAllowedOriginPatterns("http://localhost:3000");
+        registry.addHandler(new CustomeWebSocketHandler(), "/ws-realtime")
+            .setAllowedOriginPatterns("*");
     }
     
 }

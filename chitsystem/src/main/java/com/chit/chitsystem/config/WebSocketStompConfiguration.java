@@ -32,7 +32,6 @@ import org.springframework.web.socket.handler.WebSocketHandlerDecoratorFactory;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
-import com.chit.chitsystem.config.websocket.PingPongWebSocketHandler;
 import com.chit.chitsystem.exception.newexceptions.TokenNotFoundException;
 import com.chit.chitsystem.service.JWTService;
 
@@ -52,15 +51,15 @@ public class WebSocketStompConfiguration implements WebSocketMessageBrokerConfig
     private final JWTService jwtService;
     private final UserDetailsService userDetailsService;
 
-    // Endpoint to connect to WebSocket server
+    // Endpoint to connect to WebSocket server http://localhost:3000
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("http://localhost:3000")
+                .setAllowedOriginPatterns("*")
                 .setHandshakeHandler(handShakeHandler())
                 .addInterceptors(httpSessionHandshakeInterceptor());
         registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("http://localhost:3000")
+                .setAllowedOriginPatterns("*")
                 .setHandshakeHandler(handShakeHandler())
                 .addInterceptors(httpSessionHandshakeInterceptor())
                 .withSockJS();
