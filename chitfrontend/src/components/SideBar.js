@@ -12,7 +12,7 @@ import {ReactComponent as LogOutIcon} from '../icons/logout.svg';
 export default function SideBar(){
 
     return (
-            <aside className='profile-sidebar'>
+            <div className='profile-sidebar'>
                 {/* User Profile Section  */}
                 <div className="user-profile">
                     <img src={TestUser} alt="User Profile Picture"/>
@@ -45,6 +45,6 @@ export default function SideBar(){
                     </ul>
                 </nav>
                         
-            </aside>
+            </div>
     );
 }

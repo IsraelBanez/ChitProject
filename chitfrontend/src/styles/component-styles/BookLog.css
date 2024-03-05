@@ -152,3 +152,14 @@
     color: rgb(251, 86, 86);
     background-color: rgba(251, 86, 86, 0.25);
 }
+
+@media (max-width: 465px){
+    .bl-table-header, .bl-table-row{
+        gap: 0px;
+        padding: 10px;
+    }
+
+    .bl-th-cell-info, .bl-tb-cell-info{
+        min-width: 0;
+    }
+}

@@ -11,8 +11,9 @@ export default function HomeContentSignedIn(){
     return (
             <main className='hcsi-container'>
                 {/* Profile sidebar content */}
-                <SideBar/>
-                
+                <aside>
+                    <SideBar/>
+                </aside>
                 {/* Search bar content */}
                 <section className='content'>
                     <div className='left-content'>

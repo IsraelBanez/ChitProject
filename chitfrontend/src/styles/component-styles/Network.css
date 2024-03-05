@@ -56,9 +56,3 @@
     border-radius: 50%;
     object-fit: cover; 
 }
-
-@media (max-width: 1152px) {
-    .network {
-        display: none;
-    }
-}

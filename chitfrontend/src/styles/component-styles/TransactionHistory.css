@@ -129,3 +129,13 @@
     font-weight: 500;
     line-height: 16px;
 }
+@media (max-width: 465px){
+    .t-table-header, .t-table-row{
+        gap: 0px;
+        padding: 10px;
+    }
+
+    .t-th-cell-info, .t-tb-cell-info{
+        min-width: 0;
+    }
+}
