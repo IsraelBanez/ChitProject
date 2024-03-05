@@ -2,7 +2,7 @@ import '../styles/component-styles/SignInForm.css';
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 
-import Logo from '../icons/logo-big.png';
+import Logo from '../images/logo-big.png';
 import Eye from '../icons/eye.svg';
 import EyeClosed from '../icons/eye-closed.svg';
 import X from '../icons/x.svg';

@@ -2,7 +2,7 @@ import '../styles/component-styles/ForgotPasswordForm.css';
 import React, { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 
-import Logo from '../icons/logo-big.png';
+import Logo from '../images/logo-big.png';
 import X from '../icons/x.svg';
 
 import {useAuth} from '../helpers/AuthContext.js';

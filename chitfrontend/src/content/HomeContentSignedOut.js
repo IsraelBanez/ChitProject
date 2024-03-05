@@ -1,11 +1,13 @@
 import '../styles/HomeContentSignedOut.css';
-import BookLog from '../icons/book-log-img.png';
+
+import BookLog from '../images/book-log-img.png';
+
 import { Link } from "react-router-dom";
 
 export default function HomeContentSignedOut(){
 
     return (
-            <div className='hcso-container'>
+            <main className='hcso-container'>
                 <div className='intro-section'>
                     <h1>Your Personal <br/> Lending Network</h1>
                     <p>Join our vibrant peer-to-peer community <br/> and start borrowing or lending instantly.</p>
@@ -15,6 +17,6 @@ export default function HomeContentSignedOut(){
                     <img src={BookLog} alt='Book Log Display'/>
                 </div>
                 
-            </div>
+            </main>
     );
 }

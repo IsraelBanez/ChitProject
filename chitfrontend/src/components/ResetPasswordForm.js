@@ -2,7 +2,7 @@ import '../styles/component-styles/ResetPasswordForm.css';
 import React, { useState } from 'react';
 import { Link, useNavigate} from "react-router-dom";
 
-import Logo from '../icons/logo-big.png';
+import Logo from '../images/logo-big.png';
 import Eye from '../icons/eye.svg';
 import EyeClosed from '../icons/eye-closed.svg';
 import X from '../icons/x.svg';

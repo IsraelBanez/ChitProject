@@ -2,7 +2,7 @@ import '../styles/component-styles/CheckEmailMessage.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
-import Logo from '../icons/logo-big.png';
+import Logo from '../images/logo-big.png';
 
 import {useAuth} from '../helpers/AuthContext.js';
 

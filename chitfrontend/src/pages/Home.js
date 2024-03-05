@@ -3,22 +3,27 @@ import {useEffect} from 'react';
 
 import NavBar from '../components/NavBar';
 
-import HomeSignedOut from '../content/HomeContentSignedOut';
+import HomeSignedOut from '../content/HomeContentSignedOut.js';
+import HomeSignedIn from '../content/HomeContentSignedIn.js';
+
+import {useAuth} from '../helpers/AuthContext.js';
 
 export default function Home(){
+    const { authenticated } = useAuth();
 
     return (
             <div className='home-container'>
-                <div className='nav-section'>
+                <nav className='nav-section'>
                     <NavBar/>
-                </div>
+                </nav>
 
                 <div className='main-section'>
-                    <HomeSignedOut/>
-
+                    { !authenticated ? 
+                        <HomeSignedIn/>
+                    :
+                        <HomeSignedOut/>
+                    }
                 </div>
-                
-
             </div>
     );
 }

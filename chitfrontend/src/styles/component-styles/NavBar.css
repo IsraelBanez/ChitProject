@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
-
 .navbar-container{
     height: auto;
     width: 100%;
@@ -13,7 +11,7 @@
 }
 
 .n-left-region{
-    width: auto;
+    flex: 0 0 auto;
     height: auto;
     display: flex;
     caret-color: transparent;
@@ -23,7 +21,7 @@
 }
 
 .n-mid-region{
-    width: 80%;
+    flex: 1 1 80%;
     height: auto;
     display: flex;
     padding: 5px 0px;
@@ -41,11 +39,11 @@
     color: #010E14;
 
     text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-family: 'Poppins';
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px;
+    line-height: 18px;
 }
 .n-mid-region div:hover{
     color: #CDC1FF;
@@ -53,8 +51,8 @@
 }
 
 .n-right-region{
+    flex: 0 0 auto;
     display: flex;
-    width: auto;
     height: auto;
     padding: 5px 10px;
     justify-content: flex-end;
@@ -83,10 +81,10 @@
     background-color: #CDC1FF;
 }
 .n-sign-in-btn{
-    width: 100px;
+    width: auto;
     height: auto;
     display: flex;
-    padding: 5px 15px;
+    padding: 5px 20px;
     justify-content: center;
     align-items: center;
     border-radius: 25px;
@@ -95,11 +93,11 @@
 
     color: #010E14;
     text-align: center;
-    font-family: Poppins;
-    font-size: 20px;
+    font-family: 'Poppins';
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px; 
+    line-height: 18px; 
 }
 .n-sign-in-btn:hover{
     background-color: rgba(205, 193, 255, 0.8);
@@ -107,12 +105,40 @@
     cursor: pointer;
 }
 
+.n-menu-btn{
+    display: none;
+}
+
 @media (max-width: 824px) {
     .navbar-container{
         justify-content: space-between;
+        gap: 0px;
     }
     
     .n-mid-region {
         display: none;
+    }
+
+    .n-sign-in-btn{
+        display: none
+    }
+
+    .n-logged-in-btn ~ .n-menu-btn{ /* When logged-in is present, keep using the logged in button instead of hamburger menu*/ 
+        display: none;
+    }
+
+    .n-menu-btn{
+        width: 35px;
+        height: 35px;
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 50%;
+        border-width: 1px;
+        border-style: none;
+
+        background-color: rgba(205, 193, 255, 0.24);;
     }
 }
