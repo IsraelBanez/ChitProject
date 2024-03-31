@@ -1,0 +1,110 @@
+.navbar-container{
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 30px;
+    align-items: center;
+    gap: 40px;
+    background: #FFF;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+.n-left-region{
+    flex: 0 0 auto;
+    height: auto;
+    display: flex;
+    caret-color: transparent;
+}
+.n-left-region img{
+    object-fit: contain;
+}
+
+.n-right-region{
+    flex: 0 0 auto;
+    display: flex;
+    height: auto;
+    padding: 5px 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+.n-logged-in-btn{
+    width: 35px;
+    height: 35px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0px;
+    border-radius: 25px;
+    border-color: transparent;
+    background-color: #010E14;
+    caret-color: transparent;
+    cursor: pointer;
+}
+.n-logged-in-btn img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.n-logged-in-btn:hover{
+    background-color: #CDC1FF;
+}
+.n-sign-in-btn{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background: rgba(205, 193, 255, 0.24);
+    caret-color: transparent;
+
+    color: #010E14;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; 
+}
+.n-sign-in-btn:hover{
+    background-color: rgba(205, 193, 255, 0.8);
+    color: white;
+    cursor: pointer;
+}
+
+.n-menu-btn{
+    display: none;
+}
+
+@media (max-width: 824px) {
+    .navbar-container{
+        justify-content: space-between;
+        gap: 0px;
+    }
+
+    .n-sign-in-btn{
+        display: none
+    }
+
+    .n-logged-in-btn ~ .n-menu-btn{ /* When logged-in is present, keep using the logged in button instead of hamburger menu*/ 
+        display: none;
+    }
+
+    .n-menu-btn{
+        width: 35px;
+        height: 35px;
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 50%;
+        border-width: 1px;
+        border-style: none;
+
+        background-color: rgba(205, 193, 255, 0.24);;
+    }
+}

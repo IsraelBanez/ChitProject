@@ -1,0 +1,15 @@
+.n-mid-region{
+    flex: 1 1 80%;
+    height: auto;
+    display: flex;
+    padding: 5px 0px;
+    align-items: flex-end;
+    gap: 20px;
+    caret-color: transparent;
+}
+
+@media (max-width: 824px) {
+    .n-mid-region {
+        display: none;
+    }
+}

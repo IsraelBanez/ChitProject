@@ -1,0 +1,50 @@
+.book-log-mini{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 20px 20px 20px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.book-log-mini h1 {
+    display: flex;
+    margin-block: 0px;
+    color: #010E14;
+
+    font-family: 'Poppins';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.bl-table-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bl-table-body{
+    display: flex;
+    flex-direction: column;
+    /* padding: 20px 20px; */
+}
+
+
+@media (max-width: 465px){
+    .bl-table-header, .bl-table-row{
+        gap: 0px;
+        padding: 10px;
+    }
+
+    .bl-th-cell-info, .bl-tb-cell-info{
+        min-width: 0;
+    }
+}

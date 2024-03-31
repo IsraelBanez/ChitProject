@@ -1,0 +1,98 @@
+.hcg-container{
+    box-sizing: border-box;
+    margin-top: 100px;
+    padding-left: 10%;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.intro-section{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0px;
+}
+.intro-section h1{
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 4vw;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 6.8px;
+    margin: 0;
+}
+.intro-section p{
+    color: #707070;
+    font-family: 'Poppins';
+    font-size: 1.1vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 1.8px;
+    margin: 0;
+}
+.intro-section div{
+    margin-top: 6vw;
+    display: flex;
+    padding: 20px 58px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 35px;
+    border: 5px solid #FFF;
+    background: var(--Style, linear-gradient(90deg, #CDC1FF 0%, #E4BEF2 95.69%));
+    caret-color: transparent;
+    cursor: pointer;
+}
+.intro-section a{
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 24px; 
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+.intro-section div:hover{
+    background: var(--Style, linear-gradient(90deg, #b9a8fc 0%, #d68ff0 95.69%));
+}
+
+.intro-img img{
+    max-width: 100%; 
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    caret-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .hcg-container {
+        flex-direction: column; 
+        align-items: center; 
+        padding: 1%; 
+    }
+
+    .intro-section {
+        align-items: center; 
+        justify-content: center;
+        text-align: center; 
+    }
+
+    .intro-section h1 {
+        font-size: 6vw; 
+    }
+
+    .intro-section p {
+        font-size: 2vw; 
+    }
+
+    .intro-section div {
+        margin-top: 3vw; 
+    }
+}

@@ -1,0 +1,27 @@
+.sidebar-btn svg{
+    width: 18px;
+    height: 18px;
+}
+.sidebar-btn{
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    border-style: none;
+
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+
+    background-color: transparent
+}
+.sidebar-btn:hover{
+    border-radius: 10px;
+    background-color: #cdc1ff2d;
+    cursor: pointer;
+}

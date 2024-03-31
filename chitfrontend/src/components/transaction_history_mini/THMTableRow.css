@@ -1,0 +1,52 @@
+.t-table-row{
+    display: flex;
+    flex-direction: row;
+    padding: 20px 20px 20px 20px;
+    gap: 10px;
+
+    border-bottom: 0.5px solid #E5E5E5;
+}
+.t-tb-cell-user{
+    width: 25%;
+    min-width: 42px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.t-tb-cell-info{
+    width: 50%;
+    min-width: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.t-type{
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
+}
+.t-time, .t-reason{
+    color: #737C80;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
+}
+.t-tb-cell-amount{
+    width: 25%;
+    min-width: 54px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}

@@ -1,0 +1,13 @@
+.add-users-btn{
+    width: 63.2px; 
+    height: 63.2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    border: 2px solid #010E14;
+
+    background-color: #fff;
+    cursor: pointer;
+}

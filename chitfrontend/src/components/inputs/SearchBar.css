@@ -1,0 +1,48 @@
+.search-bar-inpt{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+}
+
+.search-bar-inpt input{
+    width: 90%;
+    height: 50px;
+    padding: 0px;
+
+    border-radius: 25px 0px 0px 25px;
+    border-color: #010E14;
+    border-style: solid;
+    border-width: 1px; 
+    outline: none;
+
+    color: #737C80;
+    text-indent: 20px;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
+}
+
+.search-bar-inpt input::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    margin-right: 20px;
+    content:  url('../../icons/x-dark.svg');
+    cursor: pointer;
+}
+
+.search-bar-inpt button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #FFFFFF;
+    border-color: #010E14;
+    border-width: 1px;
+    border-style: solid;
+    border-left: 0px;
+    border-radius: 0px 25px 25px 0px;
+    cursor: pointer;
+}

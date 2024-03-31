@@ -1,0 +1,24 @@
+.manage-balance-btn {
+    width: auto;
+    height: auto;
+
+    padding: 5px 0px 5px 0px;
+    text-align: start;
+    color: #010E14;
+
+    border: none;
+
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+
+    background-color: transparent;
+    cursor: pointer;
+    caret-color: transparent;
+}
+
+.manage-balance-btn:hover{
+    color: #CDC1FF;
+}
