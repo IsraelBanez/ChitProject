@@ -18,6 +18,10 @@ function UserProfileButton({size, image: Image}) {
             imageSize = '80px';
             borderSize = '2px';
             break;
+        default:
+            imageSize = '80px';
+            borderSize = '2px';
+            break;
     }
 
     return (

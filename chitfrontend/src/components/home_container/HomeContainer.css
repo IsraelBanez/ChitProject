@@ -1,21 +1,24 @@
 .hc-container{
-    /* min-width: 465px; */
     background-color: #FAF6F6;
     box-sizing: border-box;
-    width: 100%;
+    flex: 1;
     height: auto;
     display: flex;
     justify-content: space-between;
     padding: 10px;
     gap: 40px;
+    min-width: 0px;
 }
-
+/* Note: flex 1 will grow to its container and shrink towards its contents; adding min-width 0 will allow
+         shrinking past its contents
+*/
 aside {
     flex: 0 0 300px;
 }
 
 .content {
     flex: 1;
+    min-width: 0px;
     height: auto;
     display: flex;
     flex-direction: row;
@@ -23,7 +26,8 @@ aside {
 }
 
 .left-content{
-    flex: 1.5;
+    flex: 1.5; 
+    min-width: 0px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -31,10 +35,12 @@ aside {
 }
 .right-content{
     flex: 1;
+    min-width: 0px;
     height: auto;
     display: flex;
     flex-direction: column;
     gap: 40px;
+
 }
 
 @media (max-width: 1152px) {

@@ -1,14 +1,15 @@
 .search-bar-inpt{
-    width: 100%;
-    height: auto;
     display: flex;
+    flex: 1;
     flex-direction: row;
     gap: 0px;
+    min-width: 200px;
+    min-height: 35px;
 }
 
 .search-bar-inpt input{
-    width: 90%;
-    height: 50px;
+    flex: 1;
+    min-width: 0px;
     padding: 0px;
 
     border-radius: 25px 0px 0px 25px;
@@ -35,6 +36,7 @@
 
 .search-bar-inpt button{
     display: flex;
+    min-width: 0px;
     justify-content: center;
     align-items: center;
     padding: 10px 15px;

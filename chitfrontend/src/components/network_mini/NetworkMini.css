@@ -3,8 +3,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
-    justify-content: center;
     padding: 20px 20px 20px 20px;
     border-radius: 15px;
     background-color: #FFFFFF;
@@ -12,7 +10,8 @@
 }
 
 .network h1 {
-    display: flex;
+    overflow-wrap: break-word;
+
     margin-block: 0px;
     color: #010E14;
 
@@ -26,6 +25,7 @@
 .network-list{
     width: 100%;
     height: auto;
+    overflow: auto;
 }
 
 .network-list ul{

@@ -1,0 +1,29 @@
+.sort-by-btn{
+    max-width: 100px;
+    min-width: 80px;
+    min-height: 35px;
+    max-height: 35px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    flex:1;
+    height: auto;
+    padding: 0px;
+    
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #010E14;
+    border-style: solid;
+
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+
+    background-color: #fff;
+    cursor: pointer;
+    overflow-wrap: break-word;
+}

@@ -1,5 +1,6 @@
 .add-users-btn{
-    width: 63.2px; 
+    width: 63.2px;
+    min-width: 63.2px; 
     height: 63.2px;
     display: flex;
     justify-content: center;

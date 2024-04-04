@@ -3,10 +3,10 @@ import './BLMTableHeader.css'
 
 function BLMTableHeader() {
   return (
-        <div className='bl-table-header'>
-            <div className='bl-th-cell-info'>Info</div>
-            <div className='bl-th-cell-status'>Status</div>
-            <div className='bl-th-cell-deadline'>Deadline</div>
+        <div className='blm-table-header'>
+            <div className='blm-th-cell-info'>Info</div>
+            <div className='blm-th-cell-status'>Status</div>
+            <div className='blm-th-cell-deadline'>Deadline</div>
         </div>
   )
 }

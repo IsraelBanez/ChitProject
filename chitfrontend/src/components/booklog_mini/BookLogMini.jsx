@@ -9,9 +9,9 @@ export default function BookLog(){
             <div className='book-log-mini'>
                 <h1>Book Log</h1>
                 
-                <div className='bl-table-container'>
+                <div className='blm-table-container'>
                     <BLMTableHeader/>
-                    <div className='bl-table-body'>
+                    <div className='blm-table-body'>
                         <BLMTableRow/>
                         <BLMTableRow/>
                     </div>

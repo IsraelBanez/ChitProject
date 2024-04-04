@@ -14,7 +14,7 @@ export default function HomeContainer(){
                 <aside>
                     <SideBar/>
                 </aside>
-                
+     
                 <section className='content'>
                     <div className='left-content'>
                         {/* Search bar content */}

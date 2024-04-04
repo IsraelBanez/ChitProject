@@ -1,18 +1,17 @@
-.transaction-history{
+.transaction-history-mini{
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    align-items: flex-start;
-    justify-content: center;
     padding: 20px 20px 20px 20px;
     border-radius: 15px;
     background-color: #FFFFFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.transaction-history h1 {
-    display: flex;
+.transaction-history-mini h1 {
+    overflow-wrap: break-word;
+
     margin-block: 0px;
     color: #010E14;
 
@@ -29,6 +28,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    overflow-x: auto;
 }
 
 

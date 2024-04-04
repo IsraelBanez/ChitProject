@@ -39,7 +39,7 @@ export default function SideBar(){
                 <LendBorrowButton/>
 
                 {/* Navigation Section */}
-                <nav className="navigation">
+                <nav className='navigation'>
                     <ul>
                         <SideBarButton icon={BookIcon} title="Book"/>
                         <SideBarButton icon={NetworkIcon} title="Network"/>

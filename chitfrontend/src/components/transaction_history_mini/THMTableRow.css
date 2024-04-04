@@ -1,5 +1,6 @@
 .t-table-row{
     display: flex;
+    min-width: 200px;
     flex-direction: row;
     padding: 20px 20px 20px 20px;
     gap: 10px;

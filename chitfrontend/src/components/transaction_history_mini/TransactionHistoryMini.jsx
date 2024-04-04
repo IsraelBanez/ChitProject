@@ -8,17 +8,17 @@ import THMTableRow from './THMTableRow.jsx';
 export default function TransactionHistory(){
 
     return (
-            <div className='transaction-history'>
-                <h1>Transaction</h1>
+        <div className='transaction-history-mini'>
+            <h1>Transaction</h1>
 
-                <div className='t-table-container'>
-                    <THMTableHeader/>
-                    <div className='t-table-body'>
-                        <THMTableRow/>
-                        <THMTableRow/>
-                    </div>
+            <div className='t-table-container'>
+                <THMTableHeader/>
+                <div className='t-table-body'>
+                    <THMTableRow/>
+                    <THMTableRow/>
                 </div>
-                                
             </div>
+                            
+        </div>
     );
 }

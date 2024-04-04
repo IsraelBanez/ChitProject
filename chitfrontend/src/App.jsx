@@ -7,6 +7,7 @@ import SignUp from './pages/signup/SignUp';
 import ForgotPassword from './pages/forgot_password/ForgotPassword';
 import CheckEmail from './pages/check_email/CheckEmail';
 import ResetPassword from './pages/reset_password/ResetPassword';
+import BookLog from './pages/booklog/BookLog';
 import NoPage from './pages/nopage/NoPage';
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
       <Route path="forgot-password" element={<ForgotPassword />} />
       <Route path="forgot-password/check-email" element={<CheckEmail />} />
       <Route path="forgot-password/reset-password" element={<ResetPassword />} />
+
+      <Route path="book-log" element={<BookLog />} />
       <Route path="*" element={<NoPage/>}/>
     </Routes>
   </>

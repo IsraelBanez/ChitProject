@@ -1,5 +1,6 @@
 .t-table-header{
     display: flex;
+    min-width: 200px;
     flex-direction: row;
     gap: 20px;
     padding: 20px 20px;

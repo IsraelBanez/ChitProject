@@ -1,5 +1,7 @@
-.bl-table-header{
+.blm-table-header{
     display: flex;
+    min-width: 340px;
+ 
     flex-direction: row;
     gap: 20px;
     padding: 20px 20px;
@@ -13,13 +15,13 @@
     font-weight: 400;
     line-height: 16px;
 }
-.bl-th-cell-info{
+.blm-th-cell-info{
     width: 40%;
     min-width: 116px;
     display: flex;
     justify-content: flex-start;
 }
-.bl-th-cell-status, .bl-th-cell-deadline{
+.blm-th-cell-status, .blm-th-cell-deadline{
     width: 30%;
     min-width: 100px;
     display: flex;

@@ -3,7 +3,7 @@ import {useEffect} from 'react';
 
 import NavBar from '../../components/navbar/NavBar.jsx';
 
-import HomeSignedOut from '../../components/home_container/HomeontainerGuest.jsx';
+import HomeSignedOut from '../../components/home_container/HomeContainerGuest.jsx';
 import HomeSignedIn from '../../components/home_container/HomeContainer.jsx';
 
 import {useAuth} from '../../helpers/AuthContext.js';
