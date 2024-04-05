@@ -16,3 +16,83 @@
     align-items: center;
     overflow: hidden;
 }
+
+.bl-cell-amount{
+    justify-content: flex-start !important;
+}
+.bl-cell-amount h4{
+    color: #5EA8ED;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+}
+.bl-cell-status span{
+    display: flex;
+    flex: 1;
+    height:min-content;
+    justify-content: center;
+    align-items: center;
+    padding: 2px 0%;
+
+    border-radius: 10px;
+
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+
+    color: rgba(235, 211, 91);
+    background-color: rgba(235, 211, 91, 0.25);
+}
+.bl-cell-exchange h4{
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
+}
+.bl-cell-exchange a{
+    color: #010E14;
+    text-decoration: none;
+    font-weight: 600;
+}
+/* TODO: Put a tool tip to show username if username is too big */
+.bl-cell-for h4, .bl-cell-exchange h4, .bl-cell-amount h4{
+    margin-block: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.bl-cell-for h4, .bl-cell-date span{
+    color: #737C80;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
+}
+.bl-cell-deadline span{
+    display: flex;
+    flex: 1;
+    height:min-content;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2px 0%;
+
+    border-radius: 10px;
+
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+
+    color: rgb(251, 86, 86);
+    background-color: rgba(251, 86, 86, 0.25);
+}

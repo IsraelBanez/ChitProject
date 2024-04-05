@@ -15,15 +15,9 @@
     font-weight: 400;
     line-height: 16px;
 }
-.blm-th-cell-info{
-    width: 40%;
-    min-width: 116px;
-    display: flex;
-    justify-content: flex-start;
-}
-.blm-th-cell-status, .blm-th-cell-deadline{
-    width: 30%;
-    min-width: 100px;
+.blm-table-header div{
+    flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
 }

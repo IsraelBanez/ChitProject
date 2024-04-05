@@ -3,16 +3,16 @@ import './BLMTableRow.css';
 
 function BLMTableRow() {
   return (
-      <div className='blm-table-row'>
-        <div className='blm-tb-cell-info'>
-            <span className='blm-amount'>$0.00</span>
-            <span className='blm-type'>lent to User</span>
-            <span className='blm-time'>Yesterday</span>
-            <span className='blm-reason'>Poker</span>
-        </div>
-        <div className='blm-tb-cell-status'><span>Pending</span></div>
-        <div className='blm-tb-cell-deadline'><span>Nov 10, 2024</span></div>
+    <div class='blm-table-row'>
+      <div class='blm-cell-info '>
+        <h4 className='blm-amount'>$0.00</h4>
+        <h4 className='blm-exchange'><u>lent</u> to <a href=''>User</a></h4>
+        <h4 className='blm-time'>Yesterday</h4>
+        <h4 className='blm-for'>Poker for last night's game</h4>
       </div>
+      <div className='blm-cell-status'><span>Pending</span></div>
+      <div className='blm-cell-deadline'><span>Nov 10, 2024</span></div>
+    </div>
   )
 }
 

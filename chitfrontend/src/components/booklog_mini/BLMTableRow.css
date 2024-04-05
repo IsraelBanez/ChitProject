@@ -1,5 +1,6 @@
 .blm-table-row{
     display: flex;
+    flex: 1;
     min-width: 340px;
     flex-direction: row;
     padding: 20px 20px 20px 20px;
@@ -7,12 +8,26 @@
 
     border-bottom: 0.5px solid #E5E5E5;
 }
-.blm-tb-cell-info{
-    width: 40%;
-    min-width: 116px;
+.blm-table-row div{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    min-width: 0px;
+}
+.blm-cell-deadline, .blm-cell-status{
     display: flex;
+}
+
+.blm-cell-info {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
     flex-direction: column;
-    justify-content: flex-start;
+    h4 {
+        margin-block: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;	
+    }
 }
 .blm-amount{
     color: #5EA8ED;
@@ -22,7 +37,7 @@
     font-weight: 500;
     line-height: 16px;
 }
-.blm-type{
+.blm-exchange{
     color: #010E14;
     font-family: 'Poppins';
     font-size: 14px;
@@ -30,7 +45,12 @@
     font-weight: 300;
     line-height: 14px;
 }
-.blm-time, .blm-reason{
+.blm-exchange a{
+    color: #010E14;
+    text-decoration: none;
+    font-weight: 600; 
+}
+.blm-time, .blm-for{
     color: #737C80;
     font-family: 'Poppins';
     font-size: 14px;
@@ -38,21 +58,17 @@
     font-weight: 300;
     line-height: 14px;
 }
-.blm-tb-cell-status, .blm-tb-cell-deadline{
-    width: 30%;
+.blm-for{
+    padding-bottom: 2px;
+}
+
+.blm-cell-status span{
     display: flex;
+    flex: 1;
+    height:min-content;
     justify-content: center;
     align-items: center;
-}
-.blm-tb-cell-status{
-    min-width: 100px;
-}
-.blm-tb-cell-status span{
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    padding: 2px 0px;
+    padding: 2px 0%;
 
     border-radius: 10px;
 
@@ -65,16 +81,14 @@
     color: rgba(235, 211, 91);
     background-color: rgba(235, 211, 91, 0.25);
 }
-.blm-tb-cell-deadline {
-    min-width: 100px;
-}
-.blm-tb-cell-deadline span {
-    box-sizing: border-box;
-    width: 100%;
-
+.blm-cell-deadline span {
     display: flex;
+    flex: 1;
+    height:min-content;
     justify-content: center;
-    padding: 2px 0px;
+    align-items: center;
+    text-align: center;
+    padding: 2px 0%;
 
     border-radius: 10px;
 
