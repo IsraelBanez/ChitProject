@@ -1,7 +1,7 @@
 import React from 'react'
 import './BookLogContainer.css';
 
-import SearchAndRefineSection from './SearchAndRefineSection';
+import SearchAndRefineSection from '../basics/SearchAndRefineSection';
 import BLTableHeader from './BLTableHeader';
 import BLTableRow from './BLTableRow';
 

@@ -1,35 +1,28 @@
-.t-table-row{
+.th-table-row{
     display: flex;
-    flex: 1;
-    min-width: 200px;
+    min-width: 465px;
     flex-direction: row;
     padding: 20px 20px 20px 20px;
     gap: 20px;
 
     border-bottom: 0.5px solid #E5E5E5;
+    
 }
-.t-table-row div{
+.th-table-row div{
     flex: 1;
-    justify-content: flex-start;
-    align-items: center;
-    min-width: 0px;
-}
-.t-cell-user, .t-cell-amount{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 }
 
-.t-cell-info{
+.th-cell-user{
+    min-width: 63.2px;
+    text-indent: 12px;
     justify-content: flex-start !important;
-    align-items: flex-start !important;
-    flex-direction: column;
-    h4{
-        margin-block: 5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 }
-.t-exchange{
+
+.th-cell-exchange h4{
     color: #010E14;
     font-family: 'Poppins';
     font-size: 14px;
@@ -37,26 +30,42 @@
     font-weight: 300;
     line-height: 14px;
 }
-.t-time, .t-for {
+.th-cell-exchange b{
+    font-weight: 600;
+}
+.th-cell-exchange a{
+    color: #010E14;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.th-cell-for h4, .th-cell-date h4{
+    margin-block: 0px;
     color: #737C80;
+    text-align: center;
     font-family: 'Poppins';
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: 14px;
 }
-.t-for{
+.th-cell-for h4{
     padding-bottom: 2px;
 }
-
-.t-cell-amount{
-    justify-content: center !important;
-}
-.t-cell-amount h4{
+.th-cell-for h4, .th-cell-exchange h4, .th-cell-amount h4{
     margin-block: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.th-cell-amount h4{
     font-family: 'Montserrat';
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 16px;
+}
+
+.th-cell-action{
+    min-width: 73px;
 }

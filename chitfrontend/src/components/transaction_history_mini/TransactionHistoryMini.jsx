@@ -1,7 +1,5 @@
 import './TransactionHistoryMini.css'
 
-import TestUser from '../../images/test-user.jpg';
-
 import THMTableHeader from './THMTableHeader.jsx';
 import THMTableRow from './THMTableRow.jsx';
 

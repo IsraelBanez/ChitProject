@@ -1,7 +1,7 @@
-.t-table-header{
+.th-table-header{
     display: flex;
-    min-width: 200px;
-
+    min-width: 465px;
+ 
     flex-direction: row;
     gap: 20px;
     padding: 20px 20px;
@@ -15,9 +15,9 @@
     font-weight: 400;
     line-height: 16px;
 }
-.t-table-header div{
+.th-table-header div{
     flex: 1;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }

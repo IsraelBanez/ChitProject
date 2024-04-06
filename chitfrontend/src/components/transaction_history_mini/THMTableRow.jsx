@@ -8,15 +8,15 @@ import TestUser from '../../images/test-user.jpg';
 function THMTableRow() {
     return (
         <div className='t-table-row'>
-            <div className='t-tb-cell-user'>
+            <div className='t-cell-user'>
                 <UserProfileButton size={'small'} image={TestUser}/>
             </div>
-            <div className='t-tb-cell-info'>
-                <span className='t-type'>You paid User</span>
-                <span className='t-time'>Today</span>
-                <span className='t-reason'>Poker</span>
+            <div className='t-cell-info'>
+                <h4 className='t-exchange'>You paid User</h4>
+                <h4 className='t-time'>Today</h4>
+                <h4 className='t-for'>Poker for game night</h4>
             </div>
-            <div className='t-tb-cell-amount'><span>+$0.00</span></div>
+            <div className='t-cell-amount'><h4>+$0.00</h4></div>
         </div>
     )
 }
