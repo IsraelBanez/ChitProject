@@ -1,0 +1,7 @@
+.active-friends-section{
+    display: flex;
+    height: min-content;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: auto;
+}

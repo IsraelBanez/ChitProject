@@ -3,9 +3,20 @@ import './AddUsersButton.css';
 
 import {ReactComponent as AddUserIcon} from '../../icons/add-user.svg'; 
 
-function AddUsersButton() {
+function AddUsersButton({type}) {
+  let borderColor;
+
+  switch (type){
+    case 'network':
+      borderColor = '#fff';
+      break;
+    default:
+      borderColor = '#010E14';
+      break;
+  };
+
   return (
-    <button className='add-users-btn'><AddUserIcon/></button>
+    <button className='add-users-btn' style={{borderColor: borderColor}}><AddUserIcon/></button>
   )
 }
 

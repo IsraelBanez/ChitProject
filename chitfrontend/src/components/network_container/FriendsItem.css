@@ -1,0 +1,52 @@
+.friends-item{
+    display: flex;
+    flex-direction: row;
+    height: min-content;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    
+    border-bottom: 0.5px solid #E5E5E5;
+}
+.fi-profile{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: 0px;
+}
+.fi-profile div{
+    display: flex;
+    flex-direction: column;
+    text-indent: 5px;
+    gap: 2px;
+    min-width: 0px;
+    overflow: hidden;
+    h4 {
+        color: #010E14;
+        margin-block: 0px;
+        font-family: 'Poppins';
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 16px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    a {
+        color: #737C80;
+        font-family: 'Poppins';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        text-decoration: none;
+    }
+}

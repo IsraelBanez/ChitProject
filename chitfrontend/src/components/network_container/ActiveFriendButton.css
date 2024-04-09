@@ -1,0 +1,41 @@
+.active-friend-btn{
+    display: flex;
+    flex: 1;
+    max-width: 175px;
+
+    height: min-content;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 10px;
+
+    border-width: 0px;
+    border-radius: 20px;
+
+    box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    background-color: #f9f9f9;
+}
+
+.af-info{
+    overflow: hidden;
+}
+
+.af-info h4{
+    margin-block: 0px;
+    text-align: start;
+    text-indent: 5px;
+
+
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.acb-amount{
+    font-family: 'Montserrat' !important;
+}

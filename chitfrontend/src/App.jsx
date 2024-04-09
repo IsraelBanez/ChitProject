@@ -9,6 +9,7 @@ import CheckEmail from './pages/check_email/CheckEmail';
 import ResetPassword from './pages/reset_password/ResetPassword';
 import BookLog from './pages/booklog/BookLog';
 import TransactionHistory from './pages/transaction_history/TransactionHistory';
+import Network from './pages/network/Network';
 import NoPage from './pages/nopage/NoPage';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
 
       <Route path="book-log" element={<BookLog />} />
       <Route path="transaction-history" element={<TransactionHistory />} />
+      <Route path="network" element={<Network />} />
       <Route path="*" element={<NoPage/>}/>
     </Routes>
   </>

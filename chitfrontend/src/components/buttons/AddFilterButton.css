@@ -1,16 +1,16 @@
 .add-filter-btn{
     max-width: 120px;
-    min-width: 100px;
+    min-width: min-content;
     min-height: 35px;
     max-height: 35px;
     height: 35px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex:1;
     height: auto;
-    padding: 5px 10px;
+    padding: 0px 5px;
     
     border-radius: 10px;
     border-width: 1px;

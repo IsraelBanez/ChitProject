@@ -1,0 +1,6 @@
+.tabs-section{
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+    overflow-x: auto;
+}

@@ -1,0 +1,13 @@
+.more-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: min-content;
+    padding: 5px 12px;
+
+    border-radius: 50%;
+    border-width: 0px;
+
+    background-color: #F5EFFF;
+    cursor: pointer;
+}
