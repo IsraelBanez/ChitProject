@@ -5,7 +5,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    
+
     border-bottom: 0.5px solid #E5E5E5;
 }
 .fi-profile{
@@ -48,5 +48,28 @@
         text-overflow: ellipsis;
 
         text-decoration: none;
+    }
+}
+
+.message-info{
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0px !important;
+
+    h4{
+        color: #737C80 !important;
+        font-family: 'Poppins'!important;
+        font-size: 14px !important;
+        font-style: normal !important;
+        font-weight: 300 !important;
+        line-height: 16px !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+
+    }
+    svg{
+        width: 16px;
+        height: 16px;
     }
 }

@@ -4,7 +4,7 @@ import './NetworkContainer.css';
 import ActiveFriendsSection from './ActiveFriendsSection';
 import SearchAndRefineSection from '../basics/SearchAndRefineSection';
 import TabsSection from '../basics/TabsSection';
-import FriendsListSection from './FriendsListSection';
+import ListItemsSection from '../basics/ListItemsSection';
 
 function NetworkContainer() {
     return (
@@ -14,7 +14,7 @@ function NetworkContainer() {
             <ActiveFriendsSection/>
             <SearchAndRefineSection type={'network'} />
             <TabsSection type={'network'} />
-            <FriendsListSection/>
+            <ListItemsSection type={'network'}/>
         </section>
     )
 }

@@ -1,0 +1,26 @@
+.pinned-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.pinned-section h3{
+    color: #010E14;
+    margin-block: 0px;
+    font-family: 'Poppins';
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pinned-section ul{
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    padding: 10px;
+    gap: 20px;
+    overflow-x: auto;
+}

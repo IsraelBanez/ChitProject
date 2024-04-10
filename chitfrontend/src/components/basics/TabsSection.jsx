@@ -13,10 +13,13 @@ function TabsSection({type}) {
 
     switch (type) {
         case 'network':
-            tabs = ['Friends', 'Groups', 'Requests', 'Liaisons']
+            tabs = ['Friends', 'Groups', 'Requests', 'Liaisons'];
+            break;
+        case 'messages':
+            tabs = ['All', 'Groups', 'Liaisons'];
             break;
         default:
-            tabs = ['dam', 'something', 'is', 'not', 'working']
+            tabs = ['dam', 'something', 'is', 'not', 'working'];
             break;
     };
     

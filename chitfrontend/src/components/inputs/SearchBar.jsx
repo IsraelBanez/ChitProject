@@ -12,6 +12,10 @@ function SearchBar({size, placeholder}) {
             barWidth = '450px';
             barHeight = '35px';
             break;
+        case 'medium':
+            barWidth = '100%';
+            barHeight = '35px';
+            break;
         case 'large':
             barWidth = '100%';
             barHeight = '50px';
