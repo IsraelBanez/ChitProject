@@ -2,9 +2,9 @@ import React from 'react'
 
 import NavBar from '../../components/navbar/NavBar.jsx';
 import SideBar from '../../components/sidebar/SideBar.jsx';
-import MessagesContainer from '../../components/messages_container/MessagesContainer.jsx';
+import NotificationsContainer from '../../components/notifications_container/NotificationsContainer.jsx';
 
-function Messages() {
+function Notifications() {
     return (
         <div>
             <nav className='nav-section'>
@@ -16,11 +16,11 @@ function Messages() {
                     <SideBar/>
                 </aside>
                 
-                <MessagesContainer/>
+                <NotificationsContainer/>
             </main>
 
         </div>
     )
 }
 
-export default Messages
+export default Notifications

@@ -1,4 +1,4 @@
-.friends-item{
+.info-item{
     display: flex;
     flex-direction: row;
     height: min-content;
@@ -8,7 +8,7 @@
 
     border-bottom: 0.5px solid #E5E5E5;
 }
-.fi-profile{
+.item-data{
     display: flex;
     flex-direction: row;
     height: auto;
@@ -16,60 +16,87 @@
     align-items: center;
     min-width: 0px;
 }
-.fi-profile div{
+.item-body{
     display: flex;
     flex-direction: column;
     text-indent: 5px;
     gap: 2px;
     min-width: 0px;
     overflow: hidden;
-    h4 {
-        color: #010E14;
-        margin-block: 0px;
-        font-family: 'Poppins';
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 16px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+}
 
-    a {
+.default-header {
+    color: #010E14;
+    margin-block: 0px;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-username{
+    color: #737C80;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    text-decoration: none;
+}
+
+.message-info{
+    display: flex;
+    flex-direction: row;
+    gap: 0px;
+
+    h4{
+        margin-block: 0px;
         color: #737C80;
         font-family: 'Poppins';
         font-size: 14px;
         font-style: normal;
         font-weight: 300;
-        line-height: 14px;
+        line-height: 16px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
-        text-decoration: none;
-    }
-}
-
-.message-info{
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0px !important;
-
-    h4{
-        color: #737C80 !important;
-        font-family: 'Poppins'!important;
-        font-size: 14px !important;
-        font-style: normal !important;
-        font-weight: 300 !important;
-        line-height: 16px !important;
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
 
     }
     svg{
         width: 16px;
         height: 16px;
     }
+}
+
+.notification-header h4{
+    margin-block: 0px;
+    color: #737C80;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.notification-info{
+    margin-block: 0px;
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal ;
+    font-weight: 400;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden ;
+    text-overflow: ellipsis;
 }

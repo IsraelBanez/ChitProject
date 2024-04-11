@@ -18,6 +18,9 @@ function TabsSection({type}) {
         case 'messages':
             tabs = ['All', 'Groups', 'Liaisons'];
             break;
+        case 'notifications':
+            tabs = ['All', 'Mentions'];
+            break;
         default:
             tabs = ['dam', 'something', 'is', 'not', 'working'];
             break;

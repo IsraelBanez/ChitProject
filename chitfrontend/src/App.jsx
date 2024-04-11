@@ -11,6 +11,7 @@ import BookLog from './pages/booklog/BookLog';
 import TransactionHistory from './pages/transaction_history/TransactionHistory';
 import Network from './pages/network/Network';
 import Messages from './pages/messages/Messages';
+import Notifications from './pages/notifications/Notifications';
 import NoPage from './pages/nopage/NoPage';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       <Route path="transaction-history" element={<TransactionHistory />} />
       <Route path="network" element={<Network />} />
       <Route path="messages" element={<Messages />} />
+      <Route path="notifications" element={<Notifications />} />
       <Route path="*" element={<NoPage/>}/>
     </Routes>
   </>
