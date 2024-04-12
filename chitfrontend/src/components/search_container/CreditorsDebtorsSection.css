@@ -1,0 +1,4 @@
+.creditors-debtors-section{
+    display: flex;
+    flex-direction: column;
+}

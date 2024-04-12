@@ -23,6 +23,11 @@ function SearchAndRefineSection({type}) {
             button1 = null;
             button2 = null;
             break;
+        case 'search':
+            searchComponent = <SearchBar size={'medium'} placeholder="Name or username" />;
+            button1 = null;
+            button2 = null;
+            break;
         default:
             searchComponent = <SearchBar size={'small'} placeholder="Search" />;
             button1 = <AddFilterButton />;

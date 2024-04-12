@@ -12,6 +12,7 @@ import TransactionHistory from './pages/transaction_history/TransactionHistory';
 import Network from './pages/network/Network';
 import Messages from './pages/messages/Messages';
 import Notifications from './pages/notifications/Notifications';
+import Search from './pages/search/Search';
 import NoPage from './pages/nopage/NoPage';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Route path="network" element={<Network />} />
       <Route path="messages" element={<Messages />} />
       <Route path="notifications" element={<Notifications />} />
+      <Route path="search" element={<Search />} />
       <Route path="*" element={<NoPage/>}/>
     </Routes>
   </>

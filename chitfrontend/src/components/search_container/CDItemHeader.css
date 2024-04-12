@@ -1,0 +1,24 @@
+.cd-header{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+}
+.cd-header h2 {
+    min-width: 50px;
+    width: 102.18px;
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 22px;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 280px){
+    .cd-header h2 {
+        width: 200.18px;
+    }
+}

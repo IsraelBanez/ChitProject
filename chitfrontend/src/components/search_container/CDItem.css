@@ -1,0 +1,56 @@
+.cd-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+
+    border-width: 0px;
+    border-radius: 20px;
+    box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+
+    background-color: #e5e5e551;
+}
+
+.cd-item-info{
+    display: flex;
+    flex-direction: column;
+    min-width: 0px;
+    overflow: hidden;
+
+    h4{
+        margin-block: 0;
+        text-indent: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        font-family: 'Poppins';
+        font-size: 14px;
+        font-style: normal;
+        line-height: 18px;
+        
+
+    }
+}
+.cd-item-name{
+    color: #010E14;
+    font-weight: 400;
+}
+.cd-item-rate{
+    color: #010E14;
+    font-weight: 500;
+    span{
+        color: #C3A785;
+    }
+}
+.cd-item-score{
+    color: #010E14;
+    font-weight: 500;
+}
+.cd-item-transaction{
+    font-weight: 300;
+    color: #737C80;
+    span{
+        font-family:'Montserrat';
+    }
+}
