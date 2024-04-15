@@ -8,14 +8,14 @@ import ListItemsSection from '../basics/ListItemsSection';
 
 function MessagesContainer() {
     return (
-        <section className='messages-container'>
+        <main className='messages-container'>
             <h1>Messages</h1>
 
             <SearchAndRefineSection type={'messages'} />
             <PinnedSection/>
             <TabsSection type={'messages'} />
             <ListItemsSection type={'messages'}/>
-        </section>
+        </main>
     )
 }
 

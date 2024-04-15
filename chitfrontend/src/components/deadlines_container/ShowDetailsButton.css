@@ -1,0 +1,29 @@
+.show-details-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+
+    border: 0;
+
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+
+    background-color: transparent;
+    cursor: pointer;
+
+    svg{
+        width: 6px;
+        height: 8px;
+
+    }
+    path {
+        fill: #CDC1FF;
+    }
+}

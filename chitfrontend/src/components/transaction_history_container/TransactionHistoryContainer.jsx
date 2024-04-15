@@ -7,7 +7,7 @@ import THTableRow from './THTableRow';
 
 function TransactionHistoryContainer() {
     return (
-        <section className='transaction-history-container'>
+        <main className='transaction-history-container'>
             <h1>Transaction History</h1>
 
             <SearchAndRefineSection/>
@@ -19,7 +19,7 @@ function TransactionHistoryContainer() {
                     <THTableRow/>
                 </div>
             </div>
-        </section>
+        </main>
     )
 }
 

@@ -1,0 +1,26 @@
+.dc-table-header{
+    display: flex;
+    min-width: 445px;
+ 
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px 20px;
+
+    border-radius: 10px;
+    background-color: #F5EFFF;
+
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+}
+.dc-table-header div{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dc-cell-more{
+    flex: 0.5 !important;
+}

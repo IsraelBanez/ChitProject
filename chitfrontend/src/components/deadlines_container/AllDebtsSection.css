@@ -1,0 +1,32 @@
+.all-debts-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    h3{
+        color: #010E14;
+        margin-block: 0px;
+        font-family: 'Poppins';
+        font-size: 15px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.dc-table-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+.dc-table-body{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}

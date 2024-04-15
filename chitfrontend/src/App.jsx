@@ -13,6 +13,7 @@ import Network from './pages/network/Network';
 import Messages from './pages/messages/Messages';
 import Notifications from './pages/notifications/Notifications';
 import Search from './pages/search/Search';
+import Deadlines from './pages/deadlines/Deadlines';
 import NoPage from './pages/nopage/NoPage';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Route path="messages" element={<Messages />} />
       <Route path="notifications" element={<Notifications />} />
       <Route path="search" element={<Search />} />
+      <Route path="deadlines" element={<Deadlines />} />
       <Route path="*" element={<NoPage/>}/>
     </Routes>
   </>

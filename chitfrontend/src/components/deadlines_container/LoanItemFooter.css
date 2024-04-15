@@ -1,0 +1,8 @@
+.loan-item-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+
+    border-radius: 0px 0px 10px 10px;
+}

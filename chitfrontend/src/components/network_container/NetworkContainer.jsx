@@ -8,14 +8,14 @@ import ListItemsSection from '../basics/ListItemsSection';
 
 function NetworkContainer() {
     return (
-        <section className='network-container'>
+        <main className='network-container'>
             <h1>Network</h1>
 
             <ActiveFriendsSection/>
             <SearchAndRefineSection type={'network'} />
             <TabsSection type={'network'} />
             <ListItemsSection type={'network'}/>
-        </section>
+        </main>
     )
 }
 

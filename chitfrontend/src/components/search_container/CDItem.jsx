@@ -22,7 +22,7 @@ function CDItem({version}) {
 
     return (
         <div className='cd-item'>
-            <UserProfileButton  size={'small'} image={TestUser}/>
+            <UserProfileButton  size={'medium'} image={TestUser}/>
             <div className='cd-item-info'> 
                 <h4 className='cd-item-name'>First Last</h4>
                 <h4 className='cd-item-rate'>Rating : <span>Bronze</span></h4>

@@ -21,6 +21,9 @@ function TabsSection({type}) {
         case 'notifications':
             tabs = ['All', 'Mentions'];
             break;
+        case 'deadlines':
+            tabs = ['Debts', 'Credits']
+            break;
         default:
             tabs = ['dam', 'something', 'is', 'not', 'working'];
             break;

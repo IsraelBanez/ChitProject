@@ -17,9 +17,6 @@
     overflow: hidden;
 }
 
-.bl-cell-amount{
-    justify-content: flex-start !important;
-}
 .bl-cell-amount h4{
     color: #5EA8ED;
     font-family: 'Montserrat';

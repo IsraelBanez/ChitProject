@@ -8,14 +8,14 @@ import {ReactComponent as SearchIcon} from '../../icons/search-icon.svg';
 
 function SearchContainer() {
     return (
-        <section className='search-container'>
+        <main className='search-container'>
             <h1>Search</h1>
 
             <SearchAndRefineSection type={'search'} />
 
             <CreditorsDebtorsSection version={'creditors'} />
             <CreditorsDebtorsSection version={'debtors'} />
-        </section>
+        </main>
     )
 }
 
