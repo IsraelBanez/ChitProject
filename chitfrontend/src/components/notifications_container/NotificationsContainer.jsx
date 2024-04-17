@@ -6,14 +6,14 @@ import NotificationListSection from './NotificationListSection';
 
 function NotificationsContainer() {
     return (
-        <main className='notifications-container'>
+        <section className='content-container'>
             <h1>Notifications</h1>
 
             <TabsSection type={'notifications'}/>
             <NotificationListSection title={'Pinned'}/>
             <NotificationListSection title={'Today'}/>
             <NotificationListSection title={'This week'}/>
-        </main>
+        </section>
     )
 }
 

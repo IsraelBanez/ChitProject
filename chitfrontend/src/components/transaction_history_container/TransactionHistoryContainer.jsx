@@ -7,7 +7,7 @@ import THTableRow from './THTableRow';
 
 function TransactionHistoryContainer() {
     return (
-        <main className='transaction-history-container'>
+        <main className='content-container'>
             <h1>Transaction History</h1>
 
             <SearchAndRefineSection/>

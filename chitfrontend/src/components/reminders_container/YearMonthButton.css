@@ -1,0 +1,27 @@
+.year-month-btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+
+    border: 0;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+
+    background-color: transparent;
+
+    svg{
+        width: 8px;
+        height: 10px;
+        
+        rotate: -90deg;
+        cursor: pointer;
+    }
+}

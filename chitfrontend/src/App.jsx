@@ -14,6 +14,7 @@ import Messages from './pages/messages/Messages';
 import Notifications from './pages/notifications/Notifications';
 import Search from './pages/search/Search';
 import Deadlines from './pages/deadlines/Deadlines';
+import Reminders from './pages/reminders/Reminders';
 import NoPage from './pages/nopage/NoPage';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
       <Route path="notifications" element={<Notifications />} />
       <Route path="search" element={<Search />} />
       <Route path="deadlines" element={<Deadlines />} />
+      <Route path="reminders" element={<Reminders />} />
       <Route path="*" element={<NoPage/>}/>
     </Routes>
   </>

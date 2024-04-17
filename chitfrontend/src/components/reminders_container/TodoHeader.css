@@ -1,0 +1,20 @@
+.todo-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    border-bottom: 0.5px solid #E5E5E5;
+    h2{
+        margin-block: 0px;
+        color: #010E14;
+        font-family: 'Poppins';
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 22px;
+        overflow-wrap: break-word;
+    }
+}

@@ -7,14 +7,14 @@ import AllDebtsSection from './AllDebtsSection';
 
 function DeadlinesContainer() {
     return (
-        <main className='deadlines-container'>
+        <section className='content-container'>
             <h1>Deadlines</h1>
 
             <TabsSection type='deadlines'/>
             <DeadlinesListSection title={'Overdue'}/>
             <DeadlinesListSection title={'Due today'}/>
             <AllDebtsSection />
-        </main>
+        </section>
     )
 }
 

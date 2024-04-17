@@ -43,6 +43,36 @@ aside {
 
 }
 
+.content-container{
+    display: flex;
+    flex: 1;
+    min-width: 0px;
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+    gap: 20px; 
+    
+    border-radius: 15px;
+
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.content-container h1{
+    overflow-wrap: break-word;
+
+    margin-block: 0px;
+    color: #010E14;
+
+    font-family: 'Poppins';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 32px;
+    overflow-wrap: break-word;
+}
+
+
 @media (max-width: 1152px) {
     .content {
         flex-direction: column;
@@ -52,5 +82,17 @@ aside {
 @media (max-width: 824px){
     aside{
         display: none;
+    }
+}
+
+@media (max-width: 365px){
+    .hc-container{
+        padding: 2px;
+    }
+}
+
+@media (max-width: 300px) {
+    .content-container{
+        padding: 10px;
     }
 }

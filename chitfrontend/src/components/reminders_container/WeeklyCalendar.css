@@ -1,0 +1,8 @@
+.weekly-calendar{
+    display: flex;
+    flex-direction: row;
+
+    border-bottom: 0.5px solid #E5E5E5;
+    border-top: 0.5px solid #E5E5E5;
+    overflow-x: auto;
+}
