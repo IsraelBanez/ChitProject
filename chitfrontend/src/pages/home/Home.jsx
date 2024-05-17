@@ -5,6 +5,7 @@ import NavBar from '../../components/navbar/NavBar.jsx';
 
 import HomeSignedOut from '../../components/home_container/HomeContainerGuest.jsx';
 import HomeSignedIn from '../../components/home_container/HomeContainer.jsx';
+import Footer from '../../components/footer/Footer.jsx';
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
@@ -18,12 +19,16 @@ export default function Home(){
                 </nav>
 
                 <div className='main-section'>
-                    { !authenticated ? 
+                    { authenticated ? 
                         <HomeSignedIn/>
                     :
                         <HomeSignedOut/>
                     }
                 </div>
+
+                <footer className='footer-section'>
+                    <Footer/>
+                </footer>
             </div>
     );
 }

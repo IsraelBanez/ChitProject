@@ -3,18 +3,15 @@
     flex: 1;
     display: flex;
     flex-direction: row;
-    padding: 0px 30px;
+    padding: 0px 10%;
     align-items: center;
     gap: 40px;
     background: #FFF;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);
 }
 
-.n-left-region{
-    flex: 0 0 auto;
-    height: auto;
-    display: flex;
-    caret-color: transparent;
+.navbar-container svg{
+    padding: 10px 0px;
 }
 .n-left-region img{
     object-fit: contain;
@@ -78,7 +75,7 @@
     display: none;
 }
 
-@media (max-width: 824px) {
+@media (max-width: 768px) {
     .navbar-container{
         justify-content: space-between;
         gap: 0px;

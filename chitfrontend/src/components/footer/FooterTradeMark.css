@@ -1,0 +1,30 @@
+.footer-trademark-container{
+    flex: 1;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0px;
+    gap: 4px;
+}
+.footer-trademark-container svg{
+    min-width: 95px;
+    min-height: 45px;
+}
+.footer-trademark-container h4{
+    margin-block: 0;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+}
+
+@media (max-width: 360px)  {
+    .footer-trademark-container{
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

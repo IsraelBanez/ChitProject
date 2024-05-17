@@ -8,15 +8,20 @@ export default function HomeContainerGuest(){
 
     return (
             <main className='hcg-container'>
-                <div className='intro-section'>
-                    <h1>Your Personal <br/> Lending Network</h1>
-                    <p>Join our vibrant peer-to-peer community <br/> and start borrowing or lending instantly.</p>
-                    <div><Link to="/sign-up">Get Started</Link></div>
+                <div className='hcg-header'>
+                    <div className='intro-section'>
+                        <h1>Your Personal <br/> Lending Network</h1>
+                        <p>Join our vibrant peer-to-peer community <br/> and start borrowing or lending instantly.</p>
+                        <div>
+                            <button>
+                                <Link to="/sign-up">Get Started</Link>
+                            </button>
+                        </div>
+                    </div>
+                    <div className='intro-img'> 
+                        <img src={BookLog} alt='Book Log Display'/>
+                    </div>
                 </div>
-                <div className='intro-img'> 
-                    <img src={BookLog} alt='Book Log Display'/>
-                </div>
-                
             </main>
     );
 }

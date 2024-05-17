@@ -1,9 +1,10 @@
+import './NoPage.css';
 
 export default function NoPage(){
 
     return (
             <div className='no-page-container'>
-                Erro 404
+                {/* Erro 404 */}
             </div>
     );
 }

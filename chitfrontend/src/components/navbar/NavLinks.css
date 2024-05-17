@@ -3,12 +3,12 @@
     height: auto;
     display: flex;
     padding: 5px 0px;
-    align-items: flex-end;
+    align-items: center;
     gap: 20px;
     caret-color: transparent;
 }
 
-@media (max-width: 824px) {
+@media (max-width: 768px) {
     .n-mid-region {
         display: none;
     }

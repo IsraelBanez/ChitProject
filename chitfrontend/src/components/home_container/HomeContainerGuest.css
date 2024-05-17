@@ -1,26 +1,36 @@
 .hcg-container{
-    box-sizing: border-box;
-    margin-top: 100px;
-    padding-left: 10%;
+    /* box-sizing: border-box; */
+    margin-top: 5%;
     width: 100%;
+    min-width: 0px;
     height: auto;
     display: flex;
+    /* flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between; */
+}
+.hcg-header{
+    /* box-sizing: border-box; */
+    flex: 1;
+    height: auto;
+    display: flex;
+    padding-left: 10%;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
 }
-
+/* change the vw to grow and shink only for images not the titles and text */
 .intro-section{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex-wrap: wrap;
-    gap: 0px;
+    gap: 4%;
 }
 .intro-section h1{
     color: #010E14;
     font-family: 'Poppins';
-    font-size: 4vw;
+    font-size: max(4vw, 32px);
     font-style: normal;
     font-weight: 800;
     line-height: normal;
@@ -30,17 +40,25 @@
 .intro-section p{
     color: #707070;
     font-family: 'Poppins';
-    font-size: 1.1vw;
+    font-size: max(1.1vw, 12px);
     font-style: normal;
     font-weight: 400;
-    line-height: 30px;
+    line-height: 200%;
     letter-spacing: 1.8px;
     margin: 0;
+    overflow-wrap: break-word;
 }
 .intro-section div{
     margin-top: 6vw;
     display: flex;
-    padding: 20px 58px;
+    width: 100%;
+    height: auto;
+}
+.intro-section button{
+    display: flex;
+    padding: 4% 0;
+    max-width: 265px;
+    flex: 1;
     justify-content: center;
     align-items: center;
     border-radius: 35px;
@@ -50,6 +68,7 @@
     cursor: pointer;
 }
 .intro-section a{
+    white-space: nowrap;
     color: #010E14;
     font-family: 'Poppins';
     font-size: 20px;
@@ -59,23 +78,41 @@
     letter-spacing: 2px;
     text-decoration: none;
 }
-.intro-section div:hover{
+.intro-section button:hover{
     background: var(--Style, linear-gradient(90deg, #b9a8fc 0%, #d68ff0 95.69%));
 }
 
+.intro-img{
+    display: flex;
+    justify-content: flex-end;
+}
 .intro-img img{
-    max-width: 100%; 
+    max-width: 88%; 
     max-height: 100%;
     width: auto;
     height: auto;
     caret-color: transparent;
 }
 
+@media (max-width: 239px) {
+    .hcg-header {
+        display: block;
+    }
+    .intro-section h1, .intro-section p{
+        word-break: break-all;
+    }
+
+    .intro-img{
+        margin-top: 20px;
+    }
+}
 @media (max-width: 768px) {
-    .hcg-container {
+    .hcg-header{
         flex-direction: column; 
         align-items: center; 
+        justify-content: center;
         padding: 1%; 
+        gap: 20px;
     }
 
     .intro-section {
@@ -85,14 +122,23 @@
     }
 
     .intro-section h1 {
-        font-size: 6vw; 
+        font-size: max(6vw, 32px); 
     }
 
     .intro-section p {
-        font-size: 2vw; 
+        font-size:  max(2vw, 12px);
     }
 
     .intro-section div {
         margin-top: 3vw; 
+        justify-content: center;
+    }
+
+    .intro-img{
+        justify-content: center;
+    }
+
+    .intro-img img{
+        max-width: 100%
     }
 }
