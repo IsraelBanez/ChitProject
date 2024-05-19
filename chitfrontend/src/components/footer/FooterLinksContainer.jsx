@@ -23,7 +23,7 @@ function FooterLinksContainer() {
         },
         { 
             title: 'Resources', 
-            urls: ['/accessibility', '/help-&-support', '/fees', '/security'], 
+            urls: ['/accessibility', '/help-support', '/fees', '/security'], 
             linkTitles: ['Accessibility', 'Help & Support', 'Fees', 'Security'] 
         },
         { 

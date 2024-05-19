@@ -6,7 +6,7 @@ import {ReactComponent as DownArrow} from '../../icons/down-arrow.svg';
 function FooterLinksV2({links}) {
     const [activeIndex, setActiveIndex] = useState(null);
 
-    const onTitleClick = (index) => {
+    const onClickTitle = (index) => {
         setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
     };
 
@@ -14,7 +14,7 @@ function FooterLinksV2({links}) {
         <>
             {links.map((linkItem, index) => (
                 <div className='footer-links-v2' key={index}>
-                    <div className='fl-v2-titles' onClick={() => onTitleClick(index)}>
+                    <div className='fl-v2-titles' onClick={() => onClickTitle(index)}>
                         <h3>{linkItem.title}</h3>
                         <DownArrow className={activeIndex === index ? 'rotated' : ''} />
                     </div>

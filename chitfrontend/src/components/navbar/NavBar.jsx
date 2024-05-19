@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 import NavLinks from './NavLinks.jsx';
 
-import Logo from '../../icons/main-logo.svg';
 import Profile from '../../icons/profile-icon.svg';
 import {ReactComponent  as Menu} from '../../icons/hamburger-menu.svg';
-import {ReactComponent as LogoFooter} from '../../icons/logo-footer.svg';
+import {ReactComponent as Logo} from '../../icons/logo.svg';
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
@@ -21,7 +20,7 @@ export default function NavBar(){
     return (
             <div className='navbar-container' style={{padding: !authenticated ? '0px 10%' : '0px 1%'} }>
 
-                <LogoFooter/>
+                <Logo/>
 
                 <NavLinks />
 

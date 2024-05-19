@@ -1,7 +1,7 @@
 import React from 'react'
 import './FooterTradeMark.css';
 
-import {ReactComponent as LogoFooter} from '../../icons/logo-footer.svg';
+import {ReactComponent as LogoFooter} from '../../icons/logo.svg';
 
 function FooterTradeMark() {
     return (
