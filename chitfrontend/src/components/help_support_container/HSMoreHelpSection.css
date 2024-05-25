@@ -1,0 +1,11 @@
+.hs-mh-section{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10%;
+    gap: 20px;
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

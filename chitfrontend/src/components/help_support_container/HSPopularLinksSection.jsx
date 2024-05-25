@@ -6,12 +6,13 @@ import PopularLinksCard from './PopularLinksCard';
 function HSPopularLinksSection() {
     return (
         <section className='hs-popular-links-section'>
-        <PopularLinksCard/>
-        <PopularLinksCard/>
-        <PopularLinksCard/>
-        <PopularLinksCard/>
-        <PopularLinksCard/>
-        <PopularLinksCard/>
+            {/* will become a map for card image/title/ short description */}
+            <PopularLinksCard/>
+            <PopularLinksCard/>
+            <PopularLinksCard/>
+            <PopularLinksCard/>
+            <PopularLinksCard/>
+            <PopularLinksCard/>
         {/* <PopularLinksCard/> */}
         </section>
     )

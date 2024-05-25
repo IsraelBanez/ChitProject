@@ -4,3 +4,14 @@
     height: auto;
     flex-direction: column;
 }
+
+.hs-container h2{
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    overflow-wrap: break-word;
+}

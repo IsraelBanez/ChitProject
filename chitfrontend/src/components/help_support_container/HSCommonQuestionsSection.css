@@ -1,0 +1,22 @@
+.hs-cq-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 10%;
+}
+.hs-questions-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-indent: 25px;
+    a{
+        text-decoration: none;
+        color: #CDC1FF;
+        font-family: 'Poppins';
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 18px;
+        overflow-wrap: break-word;
+    }
+}

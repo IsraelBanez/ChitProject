@@ -6,9 +6,6 @@ import FillerImg from '../../images/filler-img.svg';
 function PopularLinksCard() {
     return (
         <div className='popular-links-card'>
-
-            {/* <img src={FillerImg} alt='filler' /> */}
-
             <div className='plc-content'>
                 <h3>
                     Link Title

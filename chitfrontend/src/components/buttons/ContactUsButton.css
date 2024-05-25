@@ -1,0 +1,20 @@
+.contact-us-btn{
+    flex: 1;
+    max-width: 200px;
+    height: 68px;
+
+    border-radius: 50px;
+    border-width: 4px;
+    border-color: #CDC1FF;
+    border-style: solid;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+
+    background-color: #fff;
+    box-shadow: 0px 0px 8px 0px #CDC1FF;
+}
