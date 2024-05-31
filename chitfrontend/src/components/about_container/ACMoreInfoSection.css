@@ -1,0 +1,15 @@
+.ac-more-info-section{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    box-sizing: border-box;
+    padding: 30px 10%;
+    justify-content: space-between;
+    gap: 10px;
+    align-content: center;
+}
+@media (max-width: 768px){
+    .ac-more-info-section{
+        flex-direction: column;
+    }
+}

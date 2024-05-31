@@ -18,7 +18,7 @@ function FooterLinksContainer() {
         },
         { 
             title: 'Company', 
-            urls: ['/about-us', '/contact-us', '/blog'], 
+            urls: ['/about', '/contact-us', '/blog'], 
             linkTitles: ['About us', 'Contact us', 'Blog'] 
         },
         { 

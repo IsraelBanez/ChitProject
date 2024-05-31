@@ -10,6 +10,7 @@ import CheckEmail from './pages/check_email/CheckEmail';
 import ResetPassword from './pages/reset_password/ResetPassword';
 
 import HelpSupport from './pages/help_support/HelpSupport';
+import About from './pages/about/About';
 
 import BookLog from './pages/booklog/BookLog';
 import TransactionHistory from './pages/transaction_history/TransactionHistory';
@@ -36,6 +37,7 @@ function App() {
       <Route path="forgot-password/reset-password" element={<ResetPassword />} />
 
       <Route path="help-support" element={<HelpSupport />} />
+      <Route path="about" element={<About />} />
 
       <Route path="book-log" element={<BookLog />} />
       <Route path="transaction-history" element={<TransactionHistory />} />

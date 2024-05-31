@@ -1,0 +1,49 @@
+.more-info-card{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 300px;
+    border-radius: 10px;
+
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+    overflow: hidden; /* Add this to hide overflow content */
+}
+
+.mic-top{
+    width: auto;
+    height: auto;
+}
+.mic-top img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.mic-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px 20px 20px;
+}
+.more-info-card h3{
+    color: #010E14;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    overflow-wrap: break-word
+}
+.more-info-card h4{
+    white-space: pre-wrap;
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+}

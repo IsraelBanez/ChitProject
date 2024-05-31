@@ -1,0 +1,46 @@
+.explore-ops-btn{
+    max-width: 280px;
+    min-width: 0px;
+    padding: 0px;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    overflow: hidden;
+}
+.explore-ops-btn:hover{
+    text-decoration: underline;
+    div{
+        box-shadow: 0px 0px 4px 0px #CDC1FF;
+    }
+}
+.explore-ops-btn svg{
+    margin-left: 1px;
+}
+.explore-ops-btn div{
+    min-width: 25px;
+    min-height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    border-radius: 25px;
+    background-color: #F5EFFF;
+}

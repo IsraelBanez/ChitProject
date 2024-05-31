@@ -8,7 +8,7 @@
     caret-color: transparent;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 842px) {
     .n-mid-region {
         display: none;
     }

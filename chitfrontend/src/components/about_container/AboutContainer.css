@@ -1,0 +1,30 @@
+.about-container{
+    display: flex;
+    flex: 1;
+    height: auto;
+    flex-direction: column;
+}
+
+.about-container h2{
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 42px;
+    overflow-wrap: break-word;
+}
+
+.about-container p{
+    white-space: pre-wrap;
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+}
