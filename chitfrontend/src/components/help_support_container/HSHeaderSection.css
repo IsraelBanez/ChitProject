@@ -36,11 +36,27 @@
     text-align: center;
 }
 
+.hs-header-search{
+    box-sizing: border-box;
+    padding: 0 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
 @media (max-width: 239px) {
     .hs-header-section{
         height: auto;
     }
     .hs-header-section h1 {
         word-break: break-all;
+    }
+}
+
+@media (max-width: 768px) {
+    .hs-header-search{
+        width: 100%;
+        padding: 0;
     }
 }

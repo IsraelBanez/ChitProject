@@ -1,0 +1,21 @@
+.bc-header-section{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    padding: 20px 10%;
+    
+    h1{
+        color: #010E14;
+        text-align: center;
+        font-family: 'Poppins';
+        font-size: max(4vw, 42px);
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        letter-spacing: 6.8px;
+        margin-block: 0;
+    }
+}

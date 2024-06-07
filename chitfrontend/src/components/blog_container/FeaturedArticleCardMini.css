@@ -1,0 +1,130 @@
+.feature-article-card-mini{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+}
+
+.facm-right{
+    box-sizing: border-box;
+    flex: 0.5;
+    overflow: hidden;
+    padding-left: 2%;
+}
+.facm-right img{
+    border-radius: 10px;
+    width: 100%;
+    max-height: 75%;
+    object-fit: cover;
+}
+.facm-right img:hover{
+    cursor: pointer;
+}
+
+.facm-left{
+    display: flex;
+    flex-direction: column;
+    padding: 2% 0;
+    flex: 1.5;
+}
+.facm-topics{
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #CDC1FF;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+.facm-topics:hover{
+    cursor: pointer;
+}
+
+.facm-left h3 {
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    overflow-wrap: break-word;
+    margin-bottom: 10px;
+}
+.facm-left h3:hover{
+    cursor: pointer;
+}
+
+.facm-left > h4 {
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #737C80;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1.8px;
+    line-height: 22px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+.facm-author{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+.facm-author div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.facm-author img{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+}
+
+.facm-author h4:nth-last-child(1){
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #737C80;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+}
+.facm-author h4:nth-last-child(2){
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #010E14;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 450px){
+    .feature-article-card-mini{
+        flex-direction: column-reverse;
+    }
+    .facm-right{
+        padding: 0;
+    }
+    .facm-right img{
+        border-radius: 10px;
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+    }
+}

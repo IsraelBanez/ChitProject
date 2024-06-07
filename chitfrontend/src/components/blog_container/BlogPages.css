@@ -1,0 +1,38 @@
+.blog-pages{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.bp-page-control{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bp-page-btn{
+
+    border: none;
+
+    color: #737C80;
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    overflow-wrap: break-word;
+    text-align: center; 
+
+    background-color: transparent;
+    cursor: pointer;
+    caret-color: transparent;
+}
+.bp-page-btn:hover{
+    color: #CDC1FF;
+}

@@ -1,0 +1,119 @@
+.featured-article-card{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: hidden;
+}
+
+.fac-top{
+    width: auto;
+    height: auto;
+}
+.fac-top img{
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.fac-top img:hover{
+    cursor: pointer;
+}
+
+.fac-bottom{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+
+.facb-topics{
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #CDC1FF;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 14px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+.facb-topics:hover{
+    cursor: pointer;
+}
+
+.fac-bottom h3 {
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 42px;
+    overflow-wrap: break-word;
+    margin-bottom: 10px;
+}
+.fac-bottom h3:hover{
+    cursor: pointer;
+}
+
+.fac-bottom > h4 {
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #737C80;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+.facb-author{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+}
+.facb-author div{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.facb-author img{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+}
+
+.facb-author h4:nth-last-child(1){
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #737C80;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 14px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+}
+.facb-author h4:nth-last-child(2){
+    margin-block: 0;
+    font-family: 'Poppins';
+    font-style: normal;
+    color: #010E14;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+    .fac-bottom {
+        padding: 10px 0px;
+    }
+}

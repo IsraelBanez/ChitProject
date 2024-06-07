@@ -1,0 +1,21 @@
+.bc-article-section{
+    display: flex;
+    flex-direction: column;
+    gap:30px;
+    padding: 30px 10%;
+
+}
+
+.bca-list{
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: auto;
+    grid-gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .bca-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

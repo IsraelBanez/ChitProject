@@ -9,7 +9,7 @@ function HSHeader() {
         <section className='hs-header-section'>   
             <div className='hs-header-content'>
                 <h1>Hello, how can we help?</h1>
-                <SearchBarV2/>
+                <div className='hs-header-search'><SearchBarV2/></div>
             </div>
         </section>
     )

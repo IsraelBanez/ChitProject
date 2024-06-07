@@ -13,12 +13,12 @@
 
 .navbar-container svg:nth-last-child(0){
     min-width:  95px;
+}
+.n-left-region{
+    width: 95px;
+    height: auto;
     padding: 10px 0px;
 }
-.n-left-region img{
-    object-fit: contain;
-}
-
 .n-right-region{
     flex: 0 0 auto;
     display: flex;
@@ -76,11 +76,6 @@
 .n-menu-btn{
     display: none;
 }
-@media (max-width: 152px) {
-    .navbar-container{
-        padding: 0 !important;
-    }
-}
 @media (max-width: 842px) {
     .navbar-container{
         justify-content: space-between;
@@ -108,5 +103,15 @@
         border-style: none;
 
         background-color: rgba(205, 193, 255, 0.24);;
+    }
+}
+@media (max-width: 182px) {
+    .navbar-container{
+        padding: 0px 5% !important;
+    }
+}
+@media (max-width: 162px) {
+    .navbar-container{
+        padding: 0 !important; 
     }
 }

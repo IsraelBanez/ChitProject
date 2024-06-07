@@ -20,7 +20,7 @@ export default function NavBar(){
     return (
             <div className='navbar-container' style={{padding: !authenticated ? '0px 10%' : '0px 1%'} }>
 
-                <Logo/>
+                <div className='n-left-region'><Logo/></div>
 
                 <NavLinks />
 

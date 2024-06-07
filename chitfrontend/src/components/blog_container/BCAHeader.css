@@ -1,0 +1,24 @@
+.bca-header{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    padding: 8px 2px;
+    overflow: hidden;
+}
+
+.bcah-search{
+    width: 50%;
+}
+
+@media (max-width: 768px){
+    .bca-header{
+        flex-direction: column;
+    }
+    .bcah-search{
+        width: 100%;
+    }
+}

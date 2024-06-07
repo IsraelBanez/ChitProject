@@ -1,12 +1,13 @@
 .read-more-btn{
     max-width: 155px;
-    min-width: 0px;
+    min-width: min-content;
     padding: 0px;
     flex: 1;
     flex-wrap: wrap;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: start;
 
     margin-block: 0px;
     color: #010E14;
@@ -42,3 +43,4 @@
     border-radius: 25px;
     background-color: #F5EFFF;
 }
+
