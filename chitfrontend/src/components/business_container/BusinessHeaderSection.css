@@ -1,0 +1,73 @@
+.bus-header-section{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px 10%;
+}
+
+.bus-header-section h1{
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: max(4vw, 42px);
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    letter-spacing: 4.8px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.bus-header-section p{
+    color: #707070;
+    font-family: 'Poppins';
+    font-size: max(1.1vw, 14px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 200%;
+    letter-spacing: 1.8px;
+    margin: 0;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+.bus-header-img-container{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+.bus-header-img-container div{
+    display: flex;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.bus-header-img-container > div:nth-child(1),
+.bus-header-img-container > div:nth-child(3) {
+    width: 30%;
+    height: 80%;
+}
+.bus-header-img-container > div:nth-child(2){
+    width: 40%;
+}
+.bus-header-img-container img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+.bus-header-img-container > div:nth-child(4){
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .bus-header-img-container > div:nth-child(1),
+    .bus-header-img-container > div:nth-child(2),
+    .bus-header-img-container > div:nth-child(3) {
+        display: none;
+    }
+    .bus-header-img-container > div:nth-child(4){
+        display: flex;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}

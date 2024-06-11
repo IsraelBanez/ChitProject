@@ -1,7 +1,7 @@
 .bc-featured-section{
     display: flex;
     flex-direction: row;
-    padding: 30px 10%;
+    padding: 0px 10% 30px 10%;
 }
 .bcf-left-region{
     flex: 1;

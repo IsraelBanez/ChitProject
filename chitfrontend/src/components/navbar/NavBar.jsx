@@ -17,10 +17,14 @@ export default function NavBar(){
         navigate("/sign-in");
     };
 
+    const homePage = () => {
+        navigate("/");
+    };
+
     return (
             <div className='navbar-container' style={{padding: !authenticated ? '0px 10%' : '0px 1%'} }>
 
-                <div className='n-left-region'><Logo/></div>
+                <div className='n-left-region' onClick={ homePage}><Logo /></div>
 
                 <NavLinks />
 

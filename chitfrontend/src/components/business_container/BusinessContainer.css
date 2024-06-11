@@ -1,0 +1,6 @@
+.business-container{
+    display: flex;
+    flex: 1;
+    height: auto;
+    flex-direction: column;
+}

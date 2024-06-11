@@ -18,6 +18,7 @@
     width: 95px;
     height: auto;
     padding: 10px 0px;
+    cursor: pointer;
 }
 .n-right-region{
     flex: 0 0 auto;

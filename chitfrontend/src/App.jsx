@@ -12,6 +12,7 @@ import ResetPassword from './pages/reset_password/ResetPassword';
 import HelpSupport from './pages/help_support/HelpSupport';
 import About from './pages/about/About';
 import Blog from './pages/blog/Blog';
+import Business from './pages/business/Business';
 
 import BookLog from './pages/booklog/BookLog';
 import TransactionHistory from './pages/transaction_history/TransactionHistory';
@@ -40,6 +41,7 @@ function App() {
       <Route path="help-support" element={<HelpSupport />} />
       <Route path="about" element={<About />} />
       <Route path="blog" element={<Blog />} />
+      <Route path="business" element={<Business />} />
 
       <Route path="book-log" element={<BookLog />} />
       <Route path="transaction-history" element={<TransactionHistory />} />

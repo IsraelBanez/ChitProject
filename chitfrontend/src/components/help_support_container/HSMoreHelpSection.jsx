@@ -1,14 +1,14 @@
 import React from 'react'
 import './HSMoreHelpSection.css';
 
-import ContactUsButton from '../buttons/ContactUsButton.jsx';
+import ContactUsButton from '../buttons/GlowButton.jsx';
 
 function HSMoreHelpSection() {
     return (
         <section className='hs-mh-section'>
             <h2>Still Need Help?</h2>
 
-            <div><ContactUsButton/></div>
+            <div><ContactUsButton title={'Contact us'}/></div>
         </section>
     )
 }

@@ -1,0 +1,25 @@
+
+.business-contact-section{
+    display: flex;
+    flex-direction: column;
+    padding: 30px 10%;
+    text-align: center;
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+.business-contact-section h2{
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 36px;
+    overflow-wrap: break-word;
+    margin-bottom: 30px;
+}

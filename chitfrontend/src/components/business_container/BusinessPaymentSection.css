@@ -1,0 +1,59 @@
+.business-payment-section{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 30px 10%;
+}
+
+.business-payment-section div{
+    display: flex;
+}
+.business-payment-section > div:nth-child(1){
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.business-payment-section > div:nth-child(1) img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.business-payment-section > div:nth-child(2){
+    display: flex;
+    flex: 2;
+    height: auto;
+    flex-direction: column;
+    padding: 0 2%;
+    margin-bottom: 30px;
+}
+.business-payment-section > div:nth-child(2) h2{
+    margin-block: 0px;
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 42px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+.business-payment-section > div:nth-child(2) p{
+    white-space: pre-wrap;
+    margin-block: 0px;
+    color: #737C80;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 28px;
+    letter-spacing: 1.8px;
+    overflow-wrap: break-word;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .business-payment-section{
+        flex-direction: column-reverse;
+    }
+}

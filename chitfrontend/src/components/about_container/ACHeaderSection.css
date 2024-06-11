@@ -3,8 +3,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: auto;
-    overflow: hidden;
+    height: 90vh;
 }
 .ac-header-section h1{
     padding: 20px 10%;
@@ -16,19 +15,46 @@
     font-style: normal;
     font-weight: 800;
     line-height: normal;
-    letter-spacing: 6.8px;
+    letter-spacing: 4.8px;
     margin-block: 0;
 }
 
-.ac-header-section div{
+.ac-header-img-container{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
+    gap: 10px;
+    padding: 10px;
 }
-
-.ac-header-section img {
+.ac-header-img-container div{
+    display: flex;
+    border-radius: 10px;
+    flex: 1;
+    overflow: hidden;
+    
+}
+.ac-header-img-container img {
     width: 100%;
     height: auto;
-    object-fit:  cover
+    object-fit: cover
+}
+
+@media (max-width: 1080px) {
+    .ac-header-img-container div {
+        transition: flex 0.5s ease;
+    }
+
+    .ac-header-img-container div:hover {
+        flex: 8;
+    }
+
+    .ac-header-img-container div:hover ~ div {
+        flex: 1;
+    }
+
+    .ac-header-img-container div:hover ~ div:hover {
+        flex: 8;
+    }
 }
