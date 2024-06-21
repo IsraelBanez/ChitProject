@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './TabsSection.css';
+import './TabsComponent.css';
 
 import TabButton from '../buttons/TabButton';
 
-function TabsSection({type}) {
+function TabsComponent({type}) {
     const [activeTab, setActiveTab] = useState(0);
     let tabs;
 
@@ -30,7 +30,7 @@ function TabsSection({type}) {
     };
     
     return (
-        <div className='tabs-section'>
+        <div className='tabs-component'>
             {tabs.map((tab, index) => (
                 <TabButton 
                     key={index} 
@@ -43,4 +43,4 @@ function TabsSection({type}) {
     )
 }
 
-export default TabsSection
+export default TabsComponent

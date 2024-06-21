@@ -1,0 +1,40 @@
+.user-auth-data-v1-input{
+    margin-bottom: 30px;
+}
+.user-auth-data-v1-input input{
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    padding: 15px 10px;
+
+    border-radius: 10px;
+    border: 0.5px solid #010E14;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.user-auth-data-v1-input input:focus{
+    outline: none;
+}
+.user-auth-data-v1-input input::placeholder{
+    color: #737C80;
+    caret-color: transparent;
+}
+.user-auth-data-v1-input span{
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    color: #FB5656;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.user-auth-data-v1-input span svg{
+    min-width: min-content;
+}

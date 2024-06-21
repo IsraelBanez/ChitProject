@@ -1,0 +1,35 @@
+.remember-and-forget-component{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.remember-user-input{
+    display: flex;
+    align-items: center;
+
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.remember-and-forget-component a{
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration: none;
+}
+
+@media (max-width: 320px) {
+    .remember-and-forget-component{
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+    }
+}

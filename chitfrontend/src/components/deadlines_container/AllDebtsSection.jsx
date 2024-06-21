@@ -1,7 +1,7 @@
 import React from 'react'
 import './AllDebtsSection.css';
 
-import SearchAndRefineSection from '../basics/SearchAndRefineSection';
+import SearchAndRefineSection from '../basics/SearchAndRefineComponent';
 import DCTableHeader from './DCTableHeader';
 import DCTableRow from './DCTableRow';
 

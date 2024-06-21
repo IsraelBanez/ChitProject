@@ -1,5 +1,5 @@
 import React from 'react'
-import './SearchAndRefineSection.css';
+import './SearchAndRefineComponent.css';
 
 import SearchBar from '../inputs/SearchBar.jsx';
 import AddFilterButton from '../buttons/AddFilterButton.jsx';
@@ -7,7 +7,7 @@ import SortByButton from '../buttons/SortByButton.jsx';
 import CalendarCheckButton from '../buttons/CalendarCheckButton.jsx';
 import QRCodeButton from '../buttons/QRCodeButton.jsx';
 
-function SearchAndRefineSection({type}) {
+function SearchAndRefineComponent({type}) {
     let searchComponent;
     let button1;
     let button2;
@@ -35,7 +35,7 @@ function SearchAndRefineSection({type}) {
             break;
     }
     return (
-        <div className='search-refine-section'>
+        <div className='search-refine-component'>
             {searchComponent}
             {button1}
             {button2}
@@ -43,4 +43,4 @@ function SearchAndRefineSection({type}) {
     )
 }
 
-export default SearchAndRefineSection
+export default SearchAndRefineComponent

@@ -1,5 +1,5 @@
 import React from 'react'
-import './InfoItem.css';
+import './InfoItemComponent.css';
 
 import UserProfileButton from '../buttons/UserProfileButton';
 import MoreButton from '../buttons/MoreButton';
@@ -8,22 +8,22 @@ import TestUser from '../../images/test-user.jpg';
 
 import {ReactComponent as DividingDotIcon} from '../../icons/dividing-dot.svg';
 
-function InfoItem({type}) {
+function InfoItemComponent({type}) {
     let itemInfo;
     let itemHeader;
 
     switch (type) {
         case 'network':
-            itemHeader = <h4 className='default-header'>First Last</h4>;
-            itemInfo = <a className='item-username' href=''>@Username</a>
+            itemHeader = <h4 className='ifc-default-header'>First Last</h4>;
+            itemInfo = <a className='ifc-username' href=''>@Username</a>
             break;
         case 'messages':
-            itemHeader = <h4 className='default-header'>First Last</h4>;
-            itemInfo = <div className='message-info'><h4>"Last said"</h4><DividingDotIcon/><h4 style={{textIndent: '0px'}}>Time</h4></div>
+            itemHeader = <h4 className='ifc-default-header'>First Last</h4>;
+            itemInfo = <div className='ifc-message'><h4>"Last said"</h4><DividingDotIcon/><h4 style={{textIndent: '0px'}}>Time</h4></div>
             break;
         case 'notifications':
-            itemHeader = <div className='notification-header'><h4>Notification message</h4></div>
-            itemInfo = <h4 className='notification-info'>Time</h4>
+            itemHeader = <div className='ifc-notification-header'><h4>Notification message</h4></div>
+            itemInfo = <h4 className='ifc-time'>Time</h4>
             break;
         default:
             itemHeader = null;
@@ -33,10 +33,10 @@ function InfoItem({type}) {
     };
 
     return (
-        <div className='info-item'>
-            <div className='item-data'>
+        <div className='info-item-component'>
+            <div className='ifc-data'>
                 <UserProfileButton size={'medium'} image={TestUser}/>
-                <div className='item-body'>
+                <div className='ifc-body'>
                     {itemHeader}
                     {itemInfo}
                 </div>
@@ -47,4 +47,4 @@ function InfoItem({type}) {
     )
 }
 
-export default InfoItem
+export default InfoItemComponent

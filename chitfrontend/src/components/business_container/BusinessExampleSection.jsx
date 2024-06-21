@@ -2,7 +2,7 @@ import React from 'react'
 import './BusinessExampleSection.css';
 
 import TestImage5 from '../../images/test-business-5.jpg';
-import TestImage6 from '../../images/test-business.jpg';
+import TestImage6 from '../../images/test-business-6.jpg';
 
 function BusinessExampleSection() {
     return (

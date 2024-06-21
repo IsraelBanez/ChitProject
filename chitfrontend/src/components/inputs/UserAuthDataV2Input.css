@@ -1,0 +1,58 @@
+.user-auth-data-v2-input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border-radius: 10px;
+    border: 0.5px solid #010E14;
+
+    overflow: hidden;
+}
+.user-auth-data-v2-input input{
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    padding: 15px 10px;
+
+    border: none;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.user-auth-data-v2-input input:focus{
+    outline: none;
+}
+.user-auth-data-v2-input input::placeholder{
+    color: #737C80;
+    caret-color: transparent;
+}
+.user-auth-data-v2-input div{
+    display: flex;
+    width: auto;
+    height: auto;
+}
+.user-auth-data-v2-input svg{
+    width: 21px;
+    height: 21px;
+    margin-right: 10px;
+
+    cursor: pointer;
+}
+.user-auth-data-v2-input-container span{
+    display: flex;
+    flex-direction: row;
+    text-align: start;
+    color: #FB5656;
+    font-family: 'Poppins';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.user-auth-data-v2-input-container span svg{
+    min-width: min-content;
+}

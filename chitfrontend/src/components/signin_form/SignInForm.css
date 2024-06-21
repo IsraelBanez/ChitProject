@@ -1,179 +1,26 @@
-.sign-in-form{
-    width: auto;
-    height: auto;
+.si-form-container{
+    box-sizing: border-box;
     display: flex;
-    padding: 30px 50px;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 28px;
+    padding: 30px 50px;
+    width: 100%;
+    max-width: 500px;
+
     background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
-.sign-in-form img{
-    caret-color: transparent;
-}
 
-.si-user-data{
-    display: flex;
-    padding: 10px;
-    /* align-items: center; */
-    flex-direction: column;
-    gap: 30px;
-}
-.si-user-data input{
-    display: flex;
-    width: 400px;
-    padding: 15px 10px;
-    align-items: center;
-    gap: 15px;
-    border-radius: 10px;
-    border: 0.5px solid #010E14;
-
+.auth-form-alternative{
+    margin-top: 30px;
     color: #010E14;
     font-family: 'Poppins';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-.si-user-data input:focus{
-    outline: none;
-}
-.si-user-data input::placeholder{
-    color: #737C80;
-    caret-color: transparent;
-}
-.si-input-slot{
-    display: flex;
-    flex-direction: column;
-}
-.si-input-slot span{
-    display: flex;
-    flex-direction: row;
-    text-align: start;
-    color: #FB5656;
-    font-family: 'Poppins';
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-.si-password-region{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-}
-.si-password-region span{
-    display: flex;
-    flex-direction: row;
-    text-align: start;
-    color: #FB5656;
-    font-family: 'Poppins';
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-.si-password{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-}
-.si-password img{
-    position: absolute;
-    right: 10px;
-    cursor: pointer;
-}
-.si-forgot-region{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-}
-.si-forgot-pswd-link{
-    color: #CDC1FF;
-    font-family: 'Poppins';
     font-size: 14px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 300;
     line-height: normal;
-    text-decoration: none;
-}
-.si-forgot-left{
-    display: flex;
-    align-items: center;
-    gap: 2px;
-
-    color: #CDC1FF;
-    font-family: 'Poppins';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-#remember-user{
-    width: auto;
-    height: auto;
-    padding: 0px;
-}
-
-.si-sign-in-btn{
-    display: flex;
-    padding: 15px;
-    align-items: center;
-    border-radius: 25px;
-    background: #CDC1FF;
-    box-shadow: 0px 2px 5px 2px rgba(205, 193, 255, 0.41);
-    cursor: pointer;
-    caret-color: transparent;
-
-    color: #FFF;
     text-align: center;
-    font-family: 'Poppins';
-    font-size: 30px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px; 
-    border: none;
 }
-.si-sign-in-btn:hover{
-    background: rgb(187, 171, 247)
-}
-
-.si-dividor{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-    caret-color: transparent;
-
-    color: #010E14;
-    font-family: 'Poppins';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-.si-dividor div{
-    width: 170px;
-    height: 1px;
-    background-color: #010E14;
-}
-
-.si-alternative{
-    color: #010E14;
-    font-family: 'Poppins';
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-.si-sign-up-link{
+.auth-form-alternative a{
     color: #CDC1FF;
     font-family: 'Poppins';
     font-size: 14px;
@@ -181,4 +28,12 @@
     font-weight: 500;
     line-height: normal;
     text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .si-form-container{
+        max-width: none;
+        height: 100vh;
+        padding: 10%;
+    }
 }

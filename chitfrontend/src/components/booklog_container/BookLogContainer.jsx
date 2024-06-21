@@ -1,7 +1,7 @@
 import React from 'react'
 import './BookLogContainer.css';
 
-import SearchAndRefineSection from '../basics/SearchAndRefineSection';
+import SearchAndRefineComponent from '../basics/SearchAndRefineComponent';
 import BLTableHeader from './BLTableHeader';
 import BLTableRow from './BLTableRow';
 
@@ -10,7 +10,7 @@ function BookLogContainer() {
         <section className='content-container'>
             <h1>Book Log</h1>
 
-            <SearchAndRefineSection/>
+            <SearchAndRefineComponent/>
 
             <div className='bl-table-container'>
                 <BLTableHeader/>

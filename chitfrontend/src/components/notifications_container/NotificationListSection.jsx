@@ -1,7 +1,7 @@
 import React from 'react'
 import './NotificationListSection.css';
 
-import InfoItem from '../basics/InfoItem';
+import InfoItem from '../basics/InfoItemComponent';
 
 function NotificationListSection({title}) {
     return (

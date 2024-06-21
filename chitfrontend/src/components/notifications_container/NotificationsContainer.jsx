@@ -1,7 +1,7 @@
 import React from 'react'
 import './NotificationsContainer.css';
 
-import TabsSection from '../basics/TabsSection';
+import TabsComponent from '../basics/TabsComponent';
 import NotificationListSection from './NotificationListSection';
 
 function NotificationsContainer() {
@@ -9,7 +9,7 @@ function NotificationsContainer() {
         <section className='content-container'>
             <h1>Notifications</h1>
 
-            <TabsSection type={'notifications'}/>
+            <TabsComponent type={'notifications'}/>
             <NotificationListSection title={'Pinned'}/>
             <NotificationListSection title={'Today'}/>
             <NotificationListSection title={'This week'}/>

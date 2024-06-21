@@ -1,7 +1,7 @@
 import React from 'react'
 import './DeadlinesContainer.css';
 
-import TabsSection from '../basics/TabsSection';
+import TabsComponent from '../basics/TabsComponent';
 import DeadlinesListSection from './DeadlinesListSection';
 import AllDebtsSection from './AllDebtsSection';
 
@@ -10,7 +10,7 @@ function DeadlinesContainer() {
         <section className='content-container'>
             <h1>Deadlines</h1>
 
-            <TabsSection type='deadlines'/>
+            <TabsComponent type='deadlines'/>
             <DeadlinesListSection title={'Overdue'}/>
             <DeadlinesListSection title={'Due today'}/>
             <AllDebtsSection />

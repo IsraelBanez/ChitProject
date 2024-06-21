@@ -1,17 +1,23 @@
-import './SignInForm.css';
 import React, { useState } from 'react';
-import { useNavigate, Link } from "react-router-dom";
-
-import Logo from '../../images/logo-big.png';
-import Eye from '../../icons/eye.svg';
-import EyeClosed from '../../icons/eye-closed.svg';
-import X from '../../icons/x.svg';
+import { useNavigate } from "react-router-dom";
+import './SignInForm.css';
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
+import LogoComponent from '../basics/AuthFormLogoComponent.jsx';
+import RemeberAndForgotComponent from '../basics/RemeberAndForgotComponent.jsx';
+import ConfirmUserDataComponent from '../basics/ConfirmUserDataComponent.jsx';
+import AuthFormDividorComponent from '../basics/AuthFormDividorComponent.jsx';
+import AuthFormAlternativeComponent from '../basics/AuthFormAlternativeComponent.jsx';
+
+import UserAuthDataV1Input from '../inputs/UserAuthDataV1Input.jsx';
+import UserAuthDataV2Input from '../inputs/UserAuthDataV2Input.jsx';
+
 import BadCredentialsWarning from '../displays/BadCredentialsWarning.jsx';
 
-export default function SignInForm({signInSuccess}){
+import {ReactComponent as XIcon} from '../../icons/x.svg';
+
+function SignInForm({signInSuccess}) {
     const { signInUser } = useAuth();
     const navigate = useNavigate();
     const [signInData, setSignInData] = useState({
@@ -23,16 +29,16 @@ export default function SignInForm({signInSuccess}){
     const [badCreditErrorMessage, setBadCreditErrorMessage] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // Diplay or hide password when user clicks the visiblity (eye) icon
-    const onClickPasswordVisiblity = () => {
-        setShowPassword((prevShowPassword) => !prevShowPassword);
-    };
-
     // Handle changes to the sign in data
     const onChangeHandler = (e) => {
         setSignInData({ ...signInData, [e.target.name]: e.target.value });
     };
 
+    // Diplay or hide password when user clicks the visiblity (eye) icon
+    const onClickPasswordVisiblity = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+    
     // Submit the sign in form
     const onSubmitSignIn = async (e) => {
         e.preventDefault();
@@ -73,78 +79,60 @@ export default function SignInForm({signInSuccess}){
     };
 
     return (
-        <div className='sign-in-form'>
-            {/* Logo Section */}
-            <img src={Logo} alt='Chit logo'/>
+        <div className='si-form-container'>
+            <LogoComponent/>
+            
+            {/* Handle bad credentials */}
+            {
+                badCreditErrorMessage 
+                && badCreditErrorMessage == "Bad credentials" 
+                && <BadCredentialsWarning message={"The email or password provided is invalid. Please try again."}/>
+            }
+            <UserAuthDataV1Input 
+                type={'text'} 
+                id={'sign-in-email'} 
+                name={'email'} 
+                placeholder={'email'}
+                onChange={onChangeHandler}
+                style={{ borderColor: validationErrorMessages.email ? '#FB5656' : '' }}
+                addOns={
+                    validationErrorMessages.email 
+                    && validationErrorMessages.email == "Email cannot be empty." 
+                    ? <span><XIcon/>Email cannot be empty.</span> : ""
+                }
+            />
+            
+            <UserAuthDataV2Input 
+                type={showPassword ? 'text' : 'password'}
+                id='sign-in-password' 
+                name='password' 
+                placeholder='password'
+                onChange={onChangeHandler}
+                changeIcon={showPassword}
+                onClick={onClickPasswordVisiblity}
+                style={{ borderColor: validationErrorMessages.password ? '#FB5656' : '' }}
+                addOns={
+                    validationErrorMessages.password 
+                    && validationErrorMessages.password == "Passsword cannot be empty." 
+                    ? <span><XIcon/>Passsword cannot be empty.</span> : ""
+                }
+            />
 
-            {/* User Data Collection Section */}
-            <div className='si-user-data'>
-                {/* Handle bad credentials */}
-                {badCreditErrorMessage && badCreditErrorMessage == "Bad credentials" && <BadCredentialsWarning message={"The email or password provided is invalid. Please try again."}/>}
-
-                {/* Handle user email */}
-                <div className='si-input-slot'>
-                    <input 
-                        type='text' 
-                        id='sign-in-email' 
-                        name='email' 
-                        placeholder='email'
-                        onChange={onChangeHandler}
-                        style={{ borderColor: validationErrorMessages.email ? '#FB5656' : '' }}
-                    />
-                    {validationErrorMessages.email && validationErrorMessages.email == "Email cannot be empty." ? <span><img src={X} alt='x error'/>Email cannot be empty.</span> : ""}
-                </div>
-
-                {/* Handle user password */}
-                <div className='si-password-region'>
-                    <div className='si-password'>
-                        <input 
-                            type={showPassword ? 'text' : 'password'}
-                            id='sign-in-password' 
-                            name='password' 
-                            placeholder='password'
-                            onChange={onChangeHandler}
-                            style={{ borderColor: validationErrorMessages.password ? '#FB5656' : '' }}
-                        />   
-                        <img src={showPassword ? Eye : EyeClosed} alt='password visibility' onClick={onClickPasswordVisiblity}/>
-                    </div>
-
-                    {validationErrorMessages.password && validationErrorMessages.password == "Passsword cannot be empty." ? <span><img src={X} alt='x error'/>Passsword cannot be empty.</span> : ""}
-                    
-                    {/* Handle forgot password and remeber me */}
-                    <div className='si-forgot-region'>
-                        <div className='si-forgot-left'>
-                            <input type='checkbox' id='remember-user' name='remember-user'/>
-                            Remember me
-                        </div>
-                        
-                        <Link to='/forgot-password' className='si-forgot-pswd-link'>Forgot password?</Link>
-                    </div>
-                </div>
-            </div>
-
-            {/* Sign In Button Section */}
-            <button
+            <RemeberAndForgotComponent />
+            <ConfirmUserDataComponent 
                 type='submit'
                 id='sign-in-button'  
                 onClick={onSubmitSignIn} 
-                className='si-sign-in-btn'
                 disabled={loading}
-            >
-                {loading ? 'Signing in...' : 'Sign in'}
-            </button>
+                title={loading ? 'Sign in...' : 'Sign in'}
+            />
 
-            {/* Dividor */}
-            <div className='si-dividor'>
-                <div></div>
-                OR
-                <div></div>
-            </div>
+            <AuthFormDividorComponent/>
 
-            {/* Alternative Section */}
-            <div className='si-alternative'>
-                Don't have an account? <Link to="/sign-up" className='si-sign-up-link'>Sign up</Link>
-            </div>
+            <AuthFormAlternativeComponent message={`Don't have an account?`} href={'/sign-up'} title={'Sign up'}/>
+
         </div>
-    );
+    )
 }
+
+export default SignInForm

@@ -1,7 +1,7 @@
 import React from 'react'
 import './SearchContainer.css';
 
-import SearchAndRefineSection from '../basics/SearchAndRefineSection';
+import SearchAndRefineComponent from '../basics/SearchAndRefineComponent';
 import CreditorsDebtorsSection from './CreditorsDebtorsSection';
 
 function SearchContainer() {
@@ -9,7 +9,7 @@ function SearchContainer() {
         <section className='content-container'>
             <h1>Search</h1>
 
-            <SearchAndRefineSection type={'search'} />
+            <SearchAndRefineComponent type={'search'} />
 
             <CreditorsDebtorsSection version={'creditors'} />
             <CreditorsDebtorsSection version={'debtors'} />

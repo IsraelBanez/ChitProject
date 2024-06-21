@@ -1,20 +1,20 @@
 import React from 'react'
 import './MessagesContainer.css';
 
-import SearchAndRefineSection from '../basics/SearchAndRefineSection';
+import SearchAndRefineComponent from '../basics/SearchAndRefineComponent';
 import PinnedSection from './PinnedSection';
-import TabsSection from '../basics/TabsSection';
-import ListItemsSection from '../basics/ListItemsSection';
+import TabsComponent from '../basics/TabsComponent';
+import ListInfoItemsComponent from '../basics/ListInfoItemsComponent';
 
 function MessagesContainer() {
     return (
         <section className='content-container'>
             <h1>Messages</h1>
 
-            <SearchAndRefineSection type={'messages'} />
+            <SearchAndRefineComponent type={'messages'} />
             <PinnedSection/>
-            <TabsSection type={'messages'} />
-            <ListItemsSection type={'messages'}/>
+            <TabsComponent type={'messages'} />
+            <ListInfoItemsComponent type={'messages'}/>
         </section>
     )
 }

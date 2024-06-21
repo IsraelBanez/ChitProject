@@ -1,0 +1,12 @@
+.auth-form-logo{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+    
+    svg{
+        width: 150px;
+        height: auto;
+    }
+}
