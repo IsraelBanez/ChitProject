@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import './SignInForm.css';
+import './AuthForm.css';
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
@@ -79,7 +79,7 @@ function SignInForm({signInSuccess}) {
     };
 
     return (
-        <div className='si-form-container'>
+        <div className='auth-form-container'>
             <LogoComponent/>
             
             {/* Handle bad credentials */}

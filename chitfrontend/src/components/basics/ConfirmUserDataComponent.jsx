@@ -1,7 +1,7 @@
 import React from 'react'
 import './ConfirmUserDataComponent.css';
 
-function ConfirmUserDataComponent({type, id, onClick, disabled, title}) {
+function ConfirmUserDataComponent({type, id, onClick, onMouseDown, onTouchStart, disabled, title}) {
     return (
         <div className='confirm-user-data-component'>
             <button 
@@ -9,6 +9,8 @@ function ConfirmUserDataComponent({type, id, onClick, disabled, title}) {
                 type={type}
                 id={id}
                 onClick={onClick} 
+                onMouseDown={onMouseDown}
+                onTouchStart={onTouchStart}
                 disabled={disabled}
             >
                 {title}

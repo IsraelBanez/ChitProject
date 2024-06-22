@@ -1,17 +1,22 @@
-import './SignUpForm.css';
 import React, { useState } from 'react';
-import { Link, useNavigate} from "react-router-dom";
-
-import Logo from '../../images/logo-big.png';
-import Eye from '../../icons/eye.svg';
-import EyeClosed from '../../icons/eye-closed.svg';
-import X from '../../icons/x.svg';
+import { useNavigate } from "react-router-dom";
+import '../signin_form/AuthForm.css';
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
+import AuthFormLogoComponent from '../basics/AuthFormLogoComponent.jsx';
+import ConfirmUserDataComponent from '../basics/ConfirmUserDataComponent.jsx';
+import AuthFormDividorComponent from '../basics/AuthFormDividorComponent.jsx';
+import AuthFormAlternativeComponent from '../basics/AuthFormAlternativeComponent.jsx';
+
+import UserAuthDataV1Input from '../inputs/UserAuthDataV1Input.jsx';
+import UserAuthDataV2Input from '../inputs/UserAuthDataV2Input.jsx';
+
 import PasswordCriteria from '../displays/PasswordCriteria.jsx';
 
-export default function SignUpForm({signUpSuccess}){
+import {ReactComponent as XIcon} from '../../icons/x.svg';
+
+function SignUpForm({signUpSuccess}) {
     const {signUpUser} = useAuth();
     const navigate = useNavigate();
     const [signUpData, setSignUpData] = useState({
@@ -26,6 +31,11 @@ export default function SignUpForm({signUpSuccess}){
     const [duplicateErrorMessages, setDuplicateErrorMessages] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    // Handle changes to the sign in data
+    const onChangeHandler = (e) => {
+        setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
+    };
+
     // Diplay or hide password when user clicks the visiblity (eye) icon
     const onClickPasswordVisiblity = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
@@ -37,11 +47,6 @@ export default function SignUpForm({signUpSuccess}){
     };
     const onPasswordBlur = () => {
         setIsPasswordFocused(false);
-    };
-    
-    // Handle changes to the sign in data
-    const onChangeHandler = (e) => {
-        setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
     };
 
     // Submit the sign up form
@@ -83,99 +88,98 @@ export default function SignUpForm({signUpSuccess}){
         };
     };
 
-    return(
-        <div className='sign-up-form'>
-            {/* Logo Section */}
-            <img src={Logo} alt='chit logo'/>
+    return (
+        <div className='auth-form-container'>
+            <AuthFormLogoComponent/>
 
-            {/* User Data Collection Section */}
-            <div className='su-user-data'>
-                {/* Handle user full name */}
-                <div className='su-input-slot'>
-                    <input 
-                        type='text' 
-                        id='sign-up-fullname' 
-                        name='fullName' 
-                        placeholder='full name' 
-                        onChange={onChangeHandler} 
-                        style={{ borderColor: validationErrorMessages.fullName ? '#FB5656' : '' }}
-                    /> 
-                    {validationErrorMessages.fullName ? <span><img src={X} alt='x error'/>Full name cannot be emtpy.</span> : ""}
-                </div>
+            <UserAuthDataV1Input 
+                type={'text'} 
+                id={'sign-up-fullname'} 
+                name={'fullName' }
+                placeholder={'full name'} 
+                style={{ borderColor: validationErrorMessages.fullName ? '#FB5656' : '' }}
+                addOns={
+                    validationErrorMessages.fullName 
+                    ? <span><XIcon/>Full name cannot be emtpy.</span> : ""
+                }
+            />
 
-                {/* Handle user username */}
-                <div className='su-input-slot'>
-                    <input 
-                        type='text' 
-                        id='sign-up-username' 
-                        name='userName' 
-                        placeholder='create username' 
-                        onChange={onChangeHandler}
-                        style={{ borderColor: validationErrorMessages.userName || (duplicateErrorMessages && duplicateErrorMessages == "Username already exists.") ? '#FB5656' : '' }}
-                    />
-                    {validationErrorMessages.userName && validationErrorMessages.userName == "Username cannot be empty." ? <span><img src={X} alt='x error'/>Username cannot be empty.</span> : ""}
-                    {duplicateErrorMessages && duplicateErrorMessages == "Username already exists."? <span><img src={X} alt='x error'/>Username already exists.</span> : ""}
-                </div>
+            <UserAuthDataV1Input 
+                type={'text'} 
+                id={'sign-up-username'}
+                name={'userName'}
+                placeholder={'create username'} 
+                onChange={onChangeHandler}
+                style={{ 
+                    borderColor: validationErrorMessages.userName 
+                    || (duplicateErrorMessages && duplicateErrorMessages == "Username already exists.") 
+                    ? '#FB5656' : '' 
+                }}
+                addOns={
+                    <>
+                     {validationErrorMessages.userName && validationErrorMessages.userName == "Username cannot be empty." 
+                     ? <span><XIcon/>Username cannot be empty.</span> : ""}
+                     {duplicateErrorMessages && duplicateErrorMessages == "Username already exists."
+                     ? <span><XIcon/>Username already exists.</span> : ""}
+                    </>
+                }
+            />
+            <UserAuthDataV1Input 
+                type={'text'} 
+                id={'sign-up-email'} 
+                name={'email'} 
+                placeholder={'email address'}
+                onChange={onChangeHandler}
+                style={{ 
+                    borderColor: validationErrorMessages.email 
+                    || (duplicateErrorMessages && duplicateErrorMessages == "Email already exists.") 
+                    ? '#FB5656' : '' 
+                }}
+                addOns={
+                    <>
+                    {validationErrorMessages.email && validationErrorMessages.email == "Email cannot be empty." 
+                    ? <span><XIcon/>Email cannot be empty.</span> : ""}
+                    {validationErrorMessages.email && validationErrorMessages.email == "Email must be a valid email address." 
+                    ? <span><XIcon/>Please enter a valid email.</span> : ""}
+                    {duplicateErrorMessages && duplicateErrorMessages == "Email already exists." 
+                    ? <span><XIcon/>Email already exists</span> : ""}
+                    </>
+                }
+            />
+            <UserAuthDataV2Input 
+                type={showPassword ? 'text' : 'password'}
+                id={'sign-in-password'}
+                name={'password' }
+                placeholder={'create password'}
+                onChange={onChangeHandler}
+                changeIcon={showPassword}
+                onClick={onClickPasswordVisiblity}
+                onFocus={onPasswordFocus}
+                onBlur={onPasswordBlur} 
+                style={{ borderColor: validationErrorMessages.password ? '#FB5656' : '' }}
+                addOns={
+                    isPasswordFocused 
+                    && <PasswordCriteria isError={validationErrorMessages.password}/> 
+                    || validationErrorMessages.password 
+                    && <PasswordCriteria isError={validationErrorMessages.password}/>
+                }
+            /> 
 
-                {/* Handle user email */}
-                <div className='su-input-slot'>
-                    <input 
-                        type='text' 
-                        id='sign-up-email' 
-                        name='email' 
-                        placeholder='email address' 
-                        onChange={onChangeHandler}
-                        style={{ borderColor: validationErrorMessages.email || (duplicateErrorMessages && duplicateErrorMessages == "Email already exists.") ? '#FB5656' : '' }}
-                    />
-                    {validationErrorMessages.email && validationErrorMessages.email == "Email cannot be empty." ? <span><img src={X} alt='x error'/>Email cannot be empty.</span> : ""}
-                    {validationErrorMessages.email && validationErrorMessages.email == "Email must be a valid email address." ? <span><img src={X} alt='x error'/>Please enter a valid email.</span> : ""}
-                    {duplicateErrorMessages && duplicateErrorMessages == "Email already exists." ? <span><img src={X} alt='x error'/>Email already exists</span> : ""}
-                </div>
-
-                {/* Handle user password */}
-                <div className='su-password-region'>
-                    <div className='su-password'>
-                        <input 
-                            type={showPassword ? 'text' : 'password'}
-                            id='sign-up-password' 
-                            name='password' 
-                            placeholder='create password'
-                            onChange={onChangeHandler}
-                            onFocus={onPasswordFocus}
-                            onBlur={onPasswordBlur} 
-                            style={{ borderColor: validationErrorMessages.password ? '#FB5656' : '' }}
-                        />   
-                        <img src={showPassword ? Eye : EyeClosed} alt='password visibility' onClick={onClickPasswordVisiblity}/>
-                    </div>
-                    {isPasswordFocused && <PasswordCriteria isError={validationErrorMessages.password}/> || validationErrorMessages.password && <PasswordCriteria isError={validationErrorMessages.password}/>}
-                </div>
-
-            </div>
-
-            {/* Sign Up Button Section */}
-            <button 
-                type='submit' 
-                id='signup-button' 
+            <ConfirmUserDataComponent 
+                type='submit'
+                id='sign-in-button'  
                 onClick={onSubmitSignUp} 
-                className='si-sign-in-btn'
                 onMouseDown={(e) => e.preventDefault()} // To overcome the focus of the password criteria
                 onTouchStart={(e) => e.preventDefault()} 
                 disabled={loading}
-            >
-                {loading ? 'Sign up...' : 'Sign up'}
-            </button>
-    
-            {/* Dividor */}
-            <div className='si-dividor'>
-                <div></div>
-                OR
-                <div></div>
-            </div>
+                title={loading ? 'Sign up...' : 'Sign up'}
+            />
 
-            {/* Alternative Section */}
-            <div className='si-alternative'>
-                Already have an account? <Link to="/sign-in" className='si-sign-up-link'>Sign in</Link>
-            </div>
+            <AuthFormDividorComponent/>
+
+            <AuthFormAlternativeComponent message={`Already have an account?`} href={'/sign-in'} title={'Sign in'}/>
         </div>
-    );
+    )
 }
+
+export default SignUpForm
