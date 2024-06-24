@@ -1,18 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import './ForgotPasswordForm.css';
+import React, { useState } from 'react';
+import { useNavigate, Link } from "react-router-dom";
+
+import Logo from '../../images/logo-big.png';
+import X from '../../icons/x.svg';
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
-import AuthFormLogoComponent from '../basics/AuthFormLogoComponent.jsx';
-import AuthFormAlternativeComponent from '../basics/AuthFormAlternativeComponent.jsx';
-import ConfirmUserDataComponent from '../basics/ConfirmUserDataComponent.jsx';
-
-import UserAuthDataV1Input from '../inputs/UserAuthDataV1Input.jsx';
-
-import {ReactComponent as XIcon} from '../../icons/x.svg';
-
-function ForgotPasswordForm() {
+export default function ForgotPasswordForm(){
     const { forgotPasswordHandler} = useAuth();
     const navigate = useNavigate();
     const [userEmail, setUserEmail] = useState({
@@ -20,7 +15,6 @@ function ForgotPasswordForm() {
     });
     const [validationErrorMessages, setValidationErrorMessages] = useState({});
     const [loading, setLoading] = useState(false);
-
 
     // Handle changes to the forgot password data
     const onChangeHandler = (e) => {
@@ -58,50 +52,58 @@ function ForgotPasswordForm() {
     };
 
     return (
-        <div className='auth-form-container'>
-            <AuthFormLogoComponent/>
+        <div className='forgot-pswd-form'>
+            {/* Logo Section */}
+            <img src={Logo} alt='Chit logo'/>
 
             {/* Title Section */}
-            <div className='fpf-title'>
-                <h1>Forgot your password</h1>
+            <div className='fp-title'>
+                <h1 >Forgot your password</h1>
             </div>
 
-            {/* Forgot Password Instructions Section */}
-            <div className='fpf-intructions'>
+            {/* Forgot Password Message Section */}
+            <div className='fp-message'>
                 <p>
                     Enter the email address you signed up with, and <br/>
                     we'll send you an email to reset your password.
                 </p>
             </div>
 
-            <UserAuthDataV1Input 
-                type={'text'} 
-                id={'forgot-pswd-email'} 
-                name={'email'} 
-                placeholder={'email'}
-                onChange={onChangeHandler}
-                style={{ borderColor: validationErrorMessages.email ? '#FB5656' : '' }}
-                addOns={
-                    <>
-                        {validationErrorMessages.email && validationErrorMessages.email == "Please provide an email." 
-                        ? <span><XIcon/>Please provide an email.</span> : ""}
-                        {validationErrorMessages.email && validationErrorMessages.email == "Please provide a valid email address." 
-                        ? <span><XIcon/>Please provide a valid email address.</span> : ""}
-                    </>
-                }
-            />
+            {/* User Data Collection Section */}
+            <div className='fp-user-data'>
+                
+                {/* Handle user email */}
+                <div className='fp-input-slot'>
+                    <input 
+                        type='text' 
+                        id='forgot-pswd-email' 
+                        name='email' 
+                        placeholder='email'
+                        onChange={onChangeHandler}
+                        style={{ borderColor: validationErrorMessages.email ? '#FB5656' : '' }}
+                    />
+                    {validationErrorMessages.email && validationErrorMessages.email == "Please provide an email." ? <span><img src={X} alt='x error'/>Please provide an email.</span> : ""}
+                    {validationErrorMessages.email && validationErrorMessages.email == "Please provide a valid email address." ? <span><img src={X} alt='x error'/>Please provide a valid email address.</span> : ""}
+                </div>
 
-            <ConfirmUserDataComponent 
+            </div>
+
+            {/* Send Email Button Section */}
+            <button
                 type='submit'
                 id='forgot-button'  
                 onClick={onSubmitEmail} 
+                className='fp-send-email-btn'
                 disabled={loading}
-                title={loading ? 'Send Email...' : 'Send Email'}
-            />
+            >
+                {loading ? 'Send Email...' : 'Send Email'}
+            </button>
 
-            <AuthFormAlternativeComponent message={``} href={'/sign-in'} title={'Return to Sign in'}/>
+
+            {/* Alternative Section */}
+            <div className='fp-alternative'>
+                <Link to="/sign-in" className='fp-sign-in-link'>Return to Sign in</Link>
+            </div>
         </div>
-    )
+    );
 }
-
-export default ForgotPasswordForm

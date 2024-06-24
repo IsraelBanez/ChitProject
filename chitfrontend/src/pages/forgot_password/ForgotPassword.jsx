@@ -1,10 +1,10 @@
-import './ForgotPassword.css';
+import '../signin/AuthPages.css';
 
 import ForgotPasswordForm from '../../components/forgot_password_form/ForgotPasswordForm.jsx';
 
 export default function ForgotPassword(){
     return (
-        <div className='forgot-pswd-container'>
+        <div className='auth-page'>
             <ForgotPasswordForm/>
         </div>
     );
