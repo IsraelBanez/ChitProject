@@ -5,7 +5,7 @@ import {ReactComponent as Logo} from '../../icons/logo.svg';
 
 function AuthFormLogoComponent() {
     return (
-        <div className='auth-form-logo'><Logo/></div>
+        <div className='auth-form-logo-component'><Logo/></div>
     )
 }
 

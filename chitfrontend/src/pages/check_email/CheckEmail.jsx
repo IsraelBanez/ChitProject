@@ -1,11 +1,11 @@
-import './CheckEmail.css';
+import '../signin/AuthPages.css';
 
-import CheckEmailMessage from "../../components/check_email_message/CheckEmailMessage.jsx";
+import CheckEmailForm from "../../components/check_email_message/CheckEmailForm.jsx";
 
 export default function CheckEmail({userEmail}){
     return (
-        <div className='check-email-container'>
-            <CheckEmailMessage userEmail={userEmail} />
+        <div className='auth-page'>
+            <CheckEmailForm userEmail={userEmail} />
         </div>
     );
 }

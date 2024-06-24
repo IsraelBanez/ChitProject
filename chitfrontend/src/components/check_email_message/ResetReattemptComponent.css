@@ -1,0 +1,20 @@
+.reset-reattempt-component{
+    margin-bottom: 30px;
+    p{
+        margin: 0;
+        color: #010E14;
+        text-align: center;
+        font-family: 'Poppins';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: normal;
+
+        a{
+            color: #CDC1FF;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import './CheckEmailMessage.css';
+import './UglyCheckEmailMessage.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link, useLocation } from "react-router-dom";
 
@@ -8,7 +8,7 @@ import {useAuth} from '../../helpers/AuthContext.js';
 
 // TODO: Eventually take this path away and merge it with the forgot-password; just switch pages
 
-export default function CheckEmailMessage(){
+export default function UglyCheckEmailMessage(){
     const { forgotPasswordHandler } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();

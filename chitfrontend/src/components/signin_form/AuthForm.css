@@ -18,6 +18,6 @@
         max-width: none;
         height: 100vh;
         padding: 8%;
-        
+        overflow: auto;
     }
 }

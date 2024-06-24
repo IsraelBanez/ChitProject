@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import './ForgotPasswordForm.css';
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
 import AuthFormLogoComponent from '../basics/AuthFormLogoComponent.jsx';
+import AuthFormTitleComponent from '../basics/AuthFormTitleComponent.jsx';
+import AuthFormInstructionsComponent from '../basics/AuthFormInstructionsComponent.jsx';
 import AuthFormAlternativeComponent from '../basics/AuthFormAlternativeComponent.jsx';
 import ConfirmUserDataComponent from '../basics/ConfirmUserDataComponent.jsx';
 
@@ -61,18 +62,15 @@ function ForgotPasswordForm() {
         <div className='auth-form-container'>
             <AuthFormLogoComponent/>
 
-            {/* Title Section */}
-            <div className='fpf-title'>
-                <h1>Forgot your password</h1>
-            </div>
+            <AuthFormTitleComponent title={'Forgot your password'}/>
 
-            {/* Forgot Password Instructions Section */}
-            <div className='fpf-intructions'>
-                <p>
+            <AuthFormInstructionsComponent 
+                instructions={
+                <>
                     Enter the email address you signed up with, and <br/>
                     we'll send you an email to reset your password.
-                </p>
-            </div>
+                </>}
+            />
 
             <UserAuthDataV1Input 
                 type={'text'} 
@@ -99,7 +97,7 @@ function ForgotPasswordForm() {
                 title={loading ? 'Send Email...' : 'Send Email'}
             />
 
-            <AuthFormAlternativeComponent message={``} href={'/sign-in'} title={'Return to Sign in'}/>
+            <AuthFormAlternativeComponent message={``} href={'/sign-in'} title={'Return to Sign in'} style={{margin: '0px'}}/>
         </div>
     )
 }
