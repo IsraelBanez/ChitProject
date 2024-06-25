@@ -4,7 +4,7 @@ import './UserAuthDataV2Input.css';
 import {ReactComponent as Eye} from '../../icons/eye.svg';
 import {ReactComponent as EyeClosed} from '../../icons/eye-closed.svg';
 
-function UserAuthDataV2Input({type, id, name, placeholder, onChange, changeIcon, onClick, onFocus, onBlur, style, addOns}) {
+function UserAuthDataV2Input({type, id, name, placeholder, onChange, changeIcon, onClick, onFocus, onBlur, style, addOns, containerStyle}) {
     const inputRef = useRef(null);
 
     const handleFocus = () => {
@@ -28,7 +28,7 @@ function UserAuthDataV2Input({type, id, name, placeholder, onChange, changeIcon,
 
 
     return (
-        <div className='user-auth-data-v2-input-container'>
+        <div className='user-auth-data-v2-input-container' style={containerStyle}>
             <div className='user-auth-data-v2-input'
                 tabIndex='0'
                 onFocus={handleFocus}

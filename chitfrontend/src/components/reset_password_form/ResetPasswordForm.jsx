@@ -1,18 +1,22 @@
-import './ResetPasswordForm.css';
 import React, { useState } from 'react';
-import { Link, useNavigate} from "react-router-dom";
-
-import Logo from '../../images/logo-big.png';
-import Eye from '../../icons/eye.svg';
-import EyeClosed from '../../icons/eye-closed.svg';
-import X from '../../icons/x.svg';
+import { useNavigate } from "react-router-dom";
 
 import {useAuth} from '../../helpers/AuthContext.js';
 
-import PasswordCriteria from '../displays/PasswordCriteria.jsx';
-import BadCredentialsWarning from '../displays/BadCredentialsWarning.jsx';
+import LogoComponent from '../basics/AuthFormLogoComponent.jsx';
+import AuthFormTitleComponent from '../basics/AuthFormTitleComponent.jsx';
+import AuthFormInstructionsComponent from '../basics/AuthFormInstructionsComponent.jsx';
+import ConfirmUserDataComponent from '../basics/ConfirmUserDataComponent.jsx';
+import AuthFormAlternativeComponent from '../basics/AuthFormAlternativeComponent.jsx';
 
-export default function ResetPasswordForm(){
+import BadCredentialsWarning from '../displays/BadCredentialsWarning.jsx';
+import PasswordCriteria from '../displays/PasswordCriteria.jsx';
+
+import UserAuthDataV2Input from '../inputs/UserAuthDataV2Input.jsx';
+
+import {ReactComponent as XIcon} from '../../icons/x.svg';
+
+function ResetPasswordForm() {
     const { resetPasswordHandler } = useAuth();
     const navigate = useNavigate();
     const [resetPasswordData, setResetPasswordData] = useState({
@@ -27,17 +31,17 @@ export default function ResetPasswordForm(){
     const [invalidJWTokenErrorMessage, setInvalidJWTokenErrorMessage] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    // Handle changes to the reset password data
+    const onChangeHandler = (e) => {
+        setResetPasswordData({ ...resetPasswordData, [e.target.name]: e.target.value });
+    };
+
     // Diplay or hide password when user clicks the visiblity (eye) icon
     const onClickPasswordVisiblityOne = () => {
         setShowPasswordOne((prevShowPassword) => !prevShowPassword);
     };
     const onClickPasswordVisiblityTwo = () => {
         setShowPasswordTwo((prevShowPassword) => !prevShowPassword);
-    };
-
-    // Handle changes to the reset password data
-    const onChangeHandler = (e) => {
-        setResetPasswordData({ ...resetPasswordData, [e.target.name]: e.target.value });
     };
 
     // Submit the reset password form
@@ -92,78 +96,74 @@ export default function ResetPasswordForm(){
         };
     };
 
-    return(
-        <div className='reset-pswd-form'>
-            {/* Logo Section */}
-            <img src={Logo} alt='chit logo'/>
+    return (
+        <div className='auth-form-container'>
+            <LogoComponent/>
 
-            {/* Title Section */}
-            <div className='rp-title'>
-                <h1 >Reset your password</h1>
-            </div>
-
-            {/* Reset Password Message Section */}
-            <div className='rp-message'>
-                <p>
+            <AuthFormTitleComponent title={'Reset your password'}/> 
+           
+            <AuthFormInstructionsComponent 
+                instructions={
+                <>
                     Enter a new password to reset the password on your account.<br/>
                     Make sure not to reuse your old password.
-                </p>
-            </div>
+                </>}
+            />
 
-            {/* User Update Data Section */}
-            <div className='rp-user-data'>
-                {invalidJWTokenErrorMessage && <BadCredentialsWarning message={"Invalid authentication token. Check your invite link or try resetting again."}/>}
+            {invalidJWTokenErrorMessage && 
+            <BadCredentialsWarning message={"Invalid authentication token. Check your invite link or try resetting again."}/>}
+            
+            <UserAuthDataV2Input 
+                type={showPasswordOne ? 'text' : 'password'}
+                id={'reset-new-password'} 
+                name={'newPassword'} 
+                placeholder={'create new password'}
+                onChange={onChangeHandler}
+                style={{ borderColor: validationErrorMessages.newPassword ||oldPasswordErrorMessage ?  '#FB5656' : '' }}
+                containerStyle={{marginBottom: '30px'}}
+                changeIcon={showPasswordOne}
+                onClick={onClickPasswordVisiblityOne}
+                addOns={
+                    <>
+                        {oldPasswordErrorMessage 
+                        ? <span className='rp-error'><XIcon/>New password cannot be the same as old passwords.</span> : ""}
+                        <PasswordCriteria isError={validationErrorMessages.newPassword}/> 
+                    </>
+                }
+            />
 
-                {/* Handle new password */}
-                <div className='rp-password-region'>
-                    <div className='rp-password'>
-                        <input 
-                            type={showPasswordOne ? 'text' : 'password'}
-                            id='reset-new-password' 
-                            name='newPassword' 
-                            placeholder='create new password'
-                            onChange={onChangeHandler}
-                            style={{ borderColor: validationErrorMessages.newPassword ||oldPasswordErrorMessage ?  '#FB5656' : '' }}
-                        />   
-                        <img src={showPasswordOne ? Eye : EyeClosed} alt='password visibility' onClick={onClickPasswordVisiblityOne}/>
-                    </div>
-                    {oldPasswordErrorMessage ? <span className='rp-error'><img src={X} alt='x error'/>New password cannot be the same as old passwords.</span> : ""}
-                    <PasswordCriteria isError={validationErrorMessages.newPassword}/> 
-                </div>
+            <UserAuthDataV2Input 
+                type={showPasswordTwo ? 'text' : 'password'}
+                id={'reset-confirm-password'} 
+                name={'confirmNewPassword'} 
+                placeholder={'confirm password'}
+                onChange={onChangeHandler}
+                style={{ borderColor: validationErrorMessages.confirmNewPassword || matchPasswordErrorMessage ? '#FB5656' : ''}}
+                changeIcon={showPasswordTwo}
+                onClick={onClickPasswordVisiblityTwo}
+                addOns={
+                    <>
+                        {validationErrorMessages.confirmNewPassword 
+                        && validationErrorMessages.confirmNewPassword == "Confirm passsword cannot be empty." 
+                        ? <span className='rp-error'><XIcon/>Confirm passsword cannot be empty.</span> : ""}
+                        {matchPasswordErrorMessage 
+                        ? <span className='rp-error'><XIcon/>Password must match new password.</span> : ""}
+                    </>
+                }
+            />
 
-                {/* Handle confirm password */}
-                <div className='rp-password-region'>
-                    <div className='rp-password'>
-                        <input 
-                            type={showPasswordTwo ? 'text' : 'password'}
-                            id='reset-confirm-password' 
-                            name='confirmNewPassword' 
-                            placeholder='confirm password'
-                            onChange={onChangeHandler}
-                            style={{ borderColor: validationErrorMessages.confirmNewPassword || matchPasswordErrorMessage ? '#FB5656' : '' }}
-                        />   
-                        <img src={showPasswordTwo ? Eye : EyeClosed} alt='password visibility' onClick={onClickPasswordVisiblityTwo}/>
-                    </div>
-                    {validationErrorMessages.confirmNewPassword && validationErrorMessages.confirmNewPassword == "Confirm passsword cannot be empty." ? <span className='rp-error'><img src={X} alt='x error'/>Confirm passsword cannot be empty.</span> : ""}
-                    {matchPasswordErrorMessage ? <span className='rp-error'><img src={X} alt='x error'/>Password must match new password.</span> : ""}
-                </div>
-            </div>
-
-            {/* Reset Button Section */}
-            <button 
-                type='submit' 
-                id='reset-button' 
+            <ConfirmUserDataComponent 
+                type='submit'
+                id='reset-button'  
                 onClick={onSubmitResetPassword} 
-                className='rp-reset-pswd-btn'
-                disabled={loading} 
-            >
-                {loading ? 'Reset Password...' : 'Reset Password'}
-            </button>
-    
-            {/* Alternative Section */}
-            <div className='rp-alternative'>
-                <Link to="/sign-in" className='rp-sign-in-link'>Return to Sign in</Link>
-            </div>
+                disabled={loading}
+                title={loading ? 'Reset Password...' : 'Reset Password'}
+            />
+
+            <AuthFormAlternativeComponent message={``} href={'/sign-in'} title={'Return to Sign in'} style={{margin: '0px'}}/>
+
         </div>
-    );
+    )
 }
+
+export default ResetPasswordForm
