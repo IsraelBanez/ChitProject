@@ -6,7 +6,7 @@ import RemindersContainer from '../../components/reminders_container/RemindersCo
 
 function Reminders() {
     return (
-        <div>
+        <div className='signed-in-container'>
             <NavBar/>
 
             <div className='hc-container'>

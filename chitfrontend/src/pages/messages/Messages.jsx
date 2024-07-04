@@ -6,7 +6,7 @@ import MessagesContainer from '../../components/messages_container/MessagesConta
 
 function Messages() {
     return (
-        <div>
+        <div className='signed-in-container'>
             <NavBar/>
 
             <div className='hc-container'>

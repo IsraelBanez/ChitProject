@@ -6,7 +6,7 @@ import DeadlinesContainer from '../../components/deadlines_container/DeadlinesCo
 
 function Deadlines() {
     return (
-        <div>
+        <div className='signed-in-container'>
             <NavBar/>
 
             <div className='hc-container'>

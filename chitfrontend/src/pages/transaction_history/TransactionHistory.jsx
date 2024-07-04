@@ -6,7 +6,7 @@ import TransactionHistoryContainer from '../../components/transaction_history_co
 
 function TransactionHistory() {
     return (
-        <div>
+        <div className='signed-in-container'>
             <NavBar/>
 
             <div className='hc-container'>

@@ -6,7 +6,7 @@ import NetworkContainer from '../../components/network_container/NetworkContaine
 
 function Network() {
   return (
-    <div>
+    <div className='signed-in-container'>
       <NavBar/>
 
       <div className='hc-container'>

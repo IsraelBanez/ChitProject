@@ -6,7 +6,7 @@ import SearchContainer from '../../components/search_container/SearchContainer.j
 
 function Search() {
     return (
-        <div>
+        <div className='signed-in-container'>
             <NavBar/>
 
             <div className='hc-container'>

@@ -6,7 +6,7 @@ import NotificationsContainer from '../../components/notifications_container/Not
 
 function Notifications() {
     return (
-        <div>
+        <div className='signed-in-container'>
             <NavBar/>
 
             <div className='hc-container'>
