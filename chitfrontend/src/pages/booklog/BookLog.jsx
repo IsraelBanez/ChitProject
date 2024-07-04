@@ -7,19 +7,17 @@ import BookLogContainer from '../../components/booklog_container/BookLogContaine
 function BookLog() {
   return (
     <div>
-        <nav className='nav-section'>
-            <NavBar/>
-        </nav>
-        <main className='hc-container'>
-            {/* Profile sidebar content */}
-            <aside>
-                <SideBar/>
-            </aside>
-            
-            <BookLogContainer/>
-        </main>
+      <NavBar/>
 
-    </div>
+      <div className='hc-container'>
+          {/* Profile sidebar content */}
+      
+          <SideBar/>
+
+          
+          <BookLogContainer/>
+      </div>
+  </div>
   )
 }
 

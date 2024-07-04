@@ -7,18 +7,16 @@ import SearchContainer from '../../components/search_container/SearchContainer.j
 function Search() {
     return (
         <div>
-            <nav className='nav-section'>
             <NavBar/>
-            </nav>
-            <main className='hc-container'>
+
+            <div className='hc-container'>
                 {/* Profile sidebar content */}
-                <aside>
+             
                 <SideBar/>
-                </aside>
+        
                 
                 <SearchContainer/>
-            </main>
-
+            </div>
         </div>
     )
 }

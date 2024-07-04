@@ -15,7 +15,7 @@ import UserAuthDataV2Input from '../inputs/UserAuthDataV2Input.jsx';
 
 import BadCredentialsWarning from '../displays/BadCredentialsWarning.jsx';
 
-import {ReactComponent as XIcon} from '../../icons/x.svg';
+import {ReactComponent as XIcon} from '../../icons/x-red.svg';
 
 function SignInForm({signInSuccess}) {
     const { signInUser } = useAuth();

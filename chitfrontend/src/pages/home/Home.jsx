@@ -14,9 +14,8 @@ export default function Home(){
 
     return (
             <div className='home-container'>
-                <nav className='nav-section'>
-                    <NavBar/>
-                </nav>
+                <NavBar/>
+                
 
                 <div className='main-section'>
                     { authenticated ? 
@@ -26,9 +25,9 @@ export default function Home(){
                     }
                 </div>
 
-                <footer className='footer-section'>
-                    <Footer/>
-                </footer>
+              
+                <Footer/>
+            
             </div>
     );
 }

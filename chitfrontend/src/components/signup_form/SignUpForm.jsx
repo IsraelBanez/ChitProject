@@ -14,7 +14,7 @@ import UserAuthDataV2Input from '../inputs/UserAuthDataV2Input.jsx';
 
 import PasswordCriteria from '../displays/PasswordCriteria.jsx';
 
-import {ReactComponent as XIcon} from '../../icons/x.svg';
+import {ReactComponent as XIcon} from '../../icons/x-red.svg';
 
 function SignUpForm({signUpSuccess}) {
     const {signUpUser} = useAuth();

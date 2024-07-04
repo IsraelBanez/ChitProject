@@ -11,7 +11,7 @@ import ConfirmUserDataComponent from '../basics/ConfirmUserDataComponent.jsx';
 
 import UserAuthDataV1Input from '../inputs/UserAuthDataV1Input.jsx';
 
-import {ReactComponent as XIcon} from '../../icons/x.svg';
+import {ReactComponent as XIcon} from '../../icons/x-red.svg';
 
 function ForgotPasswordForm() {
     const { forgotPasswordHandler} = useAuth();

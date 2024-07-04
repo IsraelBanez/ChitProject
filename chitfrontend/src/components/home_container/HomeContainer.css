@@ -12,7 +12,7 @@
 /* Note: flex 1 will grow to its container and shrink towards its contents; adding min-width 0 will allow
          shrinking past its contents
 */
-aside {
+.hc-container aside {
     flex: 0 0 300px;
 }
 
@@ -80,12 +80,12 @@ aside {
 }
 
 @media (max-width: 824px){
-    aside{
+    .hc-container aside{
         display: none;
     }
 }
 
-@media (max-width: 365px){
+@media (max-width: 240px){
     .hc-container{
         padding: 2px;
     }

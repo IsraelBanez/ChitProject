@@ -7,7 +7,7 @@ import BLTableRow from './BLTableRow';
 
 function BookLogContainer() {
     return (
-        <section className='content-container'>
+        <main className='content-container'>
             <h1>Book Log</h1>
 
             <SearchAndRefineComponent/>
@@ -19,7 +19,7 @@ function BookLogContainer() {
                     <BLTableRow/>
                 </div>
             </div>
-        </section>
+        </main>
     )
 }
 

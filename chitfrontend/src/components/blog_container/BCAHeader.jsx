@@ -1,14 +1,14 @@
 import React from 'react'
 import './BCAHeader.css';
 
-import SearchBarV2 from '../help_support_container/SearchBarV2';
+import SearchBarV2Input from '../inputs/SearchBarV2Input';
 import ArticleFilterButton from './ArticleFilterButton';
 
 function BCAHeader() {
     return (
         <div className='bca-header'>
             <div className='bcah-search'>
-                <SearchBarV2/>
+                <SearchBarV2Input/>
             </div>
 
             <ArticleFilterButton title={'Topics'} width={'100px'}/>

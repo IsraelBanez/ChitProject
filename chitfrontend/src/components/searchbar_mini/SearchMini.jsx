@@ -1,12 +1,12 @@
 import './SearchMini.css';
 
-import SearchBar from '../inputs/SearchBar.jsx';
+import SearchBarV1Input from '../inputs/SearchBarV1Input.jsx';
 
 export default function SearchMini(){
     return (
             <div className='search-mini'>
                 <h1>Search</h1>
-                <SearchBar size={'large'} placeholder="Name or username"/>
+                <SearchBarV1Input size={'large'} placeholder="Name or username"/>
             </div>
     )
 }

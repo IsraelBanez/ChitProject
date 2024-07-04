@@ -7,19 +7,16 @@ import RemindersContainer from '../../components/reminders_container/RemindersCo
 function Reminders() {
     return (
         <div>
-            <nav className='nav-section'>
-                <NavBar/>
-            </nav>
+            <NavBar/>
 
-            <main className='hc-container'>
+            <div className='hc-container'>
                 {/* Profile sidebar content */}
-                <aside>
-                    <SideBar/>
-                </aside>
+             
+                <SideBar/>
+        
                 
                 <RemindersContainer/>
-            </main>
-
+            </div>
         </div>
     )
 }

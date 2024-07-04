@@ -7,9 +7,7 @@ import Footer from '../../components/footer/Footer';
 function About() {
     return (
         <div>
-            <nav className='nav-section'>
-                <NavBar/>
-            </nav>
+            <NavBar/>
             
             <AboutContainer/>
             

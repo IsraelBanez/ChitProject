@@ -1,6 +1,6 @@
 import './BadCredentialsWarning.css';
 
-import {ReactComponent as XIcon} from '../../icons/x.svg';
+import {ReactComponent as XIcon} from '../../icons/x-red.svg';
 
 // Display bad credentials warning
 export default function BadCredentialsWarning({message}){

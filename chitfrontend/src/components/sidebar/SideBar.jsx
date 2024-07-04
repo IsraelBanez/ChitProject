@@ -21,7 +21,7 @@ import TestUser from '../../images/test-user.jpg';
 export default function SideBar(){
 
     return (
-            <div className='profile-sidebar'>
+            <aside className='profile-sidebar'>
                 {/* User Profile Section  */}
                 <div className="user-profile">
                     <UserProfileButton size={'large'} image={TestUser}/>
@@ -57,6 +57,6 @@ export default function SideBar(){
                     </ul>
                 </nav>
                         
-            </div>
+            </aside>
     );
 }

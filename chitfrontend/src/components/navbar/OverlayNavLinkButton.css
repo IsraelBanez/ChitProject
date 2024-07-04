@@ -1,0 +1,21 @@
+.overlay-nav-link-btn{
+    width: auto;
+    padding: 10px;
+    text-align: start;
+
+    border: none;
+
+    color: #010E14;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+
+    background-color: transparent;
+}
+.overlay-nav-link-btn:hover{
+    background-color: #cdc1ff2d;
+    border-radius: 10px;
+    cursor: pointer;
+}

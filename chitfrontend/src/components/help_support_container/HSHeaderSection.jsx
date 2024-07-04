@@ -1,7 +1,7 @@
 import React from 'react'
 import './HSHeaderSection.css';
 
-import SearchBarV2 from './SearchBarV2';
+import SearchBarV2Input from '../inputs/SearchBarV2Input';
 
 
 function HSHeader() {
@@ -9,7 +9,7 @@ function HSHeader() {
         <section className='hs-header-section'>   
             <div className='hs-header-content'>
                 <h1>Hello, how can we help?</h1>
-                <div className='hs-header-search'><SearchBarV2/></div>
+                <div className='hs-header-search'><SearchBarV2Input/></div>
             </div>
         </section>
     )

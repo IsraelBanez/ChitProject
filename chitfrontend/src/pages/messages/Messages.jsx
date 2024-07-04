@@ -7,18 +7,16 @@ import MessagesContainer from '../../components/messages_container/MessagesConta
 function Messages() {
     return (
         <div>
-            <nav className='nav-section'>
-                <NavBar/>
-            </nav>
-            <main className='hc-container'>
+            <NavBar/>
+
+            <div className='hc-container'>
                 {/* Profile sidebar content */}
-                <aside>
-                    <SideBar/>
-                </aside>
+             
+                <SideBar/>
+        
                 
                 <MessagesContainer/>
-            </main>
-
+            </div>
         </div>
     )
 }

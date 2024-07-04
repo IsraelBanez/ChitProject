@@ -7,18 +7,16 @@ import NotificationsContainer from '../../components/notifications_container/Not
 function Notifications() {
     return (
         <div>
-            <nav className='nav-section'>
-                <NavBar/>
-            </nav>
-            <main className='hc-container'>
+            <NavBar/>
+
+            <div className='hc-container'>
                 {/* Profile sidebar content */}
-                <aside>
-                    <SideBar/>
-                </aside>
+             
+                <SideBar/>
+        
                 
                 <NotificationsContainer/>
-            </main>
-
+            </div>
         </div>
     )
 }

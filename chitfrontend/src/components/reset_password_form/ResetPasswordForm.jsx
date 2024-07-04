@@ -14,7 +14,7 @@ import PasswordCriteria from '../displays/PasswordCriteria.jsx';
 
 import UserAuthDataV2Input from '../inputs/UserAuthDataV2Input.jsx';
 
-import {ReactComponent as XIcon} from '../../icons/x.svg';
+import {ReactComponent as XIcon} from '../../icons/x-red.svg';
 
 function ResetPasswordForm() {
     const { resetPasswordHandler } = useAuth();

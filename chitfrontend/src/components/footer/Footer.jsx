@@ -6,13 +6,13 @@ import FooterTradeMark from './FooterTradeMark.jsx';
 
 function Footer() {
     return (
-        <div className='footer-container'>
+        <footer className='footer-container'>
             <FooterLinksContainer/>
 
             <div className='footer-divider'></div>
 
             <FooterTradeMark/>
-        </div>
+        </footer>
     )
 }
 

@@ -7,18 +7,16 @@ import NetworkContainer from '../../components/network_container/NetworkContaine
 function Network() {
   return (
     <div>
-        <nav className='nav-section'>
-          <NavBar/>
-        </nav>
-        <main className='hc-container'>
-            {/* Profile sidebar content */}
-            <aside>
-              <SideBar/>
-            </aside>
-            
-            <NetworkContainer/>
-        </main>
+      <NavBar/>
 
+      <div className='hc-container'>
+          {/* Profile sidebar content */}
+      
+          <SideBar/>
+
+          
+          <NetworkContainer/>
+      </div>
     </div>
   )
 }

@@ -7,18 +7,16 @@ import DeadlinesContainer from '../../components/deadlines_container/DeadlinesCo
 function Deadlines() {
     return (
         <div>
-            <nav className='nav-section'>
             <NavBar/>
-            </nav>
-            <main className='hc-container'>
+
+            <div className='hc-container'>
                 {/* Profile sidebar content */}
-                <aside>
+            
                 <SideBar/>
-                </aside>
+        
                 
                 <DeadlinesContainer/>
-            </main>
-
+            </div>
         </div>
     )
 }

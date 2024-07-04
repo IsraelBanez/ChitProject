@@ -1,13 +1,12 @@
 import React from 'react'
-import './SearchBarV2.css';
+import './SearchBarV2Input.css';
 
 import {ReactComponent  as SearchIcon} from '../../icons/search-icon.svg';
 
-function SearchBarV2() {
+function SearchBarV2Input() {
     return (
         <div className='search-bar-v2-inpt'>
-            <input type="search" placeholder='Search'>
-            </input> 
+            <input type="search" placeholder='Search'></input> 
 
             <div className='sb-v2-dividor'></div>
 
@@ -18,4 +17,4 @@ function SearchBarV2() {
     )
 }
 
-export default SearchBarV2
+export default SearchBarV2Input

@@ -3,9 +3,9 @@ import './SortByButton.css';
 
 import {ReactComponent as DownArrowIcon} from '../../icons/down-arrow.svg';
 
-function SortByButton() {
+function SortByButton({onClick}) {
     return (
-        <button className='sort-by-btn'>
+        <button className='sort-by-btn' onClick={onClick}>
             Sort by
             <DownArrowIcon/>
         </button>

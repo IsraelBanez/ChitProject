@@ -9,13 +9,13 @@ import NetworkMini from '../network_mini/NetworkMini.jsx';
 export default function HomeContainer(){
 
     return (
-            <main className='hc-container'>
+            <div className='hc-container'>
                 {/* Profile sidebar content */}
                 <aside>
                     <SideBar/>
                 </aside>
      
-                <section className='content'>
+                <main className='content'>
                     <div className='left-content'>
                         {/* Search bar content */}
                         <SearchMini/>
@@ -31,8 +31,8 @@ export default function HomeContainer(){
                         {/* Network content */}
                         <NetworkMini/>
                     </div>
-                </section>
+                </main>
                 
-            </main>
+            </div>
     );
 }

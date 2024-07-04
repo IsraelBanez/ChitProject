@@ -7,18 +7,16 @@ import TransactionHistoryContainer from '../../components/transaction_history_co
 function TransactionHistory() {
     return (
         <div>
-            <nav className='nav-section'>
-                <NavBar/>
-            </nav>
+            <NavBar/>
 
-            <main className='hc-container'>
+            <div className='hc-container'>
                 {/* Profile sidebar content */}
-                <aside>
-                    <SideBar/>
-                </aside>
+             
+                <SideBar/>
+        
                 
                 <TransactionHistoryContainer/>
-            </main>
+            </div>
         </div>
     )
 }

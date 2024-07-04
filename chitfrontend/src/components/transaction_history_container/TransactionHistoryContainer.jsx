@@ -1,7 +1,7 @@
 import React from 'react'
 import './TransactionHistoryContainer.css';
 
-import SearchAndRefineComponent from '../basics/SearchAndRefineComponent';
+import THSearchAndRefineSection from './THSearchAndRefineSection';
 import THTableHeader from './THTableHeader';
 import THTableRow from './THTableRow';
 
@@ -10,15 +10,15 @@ function TransactionHistoryContainer() {
         <main className='content-container'>
             <h1>Transaction History</h1>
 
-            <SearchAndRefineComponent/>
+            <THSearchAndRefineSection/>
 
-            <div className='th-table-container'>
+            <section className='th-table-container'>
                 <THTableHeader/>
                 <div className='th-table-body'>
                     <THTableRow/>
                     <THTableRow/>
                 </div>
-            </div>
+            </section>
         </main>
     )
 }
