@@ -1,0 +1,21 @@
+.more-btn-v2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    min-width: 35px;
+    padding: 5px 12px;
+
+    border-radius: 50%;
+    border-width: 0px;
+
+    background-color: transparent;
+    cursor: pointer;
+    
+    svg{
+        height: 20px;
+    }
+}
+.more-btn-v2:hover{
+    background-color: #F5EFFF;
+}

@@ -49,30 +49,6 @@
 .n-logged-in-btn:hover{
     background-color: #CDC1FF;
 }
-.n-sign-in-btn{
-    width: auto;
-    height: auto;
-    display: flex;
-    padding: 5px 20px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 25px;
-    background: rgba(205, 193, 255, 0.24);
-    caret-color: transparent;
-
-    color: #010E14;
-    text-align: center;
-    font-family: 'Poppins';
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16px; 
-}
-.n-sign-in-btn:hover{
-    background-color: rgba(205, 193, 255, 0.8);
-    color: white;
-    cursor: pointer;
-}
 
 .n-menu-btn{
     display: none;
@@ -81,10 +57,6 @@
     .navbar-container{
         justify-content: space-between;
         gap: 0px;
-    }
-
-    .n-sign-in-btn{
-        display: none
     }
 
     .n-logged-in-btn ~ .n-menu-btn{ /* When logged-in is present, keep using the logged in button instead of hamburger menu*/ 

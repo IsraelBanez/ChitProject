@@ -1,17 +1,13 @@
 .calendar-check-btn{
-    max-width: 160px;
-    min-width: min-content;
-    min-height: 35px;
-    max-height: 35px;
-    padding: 0px 5px;
+    min-width: max-content;
+    width: max-content;
     height: 35px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
-    flex:1;
-    height: auto;
-    
+    justify-content: center;
+    padding: 0px 10px;
+
     border-radius: 10px;
     border-width: 1px;
     border-color: #010E14;
@@ -25,10 +21,11 @@
 
     background-color: #fff;
     cursor: pointer;
+    overflow: hidden;
 
     svg{
         width: 18px;
         height: 18px;
-
+        margin-right: 10px;
     }
 }

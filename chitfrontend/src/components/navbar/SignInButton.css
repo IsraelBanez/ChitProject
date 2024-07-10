@@ -1,0 +1,33 @@
+.n-sign-in-btn{
+    width: auto;
+    height: auto;
+    display: flex;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 25px;
+    border: none;
+
+    color: #010E14;
+    text-align: center;
+    font-family: 'Poppins';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; 
+
+    background: rgba(205, 193, 255, 0.24);
+    caret-color: transparent;
+}
+.n-sign-in-btn:hover{
+    background-color: rgba(205, 193, 255, 0.8);
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 842px) {
+    .n-sign-in-btn{
+        display: none
+    }
+}

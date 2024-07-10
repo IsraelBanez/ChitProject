@@ -1,0 +1,17 @@
+.mark-all-as-read-btn{
+    margin-block: 0px;
+    color: #CDC1FF;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    border: none;
+
+    background-color: transparent;
+    cursor: pointer;
+}

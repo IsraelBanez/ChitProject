@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import NavLinks from './NavLinks.jsx';
 import OverlayNavBarMenu from './OverlayNavBarMenu.jsx';
+import SignInButton from './SignInButton.jsx';
 
 import Profile from '../../icons/profile-icon.svg';
 import {ReactComponent  as Menu} from '../../icons/hamburger-menu.svg';
@@ -63,9 +64,8 @@ export default function NavBar(){
                         <img src={Profile} alt="Picture of user or profile icon"/>
                     </button>   
                     : 
-                    <div className='n-sign-in-btn' onClick={() => signInPage()}>
-                        Sign in
-                    </div>
+                    <SignInButton onClick={() => signInPage()}/>
+                        
                     }
                     <button className='n-menu-btn' onClick={toggleOverlayMenu}>
                         <Menu/>

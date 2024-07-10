@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './THSearchAndRefineSection.css';
+import './BLSearchAndRefineSection.css';
 
 import SearchBarV1Input from '../inputs/SearchBarV1Input';
 
@@ -7,14 +7,14 @@ import AddFilterButton from '../buttons/AddFilterButton';
 import SortByButton from '../buttons/SortByButton';
 import MoreButton from '../buttons/MoreButtonV2';
 
-function THSearchAndRefineSection() {
-    const thsarSectionRef = useRef(null);
+function BLSearchAndRefineSection() {
+    const blsarSectionRef = useRef(null);
     const [isNarrow, setIsNarrow] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
-            if (thsarSectionRef.current) {
-                setIsNarrow(thsarSectionRef.current.offsetWidth <= 540);
+            if (blsarSectionRef.current) {
+                setIsNarrow(blsarSectionRef.current.offsetWidth <= 540);
             }
         };
 
@@ -27,7 +27,7 @@ function THSearchAndRefineSection() {
     }, []);
 
     return (
-        <section className={`th-search-and-refine-section ${isNarrow ? 'narrow' : ''}`} ref={thsarSectionRef}>
+        <section className={`bl-search-and-refine-section ${isNarrow ? 'narrow' : ''}`} ref={blsarSectionRef}>
             <div>
                 <SearchBarV1Input size={'small'} placeholder="Search" />
             </div>
@@ -45,4 +45,4 @@ function THSearchAndRefineSection() {
     )
 }
 
-export default THSearchAndRefineSection
+export default BLSearchAndRefineSection

@@ -3,7 +3,7 @@
     width: 100%;
     flex-direction: row;
     gap: 0px;
-    min-width: 125px;
+    min-width: 100px;
     height: 50px;
 
     border-radius: 25px;
@@ -16,7 +16,7 @@
 
 .search-bar-inpt input{
     width: 90%;
-    min-width: 85px;
+    min-width: 60px;
     padding: 0px;
 
     border: 0;

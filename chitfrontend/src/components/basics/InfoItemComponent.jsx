@@ -2,7 +2,7 @@ import React from 'react'
 import './InfoItemComponent.css';
 
 import UserProfileButton from '../buttons/UserProfileButton';
-import MoreButton from '../buttons/MoreButton';
+import MoreButton from '../buttons/MoreButtonV1';
 
 import TestUser from '../../images/test-user.jpg';
 

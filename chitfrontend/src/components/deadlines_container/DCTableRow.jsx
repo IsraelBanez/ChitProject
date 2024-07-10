@@ -2,7 +2,7 @@ import React from 'react'
 import './DCTableRow.css';
 
 import UserProfileButton from '../buttons/UserProfileButton';
-import MoreButton from '../buttons/MoreButton';
+import MoreButton from '../buttons/MoreButtonV1';
 import SummaryButton from './SummaryButton';
 
 import TestUser from '../../images/test-user.jpg';

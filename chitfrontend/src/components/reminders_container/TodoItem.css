@@ -71,6 +71,7 @@
 
 .todo-right{
     display: flex;
+    gap: 5px;
     flex-direction: row; 
     justify-content: flex-end;
     align-items: center;

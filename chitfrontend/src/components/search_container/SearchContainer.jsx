@@ -1,19 +1,19 @@
 import React from 'react'
 import './SearchContainer.css';
 
-import SearchAndRefineComponent from '../basics/SearchAndRefineComponent';
+import CDSearchSection from './CDSearchSection';
 import CreditorsDebtorsSection from './CreditorsDebtorsSection';
 
 function SearchContainer() {
     return (
-        <section className='content-container'>
+        <main className='content-container'>
             <h1>Search</h1>
 
-            <SearchAndRefineComponent type={'search'} />
+            <CDSearchSection/>
 
             <CreditorsDebtorsSection version={'creditors'} />
             <CreditorsDebtorsSection version={'debtors'} />
-        </section>
+        </main>
     )
 }
 

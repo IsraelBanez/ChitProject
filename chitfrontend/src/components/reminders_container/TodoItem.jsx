@@ -2,7 +2,7 @@ import React from 'react'
 import './TodoItem.css';
 
 import UserProfileButton from '../buttons/UserProfileButton';
-import MoreButton from '../buttons/MoreButton';
+import MoreButton from '../buttons/MoreButtonV2';
 
 import TestUser from '../../images/test-user.jpg';
 
@@ -26,7 +26,7 @@ function TodoItem() {
                     <UserProfileButton size={'small'} image={TestUser}/>
                     <UserProfileButton size={'small'} image={TestUser}/>
                 </div>
-                <MoreButton version={'transparent'}/>
+                <MoreButton/>
             </div>
         </div>
     )

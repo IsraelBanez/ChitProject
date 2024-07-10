@@ -1,0 +1,11 @@
+.new-message-btn{
+    border: none;
+
+    background-color: transparent;
+    cursor: pointer;
+
+    svg{
+        width: 18px;
+        height: 18px;
+    }
+}

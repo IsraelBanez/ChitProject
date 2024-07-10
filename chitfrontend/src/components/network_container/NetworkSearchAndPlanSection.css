@@ -1,13 +1,13 @@
-.th-search-and-refine-section {
+.n-search-and-plan-section {
     display: flex;
     justify-content: space-between;
     gap: 10px;
 }
-.th-search-and-refine-section div:nth-child(1){
+.n-search-and-plan-section div:nth-child(1){
     display: flex;
     flex: 2;
 }
-.th-search-and-refine-section div:nth-child(2){
+.n-search-and-plan-section div:nth-child(2){
     display: flex;
     flex-direction: row;
     flex: 1;
@@ -16,10 +16,10 @@
     gap: 10px;
 }
 
-.th-search-and-refine-section.narrow{
+.n-search-and-plan-section.narrow{
     flex-direction: column;
 }
-.th-search-and-refine-section.narrow div:nth-child(2){
+.n-search-and-plan-section.narrow div:nth-child(2){
     justify-content: space-between;
     position: relative;
 

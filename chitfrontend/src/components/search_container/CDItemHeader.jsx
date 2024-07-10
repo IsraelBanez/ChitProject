@@ -7,10 +7,14 @@ import SortByButton from '../buttons/SortByButton';
 function CDItemHeader({sectionTitle}) {
     return (
         <div className='cd-header'>
-            <h2>{sectionTitle}</h2>
+            <div>
+                <h2>{sectionTitle}</h2>
+            </div>
 
-            <AddFilterButton/>
-            <SortByButton/>
+            <div>
+                <AddFilterButton/>
+                <SortByButton/>
+            </div>
         </div>
     )
 }

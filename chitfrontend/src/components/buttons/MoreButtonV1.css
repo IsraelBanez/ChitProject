@@ -1,4 +1,4 @@
-.more-btn{
+.more-btn-v1{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,4 +10,10 @@
 
     background-color: #F5EFFF;
     cursor: pointer;
+}
+.more-btn-v1:hover{
+    background-color: rgba(205, 193, 255, 0.8);
+    path{
+        fill: white;
+    }
 }

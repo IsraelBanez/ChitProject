@@ -5,7 +5,7 @@ import TestUser from '../../images/test-user.jpg';
 
 import UserProfileButton from '../buttons/UserProfileButton';
 import PayAmountButton from './PayAmountButton';
-import MoreButton from '../buttons/MoreButton';
+import MoreButton from '../buttons/MoreButtonV2';
 
 function LoanItemHeader() {
     return (
@@ -22,7 +22,7 @@ function LoanItemHeader() {
             </div>
             <div className='li-right-region'>
                 <PayAmountButton />
-                <MoreButton version={'transparent'}/>
+                <MoreButton />
             </div>
         </div>
     )
